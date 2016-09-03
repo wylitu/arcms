@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description:  权限拦截器
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/16  

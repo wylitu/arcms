@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: <p>
  *                 字符串工具类
  *                </p>

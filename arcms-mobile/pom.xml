@@ -41,13 +41,8 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 		<dependency>
-            <groupId>com.icard</groupId>
-            <artifactId>icard-biz</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icard</groupId>
-            <artifactId>icard-distribution</artifactId>
+            <groupId>com.arcms</groupId>
+            <artifactId>arcms-biz</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- Spring 3 dependencies -->
@@ -236,17 +231,6 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-        <dependency>
-            <groupId>json</groupId>
-            <artifactId>json</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>baidu</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
     </dependencies>
 
     <build>

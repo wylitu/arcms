@@ -36,7 +36,7 @@ public class HongbaoObtain {
     private Long userId;
 
     /** 爱卡币金额 */
-    private Long arcmsIcon;
+    private Long icardIcon;
 
     /** 红包活动ID */
     private Long hongbaoActivityId;

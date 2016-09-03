@@ -4,7 +4,7 @@ import com.arcms.biz.domain.generation.user.User;
 
 /**
  *   
- *  @ProjectName: arcms 
+ *  @ProjectName: icard 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com
