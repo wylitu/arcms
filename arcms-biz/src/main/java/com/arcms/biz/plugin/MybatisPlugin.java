@@ -1,6 +1,5 @@
 package com.arcms.biz.plugin;
 
-import com.suniusoft.common.utils.AssertsUtil;
 import org.apache.commons.lang.StringUtils;
 import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
