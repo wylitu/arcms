@@ -127,8 +127,8 @@ public class MemberLevelExample {
         this.queryColumns.add("rmb_return_ratio");
     }
 
-    public void addIcardReturnRatioQueryColumn() {
-        this.queryColumns.add("icard_return_ratio");
+    public void addarcmsReturnRatioQueryColumn() {
+        this.queryColumns.add("arcms_return_ratio");
     }
 
     public void addRequiredIntegralQueryColumn() {
@@ -700,73 +700,73 @@ public class MemberLevelExample {
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioIsNull() {
-            addCriterion("icard_return_ratio is null");
+        public Criteria andarcmsReturnRatioIsNull() {
+            addCriterion("arcms_return_ratio is null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioIsNotNull() {
-            addCriterion("icard_return_ratio is not null");
+        public Criteria andarcmsReturnRatioIsNotNull() {
+            addCriterion("arcms_return_ratio is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioEqualTo(String value) {
-            addCriterion("icard_return_ratio =", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioEqualTo(String value) {
+            addCriterion("arcms_return_ratio =", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioNotEqualTo(String value) {
-            addCriterion("icard_return_ratio <>", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioNotEqualTo(String value) {
+            addCriterion("arcms_return_ratio <>", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioGreaterThan(String value) {
-            addCriterion("icard_return_ratio >", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioGreaterThan(String value) {
+            addCriterion("arcms_return_ratio >", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioGreaterThanOrEqualTo(String value) {
-            addCriterion("icard_return_ratio >=", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioGreaterThanOrEqualTo(String value) {
+            addCriterion("arcms_return_ratio >=", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioLessThan(String value) {
-            addCriterion("icard_return_ratio <", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioLessThan(String value) {
+            addCriterion("arcms_return_ratio <", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioLessThanOrEqualTo(String value) {
-            addCriterion("icard_return_ratio <=", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioLessThanOrEqualTo(String value) {
+            addCriterion("arcms_return_ratio <=", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioLike(String value) {
-            addCriterion("icard_return_ratio like", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioLike(String value) {
+            addCriterion("arcms_return_ratio like", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioNotLike(String value) {
-            addCriterion("icard_return_ratio not like", value, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioNotLike(String value) {
+            addCriterion("arcms_return_ratio not like", value, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioIn(List<String> values) {
-            addCriterion("icard_return_ratio in", values, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioIn(List<String> values) {
+            addCriterion("arcms_return_ratio in", values, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioNotIn(List<String> values) {
-            addCriterion("icard_return_ratio not in", values, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioNotIn(List<String> values) {
+            addCriterion("arcms_return_ratio not in", values, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioBetween(String value1, String value2) {
-            addCriterion("icard_return_ratio between", value1, value2, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioBetween(String value1, String value2) {
+            addCriterion("arcms_return_ratio between", value1, value2, "arcmsReturnRatio");
             return (Criteria) this;
         }
 
-        public Criteria andIcardReturnRatioNotBetween(String value1, String value2) {
-            addCriterion("icard_return_ratio not between", value1, value2, "icardReturnRatio");
+        public Criteria andarcmsReturnRatioNotBetween(String value1, String value2) {
+            addCriterion("arcms_return_ratio not between", value1, value2, "arcmsReturnRatio");
             return (Criteria) this;
         }
 

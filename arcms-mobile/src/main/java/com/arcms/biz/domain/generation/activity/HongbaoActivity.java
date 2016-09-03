@@ -45,7 +45,7 @@ public class HongbaoActivity {
     private Long number;
 
     /** 每个红包爱卡数 */
-    private Long icardCoin;
+    private Long arcmsCoin;
 
     /** 已领个数 */
     private Long numberObtain;
@@ -54,8 +54,8 @@ public class HongbaoActivity {
     private String states;
 
     /** 红包总爱卡数 */
-    private Long totalIcardCoin;
+    private Long totalarcmsCoin;
 
     /** 红包领取金额 */
-    private Long obtainIcardCoin;
+    private Long obtainarcmsCoin;
 }

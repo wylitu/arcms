@@ -178,7 +178,7 @@ public class JSONUtils {
      * */
     public static JSONObject modify(String jsonStr, String baseUrl){
         JSONObject json = JSON.parseObject(jsonStr);
-        if(StringUtils.isNotBlank(baseUrl) && baseUrl.length() > 1){        //排除baseUrl为 / 的情况，如果是/icard就要加上
+        if(StringUtils.isNotBlank(baseUrl) && baseUrl.length() > 1){        //排除baseUrl为 / 的情况，如果是/arcms就要加上
             String state = json.getString("state");
             if("SUCCESS".equals(state)){
                 String url = json.getString("url");

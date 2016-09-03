@@ -51,17 +51,17 @@ public class DigestLogInterceptor extends BaseDigestLogInterceptor {
     /**
      * 拦截包的名字
      */
-    private static final String DAO_PACKAGE_PREX = "com.icard.biz.dao";
+    private static final String DAO_PACKAGE_PREX = "com.arcms.biz.dao";
 
     /**
      * 拦截包的名字
      */
-    private static final String BIZ_PACKAGE_PREX = "com.icard.biz";
+    private static final String BIZ_PACKAGE_PREX = "com.arcms.biz";
 
     /**
      * 拦截包的名字
      */
-    private static final String CONTROLLER_PACKAGE_PREX = "com.icard.admin.web.controller";
+    private static final String CONTROLLER_PACKAGE_PREX = "com.arcms.admin.web.controller";
 
 
     /**

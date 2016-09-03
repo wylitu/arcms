@@ -31,7 +31,7 @@ import java.util.Map;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: 基于 httpclient 4.3.1版本的 http工具类
  *  @author zoujian  zoujian@shufensoft.com
  *  @date 2015/4/12 22:29  

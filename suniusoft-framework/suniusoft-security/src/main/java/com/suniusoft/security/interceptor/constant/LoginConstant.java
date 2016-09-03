@@ -2,7 +2,7 @@ package com.suniusoft.security.interceptor.constant;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description:  登录常量
  *  @author litu  litu@shufensoft.com
  *  @date 2015/6/29  

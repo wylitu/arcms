@@ -127,8 +127,8 @@ public class HongbaoObtainExample {
         this.queryColumns.add("user_id");
     }
 
-    public void addIcardIconQueryColumn() {
-        this.queryColumns.add("icard_icon");
+    public void addarcmsIconQueryColumn() {
+        this.queryColumns.add("arcms_icon");
     }
 
     public void addHongbaoActivityIdQueryColumn() {
@@ -688,63 +688,63 @@ public class HongbaoObtainExample {
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconIsNull() {
-            addCriterion("icard_icon is null");
+        public Criteria andarcmsIconIsNull() {
+            addCriterion("arcms_icon is null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconIsNotNull() {
-            addCriterion("icard_icon is not null");
+        public Criteria andarcmsIconIsNotNull() {
+            addCriterion("arcms_icon is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconEqualTo(Long value) {
-            addCriterion("icard_icon =", value, "icardIcon");
+        public Criteria andarcmsIconEqualTo(Long value) {
+            addCriterion("arcms_icon =", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconNotEqualTo(Long value) {
-            addCriterion("icard_icon <>", value, "icardIcon");
+        public Criteria andarcmsIconNotEqualTo(Long value) {
+            addCriterion("arcms_icon <>", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconGreaterThan(Long value) {
-            addCriterion("icard_icon >", value, "icardIcon");
+        public Criteria andarcmsIconGreaterThan(Long value) {
+            addCriterion("arcms_icon >", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconGreaterThanOrEqualTo(Long value) {
-            addCriterion("icard_icon >=", value, "icardIcon");
+        public Criteria andarcmsIconGreaterThanOrEqualTo(Long value) {
+            addCriterion("arcms_icon >=", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconLessThan(Long value) {
-            addCriterion("icard_icon <", value, "icardIcon");
+        public Criteria andarcmsIconLessThan(Long value) {
+            addCriterion("arcms_icon <", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconLessThanOrEqualTo(Long value) {
-            addCriterion("icard_icon <=", value, "icardIcon");
+        public Criteria andarcmsIconLessThanOrEqualTo(Long value) {
+            addCriterion("arcms_icon <=", value, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconIn(List<Long> values) {
-            addCriterion("icard_icon in", values, "icardIcon");
+        public Criteria andarcmsIconIn(List<Long> values) {
+            addCriterion("arcms_icon in", values, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconNotIn(List<Long> values) {
-            addCriterion("icard_icon not in", values, "icardIcon");
+        public Criteria andarcmsIconNotIn(List<Long> values) {
+            addCriterion("arcms_icon not in", values, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconBetween(Long value1, Long value2) {
-            addCriterion("icard_icon between", value1, value2, "icardIcon");
+        public Criteria andarcmsIconBetween(Long value1, Long value2) {
+            addCriterion("arcms_icon between", value1, value2, "arcmsIcon");
             return (Criteria) this;
         }
 
-        public Criteria andIcardIconNotBetween(Long value1, Long value2) {
-            addCriterion("icard_icon not between", value1, value2, "icardIcon");
+        public Criteria andarcmsIconNotBetween(Long value1, Long value2) {
+            addCriterion("arcms_icon not between", value1, value2, "arcmsIcon");
             return (Criteria) this;
         }
 

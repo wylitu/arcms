@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *               </p>
  *  @author litu  litu@shufensoft.com

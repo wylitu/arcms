@@ -4,7 +4,7 @@ import com.suniusoft.security.biz.domain.generation.permission.UserRole;
 
 /**
  *   
- *  @ProjectName: icard 
+ *  @ProjectName: arcms 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com

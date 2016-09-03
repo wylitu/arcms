@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 spring上下文工具类
  *                </p>

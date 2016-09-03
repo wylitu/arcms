@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: BaseController
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/15  

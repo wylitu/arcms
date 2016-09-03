@@ -2,7 +2,7 @@ package com.arcms.shop.constant;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                </p>
  *  @author litu  litu@shufensoft.com

@@ -2,7 +2,7 @@ package com.suniusoft.common.runner.executor;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 业务执行器
  *               </p>

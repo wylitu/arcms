@@ -2,7 +2,7 @@ package com.arcms.biz.vo;
 
 /**
  *   
- *  @ProjectName: icard 
+ *  @ProjectName: arcms 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com

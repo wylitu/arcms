@@ -2,7 +2,7 @@ package com.suniusoft.common.utils.exception;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: execel 操作异常类
  *  @author litu  litu@shufensoft.com
  *  @date 2015/4/18 13:42  
