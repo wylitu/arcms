@@ -21,7 +21,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.icard.biz.domain.generation.shop" targetProject="icard-biz/src/main/java/">
+        <javaModelGenerator targetPackage="com.arcms.biz.domain.generation.shop" targetProject="icard-biz/src/main/java/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="useActualColumnNames" value="true" />
@@ -31,7 +31,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.icard.biz.dao.generation.shop"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.arcms.biz.dao.generation.shop"
                              targetProject="icard-biz/src/main/java/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>

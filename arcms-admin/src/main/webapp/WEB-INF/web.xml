@@ -26,7 +26,7 @@
     <!-- ====================================== -->
 
     <listener>
-        <listener-class>com.icard.admin.listener.ContextLoaderListener</listener-class>
+        <listener-class>com.arcms.admin.listener.ContextLoaderListener</listener-class>
     </listener>
     <!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 -->
     <context-param>

@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: <p>
  *                 线程池
  *                </p>

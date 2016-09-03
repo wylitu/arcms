@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: domain标注
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/10 11:26  

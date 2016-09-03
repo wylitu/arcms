@@ -2,7 +2,7 @@ package com.suniusoft.common.exception;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: 业务层异常类
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/24 22:42  

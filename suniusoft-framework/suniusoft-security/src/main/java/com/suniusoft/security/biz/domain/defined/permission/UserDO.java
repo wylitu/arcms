@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  *   
- *  @ProjectName: arcms 
+ *  @ProjectName: icard 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com

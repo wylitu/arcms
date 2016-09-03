@@ -3,7 +3,7 @@ import org.apache.http.util.Asserts;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: <p>
  *                  断言类
  *                 </p>

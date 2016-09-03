@@ -64,7 +64,7 @@
     </bean>
 
     <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="com.icard,com.suniusoft.security">
+    <context:component-scan base-package="com.arcms,com.suniusoft.security">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
     <!-- 完成请求和注解POJO的映射 -->
@@ -72,9 +72,9 @@
 
     <!--&lt;!&ndash; 静态资源&ndash;&gt;-->
     <mvc:resources mapping="/media/**" location="/media/"/>
-    <mvc:resources mapping="/ueditor/**" location="/ueditor/"/>
-    <mvc:resources mapping="/static/**" location="/static/"/>
-    <mvc:resources mapping="/upload/**" location="/upload/"/>
+    <!--<mvc:resources mapping="/ueditor/**" location="/ueditor/"/>-->
+    <!--<mvc:resources mapping="/static/**" location="/static/"/>-->
+    <!--<mvc:resources mapping="/upload/**" location="/upload/"/>-->
 
     <!-- 定义环境变量文件 -->
     <bean id="propertyHolder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

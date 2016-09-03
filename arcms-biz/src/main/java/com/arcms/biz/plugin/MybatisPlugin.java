@@ -1,5 +1,6 @@
 package com.arcms.biz.plugin;
 
+import com.suniusoft.common.utils.AssertsUtil;
 import org.apache.commons.lang.StringUtils;
 import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: mybatis 代码自动生成插件
  *  @author litu  litu@shufensoft.com
  *  @date 2015/4/14 17:29  

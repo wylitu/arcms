@@ -30,7 +30,7 @@ public class ContentManage {
     /** 文章发布位置 user:用户端 seller:商家端 */
     private String articlePosition;
 
-    /** 内容类型 article:文章 advertisement:广告 arcms_service:爱卡服务 recommen_rules:推荐规则         payment_help:支付帮助  about_arcms:关于我的卡    */
+    /** 内容类型 article:文章 advertisement:广告 icard_service:爱卡服务 recommen_rules:推荐规则         payment_help:支付帮助  about_icard:关于我的卡    */
     private String type;
 
     /** 标题 */

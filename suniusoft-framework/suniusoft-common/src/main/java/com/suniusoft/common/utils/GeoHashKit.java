@@ -2,7 +2,7 @@ package com.suniusoft.common.utils;
 
 /**
  *   
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description: GeoHash经纬转换，经纬间距离
  *  @author zoujian  zoujian@suniusoft.com
  *  @date 15/11/25 下午9:01  

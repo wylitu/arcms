@@ -225,14 +225,14 @@
     </logger>
 
     <!-- [应用Logger] 业务层日志 -->
-    <logger name="com.icard.admin.biz" additivity="true">
+    <logger name="com.arcms.admin.biz" additivity="true">
         <level value="${loggingLevel}"/>
         <appender-ref ref="BIZ-APPENDER" />
         <appender-ref ref="ERROR-APPENDER" />
     </logger>
 
     <!-- [应用Logger] 控制层日志 -->
-    <logger name="com.icard.admin.web.controller" additivity="true">
+    <logger name="com.arcms.admin.web.controller" additivity="true">
         <level value="${loggingLevel}" />
         <appender-ref ref="CONTROLLER-APPENDER" />
         <appender-ref ref="ERROR-APPENDER" />

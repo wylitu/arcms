@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  @ProjectName: arcms  
+ *  @ProjectName: icard  
  *  @Description:  白名单过滤
  *  @author litu  litu@shufensoft.com
  *  @date 2015/6/29  
