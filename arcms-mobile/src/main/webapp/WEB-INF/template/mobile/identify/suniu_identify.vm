@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>我的认证</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="assets/amazeui/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/amazeui/assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/suniu.css?t=20150519">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a
+        href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<!-- 页面内容 开发时删除 -->
+
+
+<form class="am-form">
+    <fieldset>
+        <div class="am-form-group">
+            <label >微信昵称:</label>
+            <span  style="margin-left: 3%">重楼</span>
+        </div>
+
+        <div class="am-form-group" >
+            <label  style="margin-left: 0%">购物平台:</label>
+
+
+            <label class="am-checkbox-inline" style="margin: 0 0%">
+                <input type="checkbox" value="option1" checked="checked"> 淘宝平台
+            </label>
+            <label class="am-checkbox-inline" style="margin: 0 0%">
+                <input type="checkbox" value="option2"> 京东平台
+            </label>
+            <label class="am-checkbox-inline" style="margin: 0 0%">
+                <input type="checkbox" value="option3"> 其它
+            </label>
+        </div>
+
+        <div class="am-form-group" style="display: inline-block">
+            <label for="doc-ipt-mobile-1" >手机号码:</label>
+            <input type="mobile" class="" id="doc-ipt-email-1" placeholder="输入收货或购物手机号">
+            <font style="color:#52E1EA;float: left;margin:0 25%">获取验证码</font>
+        </div>
+
+        <div class="am-form-group">
+            <label>输入验证码:</label>
+            <input type="mobile"  style="width: 120px;margin-left: 5%" >
+        </div>
+
+        <div class="am-form-group am-form-icon" style="display: inline">
+            <label>您的出生日期:</label>
+            <input type="birthday"   style="width: 120px" data-am-datepicker="{format: 'yyyy-mm-dd'}">
+            </br>
+            <p style="text-align: center;width: 100%;color: #ff5741;font-size: 15px">告诉我们您的出生日期，生日当天会有惊喜</p>
+        </div>
+
+
+        <div class="am-form-group am-form-icon">
+            <p class="am-text-center">
+                <button type="button" class="am-btn am-btn-secondary " style="width: 95%;border-radius: 5px">开始验证</button>
+            </p>
+        </div>
+
+
+    </fieldset>
+</form>
+
+<!-- 以上页面内容 开发时删除 -->
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/amazeui/assets/js/jquery.min.js"></script>
+<script src="assets/amazeui/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
+</body>
+</html>

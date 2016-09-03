@@ -1,0 +1,115 @@
+#set($layout = "/layout/blank.vm")
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb">
+                        <li>
+                        </li>
+                        <li>与客户互动</li>
+                        <li class="active">创建积分规则</li>
+                    </ul>
+                </div>
+                <div class="widget-body" id="integralConfigDiv">
+                    <div class="widget-main">
+                        <form class="form-horizontal markAct" id="integralConfigForm" role="form" style=""  method="post">
+                            <div id ="mdiv">
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label class="col-sm-4 control-label no-padding-right" style="margin-left: -100px;margin-bottom: 30px">
+                                            <input name="configName" type="radio" class="ace" value="SYS" checked="checked"/>
+                                            <span class="lbl">系统默认购物积分计算</span>
+                                        </label>
+                                        <label class="col-sm-2 control-label no-padding-right">
+                                            <input  name="configName" type="radio" class="ace" value="CUSTOM" />
+                                            <span class="lbl">我要自己设置购物积分</span>
+                                        </label>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">设置公式：每100积分可以兑换现金：</label>
+                                    <div class="col-sm-2" style="padding-left: 25px;">
+                                        <input type="text" name="conertMoney" placeholder="输入现金" class="col-xs-10 col-sm-5"/>
+                                    </div>
+
+                                    <label class="col-sm-2 control-label no-padding-right" style="font-family: 'Helvetica';width:245px;margin-left: -52px">第一次加入企业社群赠送：</label>
+                                    <div class="col-sm-4" style="padding-left: 25px;">
+                                        <label>
+                                            <input type="text" name="groupIntegral" placeholder="输入积分" class="col-xs-10 col-sm-5"/>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">关注微信第一次公众号赠送：</label>
+                                    <div class="col-sm-2" style="padding-left: 25px">
+                                        <input type="text" name="attentionIntegral" placeholder="输入积分" class="col-xs-10 col-sm-5">
+                                    </div>
+
+                                    <label class="col-sm-2 control-label no-padding-right" style="font-family: 'Helvetica';width:245px;margin-left: -52px">每次传播/转发企业信息赠送送：</label>
+                                    <div class="col-sm-4" style="padding-left: 25px;">
+                                        <label>
+                                            <input type="text" name="spreadIntegral" placeholder="输入积分" class="col-xs-10 col-sm-5">
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="interalGroup_1">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">第1次购物每100元购物金额赠送：</label>
+                                    <div class="col-sm-2" style="padding-left: 25px">
+                                        <label>
+                                            <input class="integralBuy col-xs-10 col-sm-5" type="text" name="integralBuy_1" placeholder="输入积分">
+                                        </label>
+                                    </div>
+
+                                    <label class="col-sm-2 control-label no-padding-right" style="font-family: 'Helvetica';width:245px;margin-left: -52px">第2次购物每100元购物金额赠送：</label>
+                                    <div class="col-sm-4" style="padding-left: 25px;">
+                                        <label>
+                                            <input class="integralBuy col-xs-10 col-sm-5" type="text" name="integralBuy_2" placeholder="输入积分">
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="interalGroup_2">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">第3次购物每100元购物金额赠送：</label>
+                                    <div class="col-sm-2" style="padding-left: 25px;">
+                                        <label>
+                                            <input class="integralBuy col-xs-10 col-sm-5" type="text" name="integralBuy_3" placeholder="输入积分" >
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+                            <div class="col-sm-18">
+                                <button  type="button" style="margin-bottom: 20px" onclick="addText(i)">
+                                    <center>继续添加</center>
+                                </button>
+                            </div>
+                            <div class="modal-footer  sn-footer">
+                                <center><input class="sure" id="sure" type="submit" value="开始计算" >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/ruleConfig/integralRule.js"></script>

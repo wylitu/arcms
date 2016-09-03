@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arcms.biz.dao.generation.system.LstOfValMapper" >
+  <resultMap id="BaseResultMap" type="com.arcms.biz.domain.generation.system.LstOfVal" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="desc_text" property="descText" jdbcType="VARCHAR" />
+    <result column="value_01" property="value01" jdbcType="VARCHAR" />
+    <result column="value_02" property="value02" jdbcType="VARCHAR" />
+    <result column="value_03" property="value03" jdbcType="VARCHAR" />
+    <result column="orde_by" property="ordeBy" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.arcms.biz.domain.generation.system.LstOfVal" extends="BaseResultMap" >
+    <result column="big_value" property="bigValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, type, name, value, 
+    desc_text, value_01, value_02, value_03, orde_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    big_value
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.arcms.biz.domain.generation.system.LstOfValExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lst_of_val
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="forUpdate" >
+      for update
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.arcms.biz.domain.generation.system.LstOfValExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <if test="!definedQueryColumns" >
+      <include refid="Base_Column_List" />
+    </if>
+    <if test="definedQueryColumns" >
+      <foreach collection="queryColumns" item="queryColumn" separator="," >
+        ${queryColumn}
+      </foreach>
+    </if>
+    from lst_of_val
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="forUpdate" >
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lst_of_val
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update lst_of_val
+    set is_deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.arcms.biz.domain.generation.system.LstOfValExample" >
+    update lst_of_val
+    set is_deleted = 1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.arcms.biz.domain.generation.system.LstOfVal" useGeneratedKeys="true" keyProperty="id" >
+    insert into lst_of_val (id, gmt_created, gmt_modified, 
+      created_by, modified_by, is_deleted, 
+      type, name, value, 
+      desc_text, value_01, value_02, 
+      value_03, orde_by, big_value
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{descText,jdbcType=VARCHAR}, #{value01,jdbcType=VARCHAR}, #{value02,jdbcType=VARCHAR}, 
+      #{value03,jdbcType=VARCHAR}, #{ordeBy,jdbcType=INTEGER}, #{bigValue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.arcms.biz.domain.generation.system.LstOfVal" useGeneratedKeys="true" keyProperty="id" >
+    insert into lst_of_val
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="descText != null" >
+        desc_text,
+      </if>
+      <if test="value01 != null" >
+        value_01,
+      </if>
+      <if test="value02 != null" >
+        value_02,
+      </if>
+      <if test="value03 != null" >
+        value_03,
+      </if>
+      <if test="ordeBy != null" >
+        orde_by,
+      </if>
+      <if test="bigValue != null" >
+        big_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="descText != null" >
+        #{descText,jdbcType=VARCHAR},
+      </if>
+      <if test="value01 != null" >
+        #{value01,jdbcType=VARCHAR},
+      </if>
+      <if test="value02 != null" >
+        #{value02,jdbcType=VARCHAR},
+      </if>
+      <if test="value03 != null" >
+        #{value03,jdbcType=VARCHAR},
+      </if>
+      <if test="ordeBy != null" >
+        #{ordeBy,jdbcType=INTEGER},
+      </if>
+      <if test="bigValue != null" >
+        #{bigValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.arcms.biz.domain.generation.system.LstOfValExample" resultType="java.lang.Integer" >
+    select count(*) from lst_of_val
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lst_of_val
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update lst_of_val
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      type = #{record.type,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=VARCHAR},
+      desc_text = #{record.descText,jdbcType=VARCHAR},
+      value_01 = #{record.value01,jdbcType=VARCHAR},
+      value_02 = #{record.value02,jdbcType=VARCHAR},
+      value_03 = #{record.value03,jdbcType=VARCHAR},
+      orde_by = #{record.ordeBy,jdbcType=INTEGER},
+      big_value = #{record.bigValue,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lst_of_val
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      type = #{record.type,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=VARCHAR},
+      desc_text = #{record.descText,jdbcType=VARCHAR},
+      value_01 = #{record.value01,jdbcType=VARCHAR},
+      value_02 = #{record.value02,jdbcType=VARCHAR},
+      value_03 = #{record.value03,jdbcType=VARCHAR},
+      orde_by = #{record.ordeBy,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arcms.biz.domain.generation.system.LstOfVal" >
+    update lst_of_val
+    where id = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.arcms.biz.domain.generation.system.LstOfVal" >
+    update lst_of_val
+    set gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      desc_text = #{descText,jdbcType=VARCHAR},
+      value_01 = #{value01,jdbcType=VARCHAR},
+      value_02 = #{value02,jdbcType=VARCHAR},
+      value_03 = #{value03,jdbcType=VARCHAR},
+      orde_by = #{ordeBy,jdbcType=INTEGER},
+      big_value = #{bigValue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arcms.biz.domain.generation.system.LstOfVal" >
+    update lst_of_val
+    set gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      desc_text = #{descText,jdbcType=VARCHAR},
+      value_01 = #{value01,jdbcType=VARCHAR},
+      value_02 = #{value02,jdbcType=VARCHAR},
+      value_03 = #{value03,jdbcType=VARCHAR},
+      orde_by = #{ordeBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

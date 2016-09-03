@@ -1,0 +1,135 @@
+#set($layout = "/layout/blank.vm")
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo contact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px">
+                            <li>
+                            <li>与客户联系</li>
+                            </li>
+                            <li class="active">营销方案查询</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <form class="form-horizontal markAct" id="searchForm" role="form">
+                                <div class="row">
+                                    <div class="col-xs-16 col-sm-10 no-padding-left" style="margin-top: 5px;">
+                                        <div class="input-group">
+                                            <span style="float: left;margin-left: 100px;">营销活动类型：</span>
+                                            <span style="float: left;">
+                                                <input name="type" type="radio" class="ace" value="sms" checked>
+                                                <span class="lbl"> 短信营销</span>
+                                            </span>
+                                            <span style="float: left;margin-left: 25px;">
+                                                <input name="type" type="radio" class="ace" value="email"/>
+                                                <span class="lbl"> 邮件营销</span>
+                                            </span>
+                                            <span style="float: left;margin-left: 25px;">
+                                                <input name="type" type="radio" class="ace" value="wx"/>
+                                                <span class="lbl"> 微信营销</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>&nbsp</div>
+                <div class="BoxStyleA">
+                    <div class="BoxStyleATop">
+                        <span class="fl">营销方案查看</span>
+                    </div>
+                    <table id="marketListTable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>营销活动主题</th>
+                            <th>活动目的</th>
+                            <th>覆盖客户数量</th>
+                            <th>成功率</th>
+                            <th>发送时间</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--营销活动编辑 Modal -->
+<div class="modal fade" id="marketingEditModal" tabindex="-1" role="dialog" aria-labelledby="marketingEditModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>营销活动内容编辑</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12" style="padding-top:15px;">
+                    <form class="form-horizontal" role="form" id="editForm">
+                        <input type="text" name="activityId" style="display: none;" />
+                        <div class="form-group" >
+                            <label class="col-sm-4 control-label no-padding-right"> 营销主题：</label>
+                            <div class="col-sm-6" style="padding-left: 25px">
+                                <input type="text" name="title" placeholder="营销主题" class="col-xs-10 col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';"> 营销目的：</label>
+                            <div class="col-sm-6">
+                                <label>
+                                    <input name="target" type="radio" class="ace" value="sale"/>
+                                    <span class="lbl"> 销售</span>
+                                </label>
+                                <label>
+                                    <input name="target" type="radio" class="ace" value="increase_fans"/>
+                                    <span class="lbl"> 粉丝</span>
+                                </label>
+                                <label>
+                                    <input name="target" type="radio" class="ace" value="spread"/>
+                                    <span class="lbl"> 传播</span>
+                                </label>
+                                <label>
+                                    <input name="target" type="radio" class="ace" value="other"/>
+                                    <span class="lbl"> 其他</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" >执行时间：</label>
+                            <div class="col-sm-6" style="padding-left: 15px">
+                                <label>
+                                    <input name="executeTime" class="Wdate" type="text"
+                                           onfocus="WdatePicker({startDate:'%y-%M-%d 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                           style="width: 265px;height: 30px"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 50px;">
+                            <label class="col-sm-2 control-label no-padding-right" ></label>
+                            <div class="col-sm-1" style="margin-left: 160px;">
+                                <span class="btn btn-info" id="saveMarketing">
+                                    保存
+                                </span>
+                            </div>
+                            <div class="col-sm-1" style="margin-left: 100px;">
+                                <button class="btn btn-info" aria-hidden="true" data-dismiss="modal">
+                                    取消
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/concactCustomer/marketList.js"></script>

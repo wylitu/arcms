@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arcms.biz.dao.generation.goods.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.arcms.biz.domain.generation.goods.Goods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="is_virtual" property="isVirtual" jdbcType="BIT" />
+    <result column="list_time" property="listTime" jdbcType="TIMESTAMP" />
+    <result column="delist_time" property="delistTime" jdbcType="TIMESTAMP" />
+    <result column="expired_start_time" property="expiredStartTime" jdbcType="TIMESTAMP" />
+    <result column="expired_end_time" property="expiredEndTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="purchase_quantity" property="purchaseQuantity" jdbcType="BIGINT" />
+    <result column="detail_url" property="detailUrl" jdbcType="VARCHAR" />
+    <result column="qr_url" property="qrUrl" jdbcType="VARCHAR" />
+    <result column="imgs_url" property="imgsUrl" jdbcType="VARCHAR" />
+    <result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+    <result column="skus" property="skus" jdbcType="VARCHAR" />
+    <result column="props" property="props" jdbcType="VARCHAR" />
+    <result column="props_name" property="propsName" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, seller_id, goods_id, 
+    title, cid, is_virtual, list_time, delist_time, expired_start_time, expired_end_time, 
+    status, quantity, price, discount, purchase_quantity, detail_url, qr_url, imgs_url, 
+    thumbnail, skus, props, props_name, version
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.arcms.biz.domain.generation.goods.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <if test="!definedQueryColumns" >
+      <include refid="Base_Column_List" />
+    </if>
+    <if test="definedQueryColumns" >
+      <foreach collection="queryColumns" item="queryColumn" separator="," >
+        ${queryColumn}
+      </foreach>
+    </if>
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="forUpdate" >
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update goods
+    set is_deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.arcms.biz.domain.generation.goods.GoodsExample" >
+    update goods
+    set is_deleted = 1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.arcms.biz.domain.generation.goods.Goods" useGeneratedKeys="true" keyProperty="id" >
+    insert into goods (id, gmt_created, gmt_modified, 
+      created_by, modified_by, is_deleted, 
+      seller_id, goods_id, title, 
+      cid, is_virtual, list_time, 
+      delist_time, expired_start_time, expired_end_time, 
+      status, quantity, price, 
+      discount, purchase_quantity, detail_url, 
+      qr_url, imgs_url, thumbnail, 
+      skus, props, props_name, 
+      version)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{sellerId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{cid,jdbcType=BIGINT}, #{isVirtual,jdbcType=BIT}, #{listTime,jdbcType=TIMESTAMP}, 
+      #{delistTime,jdbcType=TIMESTAMP}, #{expiredStartTime,jdbcType=TIMESTAMP}, #{expiredEndTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{quantity,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL}, 
+      #{discount,jdbcType=DECIMAL}, #{purchaseQuantity,jdbcType=BIGINT}, #{detailUrl,jdbcType=VARCHAR}, 
+      #{qrUrl,jdbcType=VARCHAR}, #{imgsUrl,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR}, 
+      #{skus,jdbcType=VARCHAR}, #{props,jdbcType=VARCHAR}, #{propsName,jdbcType=VARCHAR}, 
+      #{version,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arcms.biz.domain.generation.goods.Goods" useGeneratedKeys="true" keyProperty="id" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="isVirtual != null" >
+        is_virtual,
+      </if>
+      <if test="listTime != null" >
+        list_time,
+      </if>
+      <if test="delistTime != null" >
+        delist_time,
+      </if>
+      <if test="expiredStartTime != null" >
+        expired_start_time,
+      </if>
+      <if test="expiredEndTime != null" >
+        expired_end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="purchaseQuantity != null" >
+        purchase_quantity,
+      </if>
+      <if test="detailUrl != null" >
+        detail_url,
+      </if>
+      <if test="qrUrl != null" >
+        qr_url,
+      </if>
+      <if test="imgsUrl != null" >
+        imgs_url,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+      <if test="skus != null" >
+        skus,
+      </if>
+      <if test="props != null" >
+        props,
+      </if>
+      <if test="propsName != null" >
+        props_name,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="isVirtual != null" >
+        #{isVirtual,jdbcType=BIT},
+      </if>
+      <if test="listTime != null" >
+        #{listTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delistTime != null" >
+        #{delistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredStartTime != null" >
+        #{expiredStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredEndTime != null" >
+        #{expiredEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseQuantity != null" >
+        #{purchaseQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="detailUrl != null" >
+        #{detailUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="qrUrl != null" >
+        #{qrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsUrl != null" >
+        #{imgsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="skus != null" >
+        #{skus,jdbcType=VARCHAR},
+      </if>
+      <if test="props != null" >
+        #{props,jdbcType=VARCHAR},
+      </if>
+      <if test="propsName != null" >
+        #{propsName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.arcms.biz.domain.generation.goods.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      cid = #{record.cid,jdbcType=BIGINT},
+      is_virtual = #{record.isVirtual,jdbcType=BIT},
+      list_time = #{record.listTime,jdbcType=TIMESTAMP},
+      delist_time = #{record.delistTime,jdbcType=TIMESTAMP},
+      expired_start_time = #{record.expiredStartTime,jdbcType=TIMESTAMP},
+      expired_end_time = #{record.expiredEndTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=BIGINT},
+      price = #{record.price,jdbcType=DECIMAL},
+      discount = #{record.discount,jdbcType=DECIMAL},
+      purchase_quantity = #{record.purchaseQuantity,jdbcType=BIGINT},
+      detail_url = #{record.detailUrl,jdbcType=VARCHAR},
+      qr_url = #{record.qrUrl,jdbcType=VARCHAR},
+      imgs_url = #{record.imgsUrl,jdbcType=VARCHAR},
+      thumbnail = #{record.thumbnail,jdbcType=VARCHAR},
+      skus = #{record.skus,jdbcType=VARCHAR},
+      props = #{record.props,jdbcType=VARCHAR},
+      props_name = #{record.propsName,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arcms.biz.domain.generation.goods.Goods" >
+    update goods
+    where id = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arcms.biz.domain.generation.goods.Goods" >
+    update goods
+    set gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=BIGINT},
+      is_virtual = #{isVirtual,jdbcType=BIT},
+      list_time = #{listTime,jdbcType=TIMESTAMP},
+      delist_time = #{delistTime,jdbcType=TIMESTAMP},
+      expired_start_time = #{expiredStartTime,jdbcType=TIMESTAMP},
+      expired_end_time = #{expiredEndTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=BIGINT},
+      price = #{price,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      purchase_quantity = #{purchaseQuantity,jdbcType=BIGINT},
+      detail_url = #{detailUrl,jdbcType=VARCHAR},
+      qr_url = #{qrUrl,jdbcType=VARCHAR},
+      imgs_url = #{imgsUrl,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      skus = #{skus,jdbcType=VARCHAR},
+      props = #{props,jdbcType=VARCHAR},
+      props_name = #{propsName,jdbcType=VARCHAR},
+      version = #{version,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

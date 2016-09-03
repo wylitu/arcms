@@ -1,0 +1,179 @@
+#set($layout = "/layout/blank.vm")
+<link rel="stylesheet" href="${rc.contextPath}/media/js/plugins/zyUpload/control/css/zyUpload.css" type="text/css"/>
+<!-- 百度 文本编辑器 -->
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo interact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px">
+                            <li>
+                            <li>客户互动</li>
+                            </li>
+                            <li class="active">积分商城</li>
+                            <li class="active">编辑商品详情</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+            <!-- 右边 -->
+
+            <div class="BoxStyleA">
+##                <div class="BoxStyleATop">
+##                    <span class="fl">编辑商品详情</span>
+##                </div>
+                <br/>
+                <form class="form-horizontal" role="form" action="${rc.contextPath}/productEdit" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品标题：</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="form-field-1" placeholder="" class="col-xs-12 col-sm-7" name="goodsName" value="$mallGoods.title"/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2">商品分类：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <select  name="category" onchange="createPropertyHTML('p_prop',this.value)">
+                                <option value="">请选择</option>
+                                #foreach($category in $categoryList)
+                                    <option value="$category.cid"
+                                        #if($category.cid==$mallGoods.categoryId)
+                                            selected
+                                        #end
+                                            >$category.name</option>
+                                    #foreach($oneChilds in $category.childs)
+                                        <option value="$oneChilds.cid"
+                                            #if($oneChilds.cid==$mallGoods.categoryId)
+                                                selected
+                                            #end
+                                                >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$oneChilds.name</option>
+                                        #foreach($twoChilds in $oneChilds.childs)
+                                            <option value="$twoChilds.cid"
+                                                #if($twoChilds.cid==$mallGoods.categoryId)
+                                                    selected
+                                                #end
+                                                    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$twoChilds.name</option>
+                                        #end
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品类型：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" class="ace" value="n" name="goodsType"
+                                   #if($mallGoods.isVirtual == 'n')
+                                        checked="checked"
+                                   #end />
+                            <span class="lbl">实物(物流发货)</span>
+                            &nbsp;&nbsp;
+                            <input type="radio" class="ace" value="y" name="goodsType"
+                                #if($mallGoods.isVirtual == 'y')
+                                   checked="checked"
+                                #end />
+                            <span class="lbl">虚拟(无需发货)</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品设置：</label>
+                        <div class="col-sm-9" style="text-align: left;" id="p_prop">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品总数量：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input class="input-sm" type="text" placeholder="" name="goodsAmount" value="$mallGoods.quantity" style="width: 80px"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品价格：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            #set($pri = $mallGoods.price / 100)
+                            <input class="input-sm" type="text" placeholder="" name="goodsPrice" value="$pri" style="width: 80px"/>
+##                            &nbsp;&nbsp;
+##                            <input class="ace" type="checkbox" id="id-disable-check" name="isShow" value="1"/>
+##                            <span class="lbl">前台展示</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">每件所需积分：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input class="input-sm" type="text" placeholder="" name="payPointsAmount" value="$mallGoods.point" style="width: 80px"/>
+                            &nbsp;&nbsp;
+                            <font style="color: #3399ff;font-size: 3">输入0表示免费</font>
+##                            &nbsp;&nbsp;
+##                            <input class="ace" type="checkbox" name="isFaceWxFnas" value="1"/>
+##                            <span class="lbl">只是针对公众号粉丝</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品图片：</label>
+                        <div class="col-sm-9" style="padding: 0">
+                            <input type="file" name="photo1"/>
+                            <input type="file" name="photo2"/>
+                            <input type="file" name="photo3"/>
+                            <input type="file" name="photo4"/>
+                            <input type="file" name="photo5"/>
+                            <!--
+                            <div id="demo" class="demo" ></div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">开始兑换时间：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input name="isImmediate" type="radio" class="ace" value="onsale" checked="checked"/>
+                            <span class="lbl">立即上架</span>
+                            &nbsp;&nbsp;
+                            <input name="isImmediate" type="radio" class="ace" value="instock" disabled="disabled"/>
+                            <span class="lbl">定时上架</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品详情：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <script id="editor" type="text/plain" style="width:90%; height:300px;" name="content">
+                                $mallGoods.goodsDetail
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">商品二维码：</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="file" id="up" name="wxRq"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <button class="btn btn-info" type="submit">
+                                <i class="icon-ok bigger-110"></i>
+                                保存
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="goodsId" value="$mallGoods.goodsId">
+                </form>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="${rc.contextPath}/media/js/admin/mall/pointMall.js"></script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+    createPropertyHTMLForEdit('p_prop','$mallGoods.goodsId');
+
+</script>

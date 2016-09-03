@@ -1,0 +1,56 @@
+#set($layout = "/layout/blank.vm")
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo contact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px">
+                            <li>
+                            <li>与客户联系</li>
+                            </li>
+                            <li class="active">充值页面</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <form class="form-horizontal markAct" id="rechrgeForm" role="form">
+                                <div class="row">
+                                    <div class="form-group" >
+                                        <label class="col-sm-4 control-label no-padding-right"> 账户余额：</label>
+                                        <label class="col-sm-4">
+                                            <p style="text-align: left;">短信<span>5000</span>条，邮件<span>10000</span>封</p>
+                                        </label>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label class="col-sm-4 control-label no-padding-right"> 使用情况：</label>
+                                        <label class="col-sm-4">
+                                            <p style="text-align: left;">累计发送短信：<span>80000</span>条，成功率：<span>98.6%</span></p>
+                                            <p style="text-align: left;">累计发送邮件：<span>2000</span>封，成功率：<span>99%</span>，打开率：<span>76%</span></p>
+                                        </label>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label class="col-sm-4 control-label no-padding-right"> 马上充值：</label>
+                                        <div class="col-sm-4">
+                                            <label>
+                                                <input name="chargeType" type="radio" class="ace" value="0"/>
+                                                <span class="lbl"> 短信充值</span>
+                                            </label>
+                                            <label>
+                                                <input name="chargeType" type="radio" class="ace" value="1"/>
+                                                <span class="lbl"> 邮件充值</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

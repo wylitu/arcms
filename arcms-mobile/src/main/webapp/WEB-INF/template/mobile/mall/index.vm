@@ -1,0 +1,285 @@
+#set($layout = "/layout/blank.vm")
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>积分商城</title>
+    <meta name="keywords" content="积分商城,积分兑换,速牛科技,关系链" />
+    <meta name="description" content="速牛科技关系链CRM系统" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="${rc.contextPath}/media/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/mall/main.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+
+    <!-- fonts -->
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="${rc.contextPath}/media/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="${rc.contextPath}/media/js/html5shiv.js"></script>
+    <script src="${rc.contextPath}/media/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12" style="width: 100%">
+            <div class="widget-box">
+                <div class="widget-header widget-header-flat" style="text-align: center">
+                    <span style="display: block"><b>积分微商城</b></span>
+                    <span style="display: block">我的积分：20000，已兑换：10000，剩余：10000</span>
+                </div>
+
+                <div class="widget-body" style="margin-top: 5px">
+                    <div class="widget-main" style="padding-bottom: 0">
+                        <div class="row" style="margin-bottom: 0px">
+                            <img src="#" width="100%"/>
+                            <!--
+                            <span style="display: block; float: left; width: 33%"><br/></span>
+                            <span style="display: block; float: left; width: 33%; text-align: center">积分兑换商品分类</span>
+                            <span style="display: block; float: right;width: 33%; text-align: right"><a href="#">更多</a></span>
+                            <br/>
+                            <div class="col-sm-12" style="text-align: center; width: 100%; margin: 0; padding: 0">
+                                <ul class="center-list" style="width: 100%; margin: 0px">
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/cate_kids.jpg" width="120px" height="120px"/>
+                                            </div>
+                                            <p>母婴频道</p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon"	>
+                                                <img src="${rc.contextPath}/media/images/cate_trinkets.jpeg" width="120px" height="120px" />
+                                            </div>
+                                            <p>饰品频道</p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/cate_clothing.jpg" width="120px" height="120px" />
+                                            </div>
+                                            <p>服装频道</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            -->
+                        </div>
+                        <div class="row" style="margin-bottom: 5px">
+                            <span style="display: block; float: left; width: 33%"><br/></span>
+                            <span style="display: block; float: left; width: 33%; text-align: center">热门兑换商品</span>
+                            <span style="display: block; float: right;width: 33%; text-align: right"><a href="#">更多</a></span>
+                            <br/>
+                            <div class="col-sm-12" style="text-align: center; width: 100%; margin: 0; padding: 0">
+                                <ul class="center-list" style="width: 100%; margin: 0px">
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px"/>
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon"	>
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px" />
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px" />
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px"/>
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon"	>
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px" />
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="javascript:;" class="topUp-option">
+                                            <div class="icon">
+                                                <img src="${rc.contextPath}/media/images/product.jpg" width="100%" height="60px" />
+                                            </div>
+                                            <p>护理用品</p><br/>
+                                            <p>100积分</p><br/>
+                                            <p><span style="border: 1px solid #d1d1d1;padding: 3px">立即兑换</span></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;border: 1px solid #d1d1d1">
+                            <span style="display: block;text-align: center">实时兑换信息</span>
+                            <div class="col-sm-12" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                                <table cellpadding="0" cellspacing="0" style="width: 100%" border="0px">
+                                    <tr>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="color:#d1d1d1">----------</span>
+                                        </td>
+                                        <td>1小时前兑换50积分</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="color:#d1d1d1">----------</span>
+                                        </td>
+                                        <td>1小时前兑换50积分</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="color:#d1d1d1">----------</span>
+                                        </td>
+                                        <td>1小时前兑换50积分</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="color:#d1d1d1">----------</span>
+                                        </td>
+                                        <td>1小时前兑换50积分</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px">
+                            <span style="display: block; float: left; width: 33%"><br/></span>
+                            <span style="display: block; float: left; width: 33%; text-align: center">积分兑换排行榜</span>
+                            <span style="display: block; float: right;width: 33%; text-align: right"><a href="#">更多</a></span>
+                            <br/>
+                            <div class="col-sm-12" style="text-align: center; width: 100%; margin: 0; padding: 0">
+                                <table cellpadding="0" cellspacing="0" style="width: 100%" border="0px">
+                                    <tr>
+                                        <td>1</td>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="border-bottom: 2px dotted #d1d1d1">累计兑换25000积分</span>
+                                        </td>
+                                        <td>128赞</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="border-bottom: 2px dotted #d1d1d1">累计兑换25000积分</span>
+                                        </td>
+                                        <td>128赞</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="border-bottom: 2px dotted #d1d1d1">累计兑换25000积分</span>
+                                        </td>
+                                        <td>128赞</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="border-bottom: 2px dotted #d1d1d1">累计兑换25000积分</span>
+                                        </td>
+                                        <td>128赞</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td style="height: 100px; line-height: 100px">
+                                            <img src="${rc.contextPath}/media/images/product.jpg" width="100px" height="100px"/>重楼
+                                        </td>
+                                        <td>
+                                            <span style="border-bottom: 2px dotted #d1d1d1">累计兑换25000积分</span>
+                                        </td>
+                                        <td>128赞</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!--  -->
+        </div><!-- /span -->
+
+    </div><!-- /row end -->
+
+</body>
+</html>

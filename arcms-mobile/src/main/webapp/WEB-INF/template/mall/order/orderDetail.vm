@@ -1,0 +1,175 @@
+#set($layout = "/layout/blank.vm")
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo interact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px">
+                            <li>
+                            <li>客户互动</li>
+                            </li>
+                            <li class="active">积分商城</li>
+                            <li class="active">订单明细</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+            <!-- 右边 -->
+            <div class="BoxStyleA">
+##                <div class="BoxStyleATop">
+##                    <span class="fl">创建积分兑换商品</span>
+##                </div>
+##                <br/>
+                <div class="widget-header" style="text-align: left; line-height: 40px; margin-bottom: 10px">
+                    订单编号：$tradeDo.tid
+                </div>
+                <div id="fuelux-wizard" class="row-fluid" data-target="#step-container">
+                    <ul class="wizard-steps">
+                        <li data-target="#step1" class="active">
+                            <span class="step">1</span>
+                            <span class="title">买家已下单<br/>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!tradeDo.created)</span>
+                        </li>
+
+                        <li data-target="#step2"
+                                #if($tradeDo.status == 'WAIT_SELLER_SEND_GOODS' || $tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS' || $tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                    class="active"
+                                #end
+                                >
+                            <span class="step">2</span>
+                            <span class="title">买家付款
+                                #if($tradeDo.status == 'WAIT_SELLER_SEND_GOODS' || $tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS' || $tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                    <br/>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!tradeDo.payTime)
+                                #end
+                            </span>
+                        </li>
+
+                        <li data-target="#step3"
+                            #if($tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS' || $tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                class="active"
+                            #end
+                                >
+                            <span class="step">3</span>
+                            <span class="title">商家发货
+                                #if($tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS' || $tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                    <br/>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!tradeDo.consignTime)
+                                #end
+                            </span>
+                        </li>
+
+                        <li data-target="#step4"
+                            #if($tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                class="active"
+                            #end
+                                >
+                            <span class="step">4</span>
+                            <span class="title">确认收货
+                                #if($tradeDo.status == 'TRADE_FINISHED'|| $tradeDo.status == 'TRADE_CLOSED' || $tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                    <br/>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!tradeDo.endTime)
+                                #end
+                            </span>
+                        </li>
+                        <!--
+                        <li data-target="#step5">
+                            <span class="step">5</span>
+                            <span class="title">完成</span>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+                <div class="widget-header" style="text-align: left; line-height: 40px; margin-top: 10px;">
+                    订单状况
+                </div>
+                <div style="text-align: left">
+                    <ul class="list-unstyled spaced" style="margin-left: 30px">
+                        <li>
+                            订单状态：
+                            #if($tradeDo.status == 'WAIT_BUYER_PAY')
+                                买家已下单
+                            #elseif($tradeDo.status == 'WAIT_SELLER_SEND_GOODS')
+                                买家付款,待发货
+                            #elseif($tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS')
+                                已发货,等待确认收货
+                            #elseif($tradeDo.status == 'TRADE_FINISHED')
+                                确认收货,交易完成
+                            #elseif($tradeDo.status == 'TRADE_CLOSED')
+                                交易关闭
+                            #elseif($tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                卖家关闭交易
+                            #end
+                        </li>
+                        #set($flag = '￥')
+                        #set($pri = $tradeDo.payment / 100)
+                        <li>
+                            订单价格：$!pri
+                        </li>
+
+                        <li>
+                            兑换积分：$tradeDo.paymentPoint
+                        </li>
+
+                        <li>
+                            配送方式：$tradeDo.shippingCompany
+                        </li>
+
+                        <li>
+                            快递单号：$tradeDo.shippingId
+                        </li>
+
+                        <li>
+                            收货信息：$tradeDo.province $tradeDo.city $tradeDo.district $tradeDo.address $tradeDo.name $tradeDo.mobile
+                        </li>
+
+                    </ul>
+                </div>
+                #set($s = '/')
+                <div style="text-align: left; border: 0px solid red">
+                    #set($size = $!{tradeDo.mallGoodsSkuDoList.size()})
+                    <table style="width:100%;" >
+                        <tr style="border: 1px solid #CCCCCC; background-color: #F2F2F2; height: 40px">
+                            <td align="center">商品</td>
+                            <td>价格</td>
+                            <td>状态</td>
+                            <td>消耗积分</td>
+                            <td>运费</td>
+                        </tr>
+                        #foreach($item in $tradeDo.mallGoodsSkuDoList)
+                            <tr>
+                                <td>
+                                    <img src="${rc.contextPath}$s$item.goodsImgUrl" width="60px" height="60px">$item.goodsName
+                                </td>
+                                #set($price = $item.price / 100)
+                                <td>$price</td>
+                                <td>
+                                    #if($tradeDo.status == 'WAIT_BUYER_PAY')
+                                        买家已下单
+                                    #elseif($tradeDo.status == 'WAIT_SELLER_SEND_GOODS')
+                                        买家付款,待发货
+                                    #elseif($tradeDo.status == 'WAIT_BUYER_CONFIRM_GOODS')
+                                        已发货,等待确认收货
+                                    #elseif($tradeDo.status == 'TRADE_FINISHED')
+                                        确认收货,交易完成
+                                    #elseif($tradeDo.status == 'TRADE_CLOSED')
+                                        交易关闭
+                                    #elseif($tradeDo.status == 'TRADE_CLOSED_BY_SELLER')
+                                        卖家关闭交易
+                                    #end
+                                </td>
+                                #set($po = $item.point * $item.buyAmount)
+                                <td>$po</td>
+                                #if($velocityCount == 1)
+                                    <td rowspan="$size">$tradeDo.shippingFee</td>
+                                #end
+
+                            </tr>
+                        #end
+                    </table>
+                </div>
+                <div class="modal-footer no-margin-top" style="margin:0; border: 0; padding: 0; text-align: center">
+##                    <button class="btn btn-info" onclick="javascript:window.history.go(-1)">返回</button>
+                </div>
+        </div>
+            </div>
+    </div>
+</div>

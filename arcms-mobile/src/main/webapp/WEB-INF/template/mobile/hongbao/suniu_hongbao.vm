@@ -1,0 +1,118 @@
+#set($layout = "/layout/mobileBlank.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的红包</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+
+</head>
+<body class="suniu-container suniu-home-container">
+<!-- 加载 -->
+<div class="loader " id="loader">
+    <div class="loader-progress">
+        <span id="loader-progress-txt">0%</span>
+    </div>
+    <div class="loader-graph"></div>
+    <div class="loader-text">LOADING</div>
+    <!-- <div class="copyright"></div> -->
+</div>
+
+<div class="suniu-wrapper">
+    <div class="auto-box1">
+        <img src="${rc.contextPath}/media/mobile/assets/images/public/bg.jpg" style="height: 120px;width: 100%" alt="" >
+        <img src="${rc.contextPath}$!{userAccount.wxHeadImgUrl}" style="width: 80px;height: 80px;border-radius:50%;margin-top: -55px;margin-left: 30px;margin-bottom: 10px;" >
+       </div>
+     <div class="auto-val">
+        <p><span   class="lab_left">账户余额:<i>$!{userAccount.wxHeadImgUrl}</i></span>   <span class="lab_right">累计抢到:<i>200.00元</i></span></p>
+        <p><span   class="lab_left">累计提现:<i>150.00元</i></span>   <span class="lab_right">所有粉丝排名:<i>1</i></span></p>
+        <p><span   class="lab_left">冻结中金额:<i>154.00元</i></span></p>
+        </br>
+        <p class="home-people">累计参与人数:10000人,累计发放10000.00元</p>
+    </div>
+
+    <div class="auto-box home-intro-box">
+        <div class="auto-box clearfix">
+            <input  type="button"  value="红包排行版" style="width: 120px;height: 40px;margin-top: 10px">
+
+            <input  type="button"  value="申请提现" style="width: 120px;height: 40px;margin-top: 10px;float: right">
+        </div>
+    </div>
+
+    <div class="content" >
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh.png"><span>陈勇专属</span><span>2015-06-27</span><span class="red_font">10.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh1.png"><span >徐大叔</span><span>2015-06-27</span><span class="red_font">120.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh2.png"><span >施计甜品</span><span>2015-06-27</span><span class="red_font">13.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh3.png"><span >易露营</span><span>2015-06-27</span><span class="red_font">14.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh4.png"><span >金喇叭</span><span>2015-06-27</span><span class="red_font">150.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh5.png"><span >蘑菇街</span><span>2015-06-27</span><span class="red_font">120.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh6.png"><span >杭州移动</span><span>2015-06-27</span><span class="red_font">10.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh.png"><span>陈勇专属</span><span>2015-06-27</span><span class="red_font">10.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh1.png"><span >徐大叔</span><span>2015-06-27</span><span class="red_font">120.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh2.png"><span >施计甜品</span><span>2015-06-27</span><span class="red_font">13.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh3.png"><span >易露营</span><span>2015-06-27</span><span class="red_font">14.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh4.png"><span >金喇叭</span><span>2015-06-27</span><span class="red_font">150.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh5.png"><span >蘑菇街</span><span>2015-06-27</span><span class="red_font">120.0元</span></p>
+        <p><img src="${rc.contextPath}/media/mobile/assets/images/public/gzh/gzh6.png"><span >杭州移动</span><span>2015-06-27</span><span class="red_font">10.0元</span></p>
+
+    </div>
+</div>
+<script>
+    $(function(){
+        //$('#homeModal').modal('show');
+        var suniu = window.suniu = {
+            init:function(){
+                this.bind();
+            },
+            bind:function(){
+                var images = [
+                    './assets/images/suniu/home/bigbang.png',
+                    './assets/images/suniu/home/go.png',
+                   // './assets/images/suniu/home/logo-suniu.png',
+                    './assets/images/suniu/home/bg.jpg',
+                    './assets/images/suniu/home/link1.png',
+                    './assets/images/suniu/home/link2.png',
+                    './assets/images/suniu/home/tab1.png',
+                    './assets/images/suniu/home/tab2.png',
+                    './assets/images/suniu/home/btn-bg.png',
+                ];
+
+                // 预计载图片
+                new IGrow.imgLoad(images);
+                // 绑定moadl tab
+                $('.home-tabs a').click(function (e) {
+                    e.preventDefault();
+
+                    $(this).tab('show');
+                });
+                // 弹出modal
+                $(document).on('click','.btn-modal-link',function(e){
+                    var link = $(e.currentTarget);
+                    var title = link.attr('title');
+
+                    if(title == '获奖名单') {
+                        $('.home-tabs a').eq(0).trigger('click');
+                    }else {
+                        $('.home-tabs a').eq(1).trigger('click');
+                    }
+
+                    $('#homeModal').modal('show');
+                });
+            }
+        };
+
+        suniu.init();
+
+
+    });
+</script>
+</body>
+</html>

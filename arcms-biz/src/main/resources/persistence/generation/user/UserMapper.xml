@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arcms.biz.dao.generation.user.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.arcms.biz.domain.generation.user.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="member_card" property="memberCard" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="member_level_id" property="memberLevelId" jdbcType="BIGINT" />
+    <result column="integral" property="integral" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="secret_question" property="secretQuestion" jdbcType="VARCHAR" />
+    <result column="secret_answer" property="secretAnswer" jdbcType="VARCHAR" />
+    <result column="recommend_user_id" property="recommendUserId" jdbcType="BIGINT" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, user_id, user_name, 
+    name, password, sex, age, mobile, phone, email, member_card, pay_password, member_level_id, 
+    integral, balance, identity_card, province, city, district, address, birthday, secret_question, 
+    secret_answer, recommend_user_id, seller_id, enabled
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.arcms.biz.domain.generation.user.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <if test="!definedQueryColumns" >
+      <include refid="Base_Column_List" />
+    </if>
+    <if test="definedQueryColumns" >
+      <foreach collection="queryColumns" item="queryColumn" separator="," >
+        ${queryColumn}
+      </foreach>
+    </if>
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="forUpdate" >
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update user
+    set is_deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.arcms.biz.domain.generation.user.UserExample" >
+    update user
+    set is_deleted = 1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.arcms.biz.domain.generation.user.User" useGeneratedKeys="true" keyProperty="id" >
+    insert into user (id, gmt_created, gmt_modified, 
+      created_by, modified_by, is_deleted, 
+      user_id, user_name, name, 
+      password, sex, age, 
+      mobile, phone, email, 
+      member_card, pay_password, member_level_id, 
+      integral, balance, identity_card, 
+      province, city, district, 
+      address, birthday, secret_question, 
+      secret_answer, recommend_user_id, seller_id, 
+      enabled)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{memberCard,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{memberLevelId,jdbcType=BIGINT}, 
+      #{integral,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, #{identityCard,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{secretQuestion,jdbcType=VARCHAR}, 
+      #{secretAnswer,jdbcType=VARCHAR}, #{recommendUserId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, 
+      #{enabled,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arcms.biz.domain.generation.user.User" useGeneratedKeys="true" keyProperty="id" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="memberCard != null" >
+        member_card,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="memberLevelId != null" >
+        member_level_id,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="identityCard != null" >
+        identity_card,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="secretQuestion != null" >
+        secret_question,
+      </if>
+      <if test="secretAnswer != null" >
+        secret_answer,
+      </if>
+      <if test="recommendUserId != null" >
+        recommend_user_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCard != null" >
+        #{memberCard,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLevelId != null" >
+        #{memberLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="secretQuestion != null" >
+        #{secretQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="secretAnswer != null" >
+        #{secretAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendUserId != null" >
+        #{recommendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.arcms.biz.domain.generation.user.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      member_card = #{record.memberCard,jdbcType=VARCHAR},
+      pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      member_level_id = #{record.memberLevelId,jdbcType=BIGINT},
+      integral = #{record.integral,jdbcType=BIGINT},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      identity_card = #{record.identityCard,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=DATE},
+      secret_question = #{record.secretQuestion,jdbcType=VARCHAR},
+      secret_answer = #{record.secretAnswer,jdbcType=VARCHAR},
+      recommend_user_id = #{record.recommendUserId,jdbcType=BIGINT},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      enabled = #{record.enabled,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arcms.biz.domain.generation.user.User" >
+    update user
+    where id = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arcms.biz.domain.generation.user.User" >
+    update user
+    set gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      member_card = #{memberCard,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      member_level_id = #{memberLevelId,jdbcType=BIGINT},
+      integral = #{integral,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      secret_question = #{secretQuestion,jdbcType=VARCHAR},
+      secret_answer = #{secretAnswer,jdbcType=VARCHAR},
+      recommend_user_id = #{recommendUserId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

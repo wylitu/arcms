@@ -1,0 +1,53 @@
+#set($layout = "/layout/default.vm")
+<div id="web">
+    <div class="row">
+        <div style="border:0px solid #0099ff; width: 90%; margin-left: auto; margin-right: auto;margin-top: 10px; height: 100%">
+            <!-- 左边 -->
+            <div style="border: 0px solid #ff0; float: left; width: 15%; height: 500px; text-align: left">
+                <ol class="dd-list">
+                    <li class="dd-item" data-id="2">
+                        <div class="dd-handle"  style="border:0px">积分兑换</div>
+                        <ol class="dd-list">
+                            <li class="dd-item" data-id="3">
+                                <div class="dd-handle" style="border:0px; background-color: #00ccff">
+                                    新建兑换商品
+                                </div>
+                            </li>
+
+                            <li class="dd-item" data-id="4">
+                                <div class="dd-handle"  style="border:0px">
+                                    兑换商品列表
+                                </div>
+                            </li>
+                            <li class="dd-item" data-id="5">
+                                <div class="dd-handle"  style="border:0px">
+                                    兑换商品订单
+                                </div>
+                            </li>
+                            <li class="dd-item" data-id="5">
+                                <div class="dd-handle"  style="border:0px">
+                                    兑换商品粉丝
+                                </div>
+                            </li>
+                        </ol>
+                </ol>
+            </div>
+            <!-- 右边 -->
+            <div style="border:0px solid #d4d4d4; float:right;width:84%;height: 100%; padding: 10px; text-align: left">
+                #if($code == 0)
+                    <p>
+                        创建成功 <br/>
+                        <a href="#" onclick="freshUrl('${rc.contextPath}/mall/setProduct')">继续添加</a> <br/>
+                        <a href="#" onclick="freshUrl('${rc.contextPath}/mall/product/list')">查看商品列表</a>
+                    </p>
+                #elseif($code == 1)
+                    <p>
+                        创建失败, 请检查填写的信息 <br/>
+                        <a href="#" onclick="freshUrl('${rc.contextPath}/mall/setProduct')">重试</a>
+                    </p>
+                #end
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>

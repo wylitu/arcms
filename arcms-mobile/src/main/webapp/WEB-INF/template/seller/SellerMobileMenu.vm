@@ -1,0 +1,198 @@
+#set($layout = "/layout/blank.vm")
+<style type="text/css">
+    h2
+    {
+        text-shadow: 5px 5px 5px #ffab3e;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo config"></i>
+                    <ul class="breadcrumb">
+                        <li>
+                        </li>
+                        <li>商家信息配置</li>
+                        <li class="active">手机端菜单配置</li>
+                    </ul>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-horizontal markAct"  id="menuForm" >
+                            <input type="hidden" name="id"/>
+                            <div class="form-group" >
+                                <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';" for="detailHeadUrl" >广告位置1：</label>
+                                <div class="col-sm-6" style="padding-left: 25px">
+                                    <img name="file1" style="display: none;width:200px;height: 100px;"  />
+                                    <input type="file"  name="file1"  id="file1" style="display: inline">  <label  style="color: red">(尺寸640*250)</label>
+                                    <input type="hidden" name="file1"/>
+                                    </br>
+                                    <input type="text" name="link" placeholder="链接地址" class="col-sm-5 file1"/>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group" >
+                                <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">广告位置2：</label>
+                                <div class="col-sm-6" style="padding-left: 25px">
+                                    <img name="file2" style="display: none;width:200px;height: 100px;"  />
+                                    <input type="file" name="file2" id="file2" style="display: inline"><label style="color: red">(尺寸640*250)</label>
+                                    <input type="hidden" name="file2"/>
+                                    </br>
+                                    <input type="text" name="link" placeholder="链接地址" class="col-sm-5 file2"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group" >
+                                <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">广告位置3：</label>
+                                <div class="col-sm-6" style="padding-left: 25px">
+                                    <img name="file3" style="display: none;width:200px;height: 100px;"  />
+                                    <input type="file" name="file3" id="file3" style="display: inline"> <label style="color: red">(尺寸640*250)</label>
+                                    <input type="hidden" name="file3"/>
+                                    </br>
+                                    <input type="text" name="link" placeholder="链接地址" class="col-sm-5 file3"/>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">广告图是否显示其他页面：</label>
+                                <div class="col-sm-4">
+                                    <label>
+                                        <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                        <span class="lbl">是</span>
+                                        <input name="isShowOther" type="radio" class="ace" value="0" />
+                                        <span class="lbl">否</span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <label><h2>功能模块选择</h2></label>
+                            <div class="form-group"  style="margin: 0 10%">
+                                <div class="col-sm-3">
+                                    <img  name="hongbao"  src="${rc.contextPath}/upload/mobileIndex/hongbao.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="hongbao"/>
+                                        <input name="hongbao" type="checkbox" class="ace" value="hongbao"/>
+                                        <span class="lbl"> 我的红包</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img  name="point"  src="${rc.contextPath}/upload/mobileIndex/point.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="point"/>
+                                        <input name="point" type="checkbox" class="ace" value="point" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的积分</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3" >
+                                    <img  name="share"  src="${rc.contextPath}/upload/mobileIndex/share.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="share"/>
+                                        <input name="share" type="checkbox" class="ace" value="share" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的分享</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img  name="pointmall"  src="${rc.contextPath}/upload/mobileIndex/pointmall.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="pointmall"/>
+                                        <input name="pointmall" type="checkbox" class="ace" value="pointmall" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的积分商城</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group"  style="margin: 0 10%">
+                                <div class="col-sm-3">
+                                    <img  name="activity"  src="${rc.contextPath}/upload/mobileIndex/activity.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="activity"/>
+                                        <input name="activity" type="checkbox" class="ace" value="activity"/>
+                                        <span class="lbl"> 我的活动</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img  name="evaluate"  src="${rc.contextPath}/upload/mobileIndex/evaluate.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="evaluate"/>
+                                        <input name="evaluate" type="checkbox" class="ace" value="evaluate"/>
+                                        <span class="lbl"> 我的评价</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3" >
+                                    <img  name="grow"  src="${rc.contextPath}/upload/mobileIndex/grow.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="grow"/>
+                                        <input name="grow" type="checkbox" class="ace" value="grow" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的成长</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img  name="shake"  src="${rc.contextPath}/upload/mobileIndex/shake.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="shake"/>
+                                        <input name="shake" type="checkbox" class="ace" value="shake" />
+                                        <span class="lbl"> 我的摇一摇</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group"  style="margin: 0 10%">
+                                <div class="col-sm-3">
+                                    <img  name="express"  src="${rc.contextPath}/upload/mobileIndex/express.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="express"/>
+                                        <input name="express" type="checkbox" class="ace" value="express" checked="checked" disabled="disabled" />
+                                        <span class="lbl"> 我的快递</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img  name="birthday"  src="${rc.contextPath}/upload/mobileIndex/birthday.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="birthday"/>
+                                        <input name="birthday" type="checkbox" class="ace" value="birthday" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的生日</span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-3" >
+                                    <img  name="identify"  src="${rc.contextPath}/upload/mobileIndex/identify.png" />
+                                    </br>
+                                    <label>
+                                        <input type="hidden" name="identify"/>
+                                        <input name="identify" type="checkbox" class="ace" value="identify" checked="checked" disabled="disabled"/>
+                                        <span class="lbl"> 我的认证</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer  sn-footer">
+                                <center><input class="sure" type="submit" id="saveOrUpdate" value="保存设置" ></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/seller/sellerMobileMenu.js"></script>

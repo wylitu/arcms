@@ -1,0 +1,244 @@
+#set($layout = "/layout/blank.vm")
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://wap.koudaitong.com/v2/showcase/tag?alias=5lhuvugb&spm=f6296785 -->
+<html class="no-js " lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="keywords" content="速牛科技">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+
+    <title>短袖T恤</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/mall/base_929451b805.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/mall/showcase_81d57c3e2e.css">
+    <script src="${rc.contextPath}/media/js/jquery-2.0.3.min.js"  language="javascript"></script>
+</head>
+
+<body class="" style="padding-bottom: 5px;">
+
+
+<div class="container ">
+<div class="header">
+</div>
+<div class="content " style="min-height: 293px;">
+<div class="content-body">
+
+<div class="custom-title" style="border-bottom: 1px solid #E5E5E5; text-align: center;">
+    <h2 class="title">积分微商城</h2>
+    <br/>
+    <h3>总积分:
+        #if($userAccount.pointAmountTotal)
+            $userAccount.pointAmountTotal
+        #else
+            0
+        #end;
+        已兑换:
+        #if($userAccount.pointAmountExchange)
+            $userAccount.pointAmountExchange
+        #else
+            0
+        #end; 剩余:
+        #if($userAccount.pointAmount)
+            $userAccount.pointAmount
+        #else
+            0
+        #end; 过期:
+        #if($userAccount.pointAmountExpired)
+            $userAccount.pointAmountExpired
+        #else
+            0
+        #end</h3>
+</div>
+<div class="custom-title" style="border-bottom: 1px solid #E5E5E5; text-align: center;">
+    <pre>
+    广告位
+
+
+
+    广告位
+    </pre>
+</div>
+
+<!-- 富文本内容区域 -->
+<div class="custom-richtext" style="text-align: right">
+    <div style="width: 50%; float: left; text-align: left">热门兑换商品</div>
+    <div style="width: 50%; float: left; text-align: right">更多</div>
+</div>
+<ul class="js-goods-list sc-goods-list pic clearfix size-1 waterfall" data-size="1" data-showtype="waterfall" style="visibility: visible;">
+<!-- 商品区域 -->
+<!-- 展现类型判断 -->
+<li class="" style="float: left; z-index: 3; width: 176.5px;">
+#set($flag = "/")
+#foreach($goods in $products)
+
+    #if($!{goods.imgsUrl} && $goods.imgsUrl ne '')
+        #if($goods.imgsUrl.indexOf(',') > 0)
+            #foreach($img in $goods.imgsUrl.split(','))
+                #if($velocityCount == 1)
+                    #set($firstImg = $img)
+                #end
+            #end
+        #else
+            #set($firstImg = $goods.imgsUrl)
+        #end
+    #end
+    <li class="js-goods-card goods-card goods-list small-pic waterfall">
+        <a href="${rc.contextPath}/mobile/goods/detail/" class="js-goods link clearfix" target="_blank" data-goods-id="$goods.goodsId" title="$goods.title">
+            <div class="photo-block" data-width="800" data-height="800" style="background-color: rgb(255, 255, 255);">
+                <img class="goods-photo js-goods-lazy" data-src="${rc.contextPath}$flag$firstImg" src="$rc.contextPath$flag$firstImg" style="display: inline;"/>
+            </div>
+            <div class="info clearfix info-title info-price btn4">
+                <p class=" goods-title ">$goods.title</p>
+                <p class="goods-sub-title c-black hide"></p>
+                <p class="goods-price">
+                    <em>$goods.point</em>
+                </p>
+                <p class="goods-price-taobao  hide"></p>
+            </div>
+            <div class="goods-buy btn4 info-title">
+                立即兑换
+            </div>
+            <div class="js-goods-buy buy-response" data-alias="" data-postage="0" data-buyway="1" data-id="" data-title="$goods.title" data-price="$goods.price" data-isvirtual="n"></div>
+        </a>
+    </li>
+#end
+
+</li>
+
+</ul>
+
+<div class="custom-richtext" style="text-align: right">
+    <div style="width: 50%; float: left; text-align: left">实时兑换信息</div>
+    <div style="width: 50%; float: left; text-align: right">更多</div>
+</div>
+<!-- 图片广告  -->
+<marquee behavior="scroll" direction="up" scolldelay="1000"">
+
+#foreach($exInfo in $exchangeInfo)
+<div class="custom-image-swiper custom-image-swiper-single js-swp swp">
+    <div class="swiper-wrapper js-swp-wrap js-view-image-list" style="height: 30px;">
+        <table width="100%" border="0px">
+            <tr>
+                <td><img src="${rc.contextPath}$flag$!exInfo.wxImgUrl"/> $!exInfo.userName</td>
+                <td align="right">
+                    #if($exInfo.dayInterval == 0)
+                        今天兑换$exInfo.amount积分
+                    #else
+                        $exInfo.dayInterval天前兑换$exInfo.amount积分
+                    #end
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="swiper-pagination js-swiper-pagination"></div>
+</div>
+#end
+
+</marquee>
+
+<div class="custom-richtext" style="text-align: right">
+    <div style="width: 50%; float: left; text-align: left">积分兑换排行榜</div>
+    <div style="width: 50%; float: left; text-align: right">更多</div>
+</div>
+<!-- 图片广告  -->
+#foreach($rank in $exchangeRankInfo)
+<div class="custom-image-swiper custom-image-swiper-single js-swp swp">
+    <div class="swiper-wrapper js-swp-wrap js-view-image-list" style="height: 30px;">
+        <table width="100%" border="0px">
+            <tr>
+                <td>$velocityCount</td>
+                <td><img src="${rc.contextPath}$flag$!rank.wxImgUrl"/> $!rank.name</td>
+                <td align="center">
+                    <span style="border-bottom: 2px dotted #d1d1d1">累计兑换$!rank.pointExchangeTotal积分</span>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="dz($rank.userId, $userId, $rank.zanTotal, this)">$rank.zanTotal赞</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="swiper-pagination js-swiper-pagination"></div>
+</div>
+#end
+</div>
+
+</div>
+<div class="js-footer" style="min-height: 1px;">
+    <!-- <textarea id="footer-delay" style="display:none;"> -->
+    <div class="footer">
+
+        <div class="copyright">
+            <!--
+            <div class="ft-links">
+                <a href="http://wap.koudaitong.com/v2/showcase/homepage?kdt_id=933701" target="_blank">店铺主页</a>
+                <a href="http://wap.koudaitong.com/v2/showcase/usercenter?kdt_id=933701" target="_blank">会员中心</a>
+                <a href="javascript:;" class="js-open-follow">关注我们</a>
+            </div>
+            -->
+            <a href="#" target="_blank">速牛科技提供技术支持</a>
+##            <div class="ft-copyright">
+##                <a href="#" target="_blank">速牛科技提供技术支持</a>
+##            </div>
+        </div>
+    </div>
+    <!-- </textarea> -->
+</div>
+
+</div>
+
+
+##<div class="search-container hide" style="display:none;">
+##    <form class="search-form" action="http://wap.koudaitong.com/v2/search" method="GET">
+##    <input type="search" class="search-input" placeholder="搜索本店所有商品" name="q" value="">
+##    <input type="hidden" name="kdt_id" value="933701">
+##    <a class="js-search-cancel search-cancel" href="javascript:;">取消</a><span class="search-icon"></span><span class="close-icon hide"></span>
+##    </form>
+##    <div class="history-wrap center"><ul class="history-list"></ul><a class="tag tag-clear c-gray-darker hide" href="javascript:;">清除历史搜索</a></div>
+##</div>
+##<div id="right-icon" class="js-right-icon no-text">
+##    <div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
+##        <a id="global-cart" href="http://wap.koudaitong.com/v2/trade/cart?kdt_id=933701" class="icon hide" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s1.png);">
+##        <p class="icon-img"></p>
+##        <p class="icon-txt">购物车</p>
+##    </a><a id="global-wish" href="http://trade.koudaitong.com/wxpay/wish?kdt_id=933701" class="icon">
+##        <p class="icon-img"></p>
+##        <p class="icon-txt">心愿单</p>
+##    </a>
+##        <a class="js-show-more-btn icon show-more-btn hide"></a>
+##    </div>
+##    </div>
+</div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    /**
+     * 点赞
+     * @param buid 被点赞的人
+     * @param uid 点赞的人
+     * */
+    function dz(buid,uid,num,obj){
+        $.ajax({
+            type : "POST",
+            url : '${rc.contextPath}/mobile/dianzan?sellerId=$sellerId',
+            data: {'buid':buid, 'uid':uid},
+            dataType : "json",
+            success : function(d){
+                if(d.errorCode == 0){
+                    num += 1;
+                    var text = num + '赞';
+//                    alert(text);
+                    obj.innerHTML = text;
+                }else{
+                    alert(d.errorMessage);
+                }
+            }
+        });
+    }
+
+</script>

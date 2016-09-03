@@ -1,0 +1,221 @@
+<script>
+    function freshUrl(url,openWindowflag) {
+        if (url == null || url == '' || url=="${rc.contextPath}/#") {
+            return;
+        }
+        var openWindowflag = isOpenWindowflag(openWindowflag);
+        if(!openWindowflag){
+            setCookie("url", url);
+        }
+
+        if(openWindowflag){
+            setCookie("openWindowflag", openWindowflag);
+            //clearCookie("url");
+            window.open(url);
+            return;
+        }
+        if('$!{rc.contextPath}'!=url&&'${rc.contextPath}/admin/loginOut'!=url&&!openWindowflag){
+            htmlobj = $.ajax({url: url, async: false});
+            $("#screenContent").html(htmlobj.responseText);
+            return;
+        }
+
+        window.location.href = url;
+    }
+
+    function isOpenWindowflag(openWindowflag){
+        if(openWindowflag==true || openWindowflag=='true'){
+            return true;
+        }
+
+        return false;
+
+    }
+
+</script>
+<style>
+.char3{
+    color: #ebff0e;
+}
+.char4{
+    color: #ebff0e;
+}
+.char5{
+    color: #ebff0e;
+}
+.char6{
+    color: #ebff0e;
+}
+</style>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/plugins/dropDown.css"/>
+    <div class="navbar-container" id="navbar-container" >
+        <div class="navbar-header pull-left" style="margin-top: 10px!important;">
+
+            <img  src="$!{rc.contextPath}/media/css/images/icon_left.jpg" style="margin-top: -12px;margin-left:20px;margin-right:20px;width: 60px;height: 60px;float: left"/>
+
+            <a href="javascript:freshUrl('$!{rc.contextPath}')" class="navbar-brand">
+                <div class="grid grid-pad">
+                    <section class="col-1-1">
+                        <div class="playground grid" >
+                            <div class="col-1-1 viewport" >
+                                <div class="tlt" style="font-size: 21px;">
+                                    <ul class="texts" style="display: none;font-size: 24px;">
+                                        <li >企业智能营销平台</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <form class="grid grid-pad" id="test" style="margin-top: 5px">
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </a><!-- /.brand -->
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul id="demo-1" class="nav navbar-nav" style="margin-left: 40px;">
+
+            #if($adminUser && $adminUser.adminRoles)
+                #foreach($adminRole in $adminUser.adminRoles)
+                    #foreach($adminResource in $adminRole.adminResources)
+                        <li class="dropdown">
+                            <a
+                            #if($!adminResource.type=="url")
+                                    <a href="javascript:freshUrl('$!{rc.contextPath}$!{adminResource.url}');"
+                            #else
+                                       href="#" data-toggle="dropdown"
+                            #end
+                                       style="height: 60px;padding-top: 23px;color: white;"> <font
+                                style="font-size: 16px;" >$!{adminResource.name}</font></a>
+
+                            #if($adminResource.childAdminResources)
+                                <ul class="dropdown-menu animated" data-animation="$!{adminResource.name}">
+                                    <div class="sn-dropdown" style="#if($!{adminResource.style})$!{adminResource.style}
+                                    #else width: 100px  #end ">
+
+                                        #foreach($childResource in $adminResource.childAdminResources)
+
+                                            #if($!childResource.type=="url")
+                                                <ul>
+                                                    #foreach($childRes in $childResource.childAdminResources)
+                                                        <li><a href="javascript:freshUrl('$!{rc.contextPath}$!{childRes.url}')">$!{childRes.name}</a></li>
+                                                    #end
+                                                </ul>
+                                            #else
+
+                                                <ul style="$!{childResource.style}">
+                                                    <li class="oe_heading">${childResource.name}</li>
+                                                    #foreach($childRes in $childResource.childAdminResources)
+                                                        #if($!childRes.name=="淘宝授权" || $!childRes.name=="京东授权")
+                                                            <li><a href="javascript:window.open('$!{rc.contextPath}$!{childRes.url}')">$!{childRes.name}</a></li>
+                                                        #else
+                                                            <li><a href="javascript:freshUrl('$!{rc.contextPath}$!{childRes.url}')">$!{childRes.name}</a></li>
+                                                        #end
+                                                    #end
+                                                </ul>
+
+                                            #end
+
+                                        #end
+                                    </div>
+                                </ul>
+                            #end
+                        </li>
+                    #end
+                #end
+            #end
+
+            <script type="text/javascript">
+                $("#demo-1").bootstrapDropdownOnHover();
+            </script>
+
+            <div class="navbar-header pull-right " role="navigation">
+                <ul class="nav ace-nav">
+                    <li class="light-blue" style="margin-top: 6px;margin-left: 450px">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle-welcome">
+                            <img class="nav-user-photo" src="${rc.contextPath}/media//images/user/user.png"
+                                 alt="$!{adminUser.userName}"/>
+								<span class="user-info">
+									<small>欢迎光临,</small>
+                                    $!{adminUser.userName}
+								</span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a   data-toggle="modal" data-target="#passwdModal">
+                                    <i class="icon-cog"></i>
+                                    修改密码
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="icon-user"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+
+                                <a href="javascript:freshUrl('${rc.contextPath}/admin/loginOut')">
+                                    <!--a href="${rc.contextPath}/admin/loginOut"-->
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.ace-nav -->
+            </div>
+            <!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+<script type="text/javascript">
+
+    var log = function (msg) {
+        return function () {
+        }
+    }
+    $('code').each(function () {
+        var $this = $(this);
+            $this.text($this.html());
+    })
+
+    var animateClasses = 'flash bounce shake tada swing wobble pulse flip flipInX flipOutX flipInY flipOutY fadeIn fadeInUp fadeInDown fadeInLeft fadeInRight fadeInUpBig fadeInDownBig fadeInLeftBig fadeInRightBig fadeOut fadeOutUp fadeOutDown fadeOutLeft fadeOutRight fadeOutUpBig fadeOutDownBig fadeOutLeftBig fadeOutRightBig bounceIn bounceInDown bounceInUp bounceInLeft bounceInRight bounceOut bounceOutDown bounceOutUp bounceOutLeft bounceOutRight rotateIn rotateInDownLeft rotateInDownRight rotateInUpLeft rotateInUpRight rotateOut rotateOutDownLeft rotateOutDownRight rotateOutUpLeft rotateOutUpRight hinge rollIn rollOut';
+
+    var $form = $('.playground form')
+            , $viewport = $('.playground .viewport');
+
+    var getFormData = function () {
+        var data = {
+            loop: true,
+            in: { callback: log('in callback called.') },
+            out: { callback: log('out callback called.') }
+        };
+
+        return data;
+    };
+
+    var $tlt = $viewport.find('.tlt')
+    .on('start.tlt', log('start.tlt triggered.'))
+
+    $('#test').on('change', function() {
+        var obj = getFormData();
+        $('.tlt').textillate(obj);
+    }).trigger('change');
+
+
+</script>

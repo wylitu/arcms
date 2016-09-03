@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arcms.biz.dao.generation.activity.HongbaoActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.arcms.biz.domain.generation.activity.HongbaoActivity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="BIGINT" />
+    <result column="icard_coin" property="icardCoin" jdbcType="BIGINT" />
+    <result column="NUMBER_OBTAIN" property="numberObtain" jdbcType="BIGINT" />
+    <result column="STATES" property="states" jdbcType="VARCHAR" />
+    <result column="total_icard_coin" property="totalIcardCoin" jdbcType="BIGINT" />
+    <result column="obtain_icard_coin" property="obtainIcardCoin" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <trim prefix="(" suffix=")" prefixOverrides="and" >
+        is_deleted = 0
+        <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+          <if test="criteria.valid" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </trim>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, activity_id, 
+    start_date, end_date, name, number, icard_coin, NUMBER_OBTAIN, STATES, total_icard_coin, 
+    obtain_icard_coin
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <if test="!definedQueryColumns" >
+      <include refid="Base_Column_List" />
+    </if>
+    <if test="definedQueryColumns" >
+      <foreach collection="queryColumns" item="queryColumn" separator="," >
+        ${queryColumn}
+      </foreach>
+    </if>
+    from hongbao_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="forUpdate" >
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hongbao_activity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update hongbao_activity
+    set is_deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivityExample" >
+    update hongbao_activity
+    set is_deleted = 1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivity" useGeneratedKeys="true" keyProperty="id" >
+    insert into hongbao_activity (id, gmt_created, gmt_modified, 
+      created_by, modified_by, is_deleted, 
+      activity_id, start_date, end_date, 
+      name, number, icard_coin, 
+      NUMBER_OBTAIN, STATES, total_icard_coin, 
+      obtain_icard_coin)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{activityId,jdbcType=BIGINT}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{number,jdbcType=BIGINT}, #{icardCoin,jdbcType=BIGINT}, 
+      #{numberObtain,jdbcType=BIGINT}, #{states,jdbcType=VARCHAR}, #{totalIcardCoin,jdbcType=BIGINT}, 
+      #{obtainIcardCoin,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivity" useGeneratedKeys="true" keyProperty="id" >
+    insert into hongbao_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="icardCoin != null" >
+        icard_coin,
+      </if>
+      <if test="numberObtain != null" >
+        NUMBER_OBTAIN,
+      </if>
+      <if test="states != null" >
+        STATES,
+      </if>
+      <if test="totalIcardCoin != null" >
+        total_icard_coin,
+      </if>
+      <if test="obtainIcardCoin != null" >
+        obtain_icard_coin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=BIGINT},
+      </if>
+      <if test="icardCoin != null" >
+        #{icardCoin,jdbcType=BIGINT},
+      </if>
+      <if test="numberObtain != null" >
+        #{numberObtain,jdbcType=BIGINT},
+      </if>
+      <if test="states != null" >
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="totalIcardCoin != null" >
+        #{totalIcardCoin,jdbcType=BIGINT},
+      </if>
+      <if test="obtainIcardCoin != null" >
+        #{obtainIcardCoin,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivityExample" resultType="java.lang.Integer" >
+    select count(*) from hongbao_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hongbao_activity
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hongbao_activity
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      activity_id = #{record.activityId,jdbcType=BIGINT},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      name = #{record.name,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=BIGINT},
+      icard_coin = #{record.icardCoin,jdbcType=BIGINT},
+      NUMBER_OBTAIN = #{record.numberObtain,jdbcType=BIGINT},
+      STATES = #{record.states,jdbcType=VARCHAR},
+      total_icard_coin = #{record.totalIcardCoin,jdbcType=BIGINT},
+      obtain_icard_coin = #{record.obtainIcardCoin,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivity" >
+    update hongbao_activity
+    where id = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arcms.biz.domain.generation.activity.HongbaoActivity" >
+    update hongbao_activity
+    set gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=BIGINT},
+      icard_coin = #{icardCoin,jdbcType=BIGINT},
+      NUMBER_OBTAIN = #{numberObtain,jdbcType=BIGINT},
+      STATES = #{states,jdbcType=VARCHAR},
+      total_icard_coin = #{totalIcardCoin,jdbcType=BIGINT},
+      obtain_icard_coin = #{obtainIcardCoin,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,50 @@
+#set($layout = "/layout/blank.vm")
+
+#if($!{properties.size()} > 0)
+<table cellpadding="2px" border="0px" cellspacing="2px" align="left" id="p_table">
+    <tr style="font-weight: bold; text-align: center">
+        #foreach($property in $properties)
+            <td>$property.name</td>
+        #end
+        <td>数量</td>
+        <td>价格</td>
+    </tr>
+    #if($!{skus.size()} > 0)
+        #set($total = $!{skus.size()} - 1)
+        #set($char = ":")
+        #set($char2 = "_")
+        #foreach($index in [0 .. $total])
+        <tr>
+            #set($sk = $skus.get($index))
+            #set($pvn = $sk.propsName)
+            #foreach($property in $properties)
+                <td>
+                    <select  name="prop_$velocityCount">
+                        #foreach($pValue in $property.propertyValueList)
+                            #set($pv = "$property.pid$char$pValue.vid$char$property.name$char$pValue.name")
+                            <option value="$pv$char2$sk.skuId"
+                                    #if($pvn.indexOf("$pv") >= 0)
+                                        selected
+                                    #end
+                                    >$pValue.name</option>
+                        #end
+                    </select>
+                </td>
+            #end
+            #set($pri = $sk.price / 100)
+            <td><input class="input-sm" type="text"  placeholder="" name="skuAmount" value="$sk.quantity"  onkeyup="fillGoodsAmount()" style="width: 80px"/></td>
+            <td><input class="input-sm" type="text"  placeholder="" name="skuPrice" value="$pri" style="width: 80px"/></td>
+        </tr>
+        #end
+    #end
+    #set($num = $!{properties.size()} + 2)
+    <tr align="right">
+        <td colspan="$num">
+            <a href="#" onclick="newRow('p_table')"><font size="2"> 增加 </font></a>&nbsp;&nbsp;
+            <a href="#" onclick="removeRow('p_table')"><font size="2"> 删除 </font></a>
+        </td>
+    </tr>
+</table>
+#else
+    此类目暂时没有配置商品属性
+#end

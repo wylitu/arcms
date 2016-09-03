@@ -1,0 +1,74 @@
+#set($layout = "/layout/mobileBlank.vm")
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>摇一摇</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/shake/shakeHB.css" />
+</head>
+
+<body>
+<div class="wap personal-page">
+    <div class="personal-box">
+        <div class='user-pic'>
+            <img src="${rc.contextPath}/media/mobile/assets/images/shake/user.png" />
+        </div>
+        <h4>恭喜你！获得 1 红包</h4>
+        <p>每天公众号签到获取积分哦!</p>
+        <div class="bottom-row">
+            <a href="javascript:;" class="show-hb btn">查看红包余额</a>
+            <a href="javascript:;" class="share-btn btn">分享给朋友</a>
+        </div>
+    </div>
+    <ul class="more-hb" style="display:none;">
+        <li>
+            <p class="infor"><span class="name">重楼</span><a href="javascript:;" class="zan-btn active">129</a><span class="num">21元</span></p>
+            <time>07-01</time>
+        </li>
+        <li>
+            <p class="infor"><span class="name">重楼</span><a href="javascript:;" class="zan-btn">129</a><span class="num">21元</span></p>
+            <time>07-01</time>
+        </li>
+        <li>
+            <p class="infor"><span class="name">重楼</span><a href="javascript:;" class="zan-btn">129</a><span class="num">21元</span></p>
+            <time>07-01</time>
+        </li>
+    </ul>
+</div>
+<div class="giveTip" id="giveTip" style="display:none;">
+    <p class="icon-friend"><img src="${rc.contextPath}/media/mobile/assets/images/shake/share_to_friend.png" /></p>
+    <div class="giveTip-content">
+        <h4>点击分享</h4>
+        <p>邀请好友一起来玩</p>
+        <a href="javascript:;" class="give-colseBtn">我知道了</a>
+    </div>
+</div>
+<script>
+        // 查看更多红包
+        $('.show-hb').bind('click', function(event) {
+            $('.more-hb').show();
+        });
+
+        $(".share-btn").bind('click', function(event) {
+            giveTipShow();
+            event.preventDefault();
+        });
+
+        // 分享JS
+        function giveTipShow(){
+            $('#giveTip').show();
+        }
+        $('.give-colseBtn').bind('click', function(event) {
+            $('#giveTip').hide();
+        });
+</script>
+
+</body>
+</html>

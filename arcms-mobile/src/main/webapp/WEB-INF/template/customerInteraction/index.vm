@@ -1,0 +1,94 @@
+#set($layout = "/layout/blank.vm")
+<style sheet="text/css">
+    .content-text p{margin: 0 0 4px;text-align: left;padding-left: 30px;}
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb">
+                        <li>
+                        </li>
+                        <li>客户互动</li>
+                    </ul>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-horizontal markAct" id="searchForm" role="form">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-10 no-padding-left" style="margin-top: 15px;margin-left: 40px;">
+                                    <div class="input-group">
+                                        <span style="float: left;margin-left: 20px;">积分兑换曲线图：</span>
+                                        <span style="float: left;">
+                                            <input name="days" type="radio" class="ace" value="7" checked>
+                                            <span class="lbl">最近7天</span>
+                                        </span>
+                                        <span style="float: left;margin-left: 25px;">
+                                            <input name="days" type="radio" class="ace" value="15"/>
+                                            <span class="lbl"> 最近15天</span>
+                                        </span>
+                                        <span style="float: left;margin-left: 25px;">
+                                            <input name="days" type="radio" class="ace" value="30"/>
+                                            <span class="lbl"> 最近30天</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-16 col-sm-10 no-padding-left" style="margin-top: 25px;margin-left: 65px;">
+                                    <div class="7_days_info content-text" >
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;">
+                                            <p>累计赠送：10000积分</p>
+                                            <p>已经兑换：50000积分</p>
+                                            <p>累计兑换红包金额：￥500.00</p>
+                                            <p>未兑换积分：￥500.00</p>
+                                        </div>
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;margin-left: 70px;">
+                                            <p>累计领取红包数量：1200个</p>
+                                            <p>累计领取红包金额：500.00元</p>
+                                            <p>最大领取红包金额：200元</p>
+                                            <p>累计红包领取粉丝人数：320人</p>
+                                        </div>
+                                    </div>
+                                    <div class="15_days_info content-text"  style="display: none;">
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;">
+                                            <p>累计赠送：10000积分</p>
+                                            <p>已经兑换：50000积分</p>
+                                            <p>累计兑换红包金额：￥500.00</p>
+                                            <p>未兑换积分：￥500.00</p>
+                                        </div>
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;margin-left: 70px;">
+                                            <p>累计领取红包数量：1200个</p>
+                                            <p>累计领取红包金额：500.00元</p>
+                                            <p>最大领取红包金额：200元</p>
+                                            <p>累计红包领取粉丝人数：320人</p>
+                                        </div>
+                                    </div>
+                                    <div class="30_days_info content-text" style="display: none;">
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;">
+                                            <p>累计赠送：10000积分</p>
+                                            <p>已经兑换：50000积分</p>
+                                            <p>累计兑换红包金额：￥500.00</p>
+                                            <p>未兑换积分：￥500.00</p>
+                                        </div>
+                                        <div style="width: 250px;height: 100px;border: 1px solid red;float: left;margin-left: 70px;">
+                                            <p>累计领取红包数量：1200个</p>
+                                            <p>累计领取红包金额：500.00元</p>
+                                            <p>最大领取红包金额：200元</p>
+                                            <p>累计红包领取粉丝人数：320人</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="7-interactionChart" class="7_days_info" style="min-width: 1300px; height: 400px; margin: 10px auto;"></div>
+                    <div id="15-interactionChart" class="15_days_info" style="width: 1300px; height: 400px; margin: 50px auto;display: none;"></div>
+                    <div id="30-interactionChart" class="30_days_info" style="width: 1300px; height: 400px; margin: 50px auto;display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/customerInteration/index.js"></script>

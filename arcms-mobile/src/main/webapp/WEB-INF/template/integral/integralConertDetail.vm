@@ -1,0 +1,157 @@
+#set($layout = "/layout/blank.vm")
+<div class="row">
+<div class="col-xs-12">
+    <div class="table-responsive">
+        <div class="BoxStyleA">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <i class="modal-logo interact"></i>
+                <ul class="breadcrumb" style="margin-left: 2px">
+                    <li>
+                    <li>与客户互动</li>
+                    </li>
+                    <li class="active">积分查询</li>
+                    <li class="active">积分兑换明细</li>
+                </ul><!-- .breadcrumb -->
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <form class="form-search" id="integralMultipleSearchForm">
+                        <div class="row">
+                            <div class="col-xs-16 col-sm-8">
+                                <div class="input-group" style="width: 1300px">
+                                    <span class="ml20" style="margin-left: -200px">客户名称：<input  type="text" name="name" /></span>
+
+                                    <span class="ml20" style="">&nbsp;&nbsp;&nbsp;兑换方式：
+                                        <select  name="exchangMethod">
+                                            <option value="">不限</option>
+                                            <option value="HB" >红包</option>
+                                            <option value="LW">礼物</option>
+                                            <option value="">未兑换</option>
+                                        </select>
+                                    </span>
+
+                                    <span class="ml20">&nbsp;&nbsp;&nbsp;领取方式：
+                                        <select  name="obtainMethod">
+                                            <option value="">不限</option>
+                                            <option value="QD">签到</option>
+                                            <option value="ZS">赠送</option>
+                                            <option value="GWZS" >购物赠送</option>
+                                            <option value="GZ">关注公众号赠送</option>
+                                            <option value="FX">传播赠送</option>
+                                            <option value="SQ">进入社群赠送</option>
+                                        </select>
+                                    </span>
+                                    <span class="ml20">&nbsp;&nbsp;领取时间：<input  type="text" name="obtainStartDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                                    <span class="ml20">&nbsp;&nbsp;至：<input  type="text" name="obtainEndDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                            <span class="input-group-btn">
+                                <input class="btn_searchA ml20" style="margin-left: -340px" type="submit" value="筛选"/>
+                            </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>&nbsp</div>
+        <div class="BoxStyleA">
+            <div class="BoxStyleATop">
+                <span class="fl">红包领用明细信息</span>
+
+                <!--<a href="" class="fr">X</a>-->
+            </div>
+            <table id="integralMultipleTable" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>客户名称</th>
+                    <th>粉丝昵称</th>
+                    <th>累计积分</th>
+                    <th>已兑换积分</th>
+                    <th>剩余积分</th>
+                    <th>兑换方式</th>
+                    <th>领取方式</th>
+                    <th>微信互动次数</th>
+                    <th>最后领取日期</th>
+                    <th>客户画像</th>
+                </tr>
+                </thead>
+                <tbody id="tbContainer"
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="pointObtainDetailModal" tabindex="-1" role="dialog" aria-labelledby="pointObtainDetailModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>积分获取明细信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div hidden="hidden" id="userId"></div>
+                    <div class="BoxStyleA">
+                        <table id="pointObtainDetaiTable" class="table table-striped table-bordered table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>微信昵称</th>
+                                <th>获取时间</th>
+                                <th>获取方式</th>
+                                <th>获取积分</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbContainer1"
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="pointExchangDetaiModal" tabindex="-1" role="dialog" aria-labelledby="pointExchangDetaiModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>积分明细信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div hidden="hidden" id="userId"></div>
+                    <div class="BoxStyleA">
+                        <table id="pointExchangDetaiTable" class="table table-striped table-bordered table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>微信昵称</th>
+                                <th>兑换时间</th>
+                                <th>兑换方式</th>
+                                <th>消耗积分</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbContainer1">
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/ruleConfig/integralDetail.js"></script>

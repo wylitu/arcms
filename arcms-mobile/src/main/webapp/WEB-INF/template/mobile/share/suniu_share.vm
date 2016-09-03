@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的分享</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/igrow/css/igrow.css">
+    <link rel="stylesheet" href="assets/igrow/css/igrow.plugins.css">
+    <link rel="stylesheet" href="assets/vendor/swiper/3.0.7/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/suniu.css?t=20150519">
+</head>
+
+
+<body class="suniu-container suniu-home-container">
+<!-- 加载 -->
+<div class="loader " id="loader">
+    <div class="loader-progress">
+        <span id="loader-progress-txt">0%</span>
+    </div>
+    <div class="loader-graph"></div>
+    <div class="loader-text">LOADING</div>
+    <!-- <div class="copyright"></div> -->
+</div>
+
+<div class="suniu-wrapper">
+    <div class="auto-box1">
+        <img src="assets/images/public/bg.jpg" style="height: 120px;width: 100%" alt="" >
+        <img src="assets/images/public/touxiang.png" style="width: 80px;height: 80px;border-radius:50%;margin-top: -55px;margin-left: 30px;margin-bottom: 10px;" >
+    </div>
+    <div class="auto-val">
+        <p><span   class="lab_left">累计分享文章:<i>20.00元</i></span>   <span class="lab_right">累计传播量:<i>20000次</i></span></p>
+        <p><span   class="lab_left">累计转发量:<i>1500</i></span>   <span class="lab_right">所有粉丝排名第:<i>181</i></span></p>
+        <p><span   class="lab_left">已经领取奖励次数:<i>20</i></span> </p>
+        </br>
+        <p class="home-people">累计参与人数：10000人</p>
+    </div>
+
+    <div class="tabs" style="margin:5% 5%"> <a class="">分享排行</a>  <a class="">分享奖励信息</a>  </div>
+    <div id="tabs-container" class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transition-duration: 0ms; -webkit-transition-duration: 0ms; transform: translate3d(-2698px, 0px, 0px); -webkit-transform: translate3d(-2698px, 0px, 0px);">
+            <div class="swiper-slide swiper-slide-prev" style="width: 1349px;">
+                <div class="content-slide">
+                    <div class="content" >
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>分享数：30</span><span class="red_font">已奖励</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>分享数:29</span><span class="red_font">已奖励</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >分享数:27</span><span class="red_font">已奖励</span></p>
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>分享数:26</span><span class="red_font">已奖励</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>分享数:29</span><span class="red_font">已奖励</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >分享数:30</span><span class="red_font">已奖励</span></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-prev" style="width: 1349px;">
+                <div class="content-slide">
+                    <div class="content" >
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>2015-06-27</span><span class="red_font">奖励：积分</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>2015-06-27</span><span class="red_font">奖励：红包</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >2015-06-27</span><span class="red_font">奖励：礼物</span></p>
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>2015-06-27</span><span class="red_font">奖励：礼物</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>2015-06-27</span><span class="red_font">奖励：积分</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >2015-06-27</span><span class="red_font">奖励：积分</span></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="assets/vendor/jquery/1.11.1/jquery.min.js"></script>
+<script src="assets/vendor/swiper/3.0.7/js/swiper.min.js"></script>
+<script src="assets/igrow/igrow.js"></script>
+
+<script type="text/javascript">
+
+
+    var tabsSwiper = new Swiper('#tabs-container',{
+        speed:500,
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active')
+            $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+        }
+    })
+    tabsSwiper.slideTo(1);
+    $(".tabs a").on('touchstart mousedown',function(e){
+        e.preventDefault()
+
+        $(".tabs .active").removeClass('active')
+        $(this).addClass('active')
+        tabsSwiper.slideTo( $(this).index() )
+    })
+    $(".tabs a").click(function(e){
+        e.preventDefault()
+    })
+
+    $(function(){
+        //$('#homeModal').modal('show');
+
+        var suniu = window.suniu = {
+            init:function(){
+                this.bind();
+            },
+            bind:function(){
+                var images = [
+                    './assets/images/suniu/home/bigbang.png',
+                    './assets/images/suniu/home/go.png',
+                    // './assets/images/suniu/home/logo-suniu.png',
+                    './assets/images/suniu/home/bg.jpg',
+                    './assets/images/suniu/home/link1.png',
+                    './assets/images/suniu/home/link2.png',
+                    './assets/images/suniu/home/tab1.png',
+                    './assets/images/suniu/home/tab2.png',
+                    './assets/images/suniu/home/btn-bg.png',
+                ];
+
+                // 预计载图片
+                new IGrow.imgLoad(images);
+                // 绑定moadl tab
+                $('.home-tabs a').click(function (e) {
+                    e.preventDefault();
+
+                    $(this).tab('show');
+                });
+
+
+
+            }
+        };
+        suniu.init();
+    });
+
+
+
+</script>
+</body>
+</html>

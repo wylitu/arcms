@@ -1,0 +1,36 @@
+#set($layout = "/layout/blank.vm")
+
+#if($!{properties.size()} > 0)
+<table cellpadding="2px" border="0px" cellspacing="2px" align="left" id="p_table">
+    <tr style="font-weight: bold; text-align: center">
+        #foreach($property in $properties)
+            <td>$property.name</td>
+        #end
+        <td>数量</td>
+        <td>价格</td>
+    </tr>
+    <tr>
+        #set($char = ":")
+        #foreach($property in $properties)
+            <td>
+                <select  name="prop_$velocityCount">
+                    #foreach($pValue in $property.propertyValueList)
+                        <option value="$property.pid$char$pValue.vid$char$property.name$char$pValue.name">$pValue.name</option>
+                    #end
+                </select>
+            </td>
+        #end
+        <td><input class="input-sm" type="text"  placeholder="" name="skuAmount" onkeyup="fillGoodsAmount()" style="width: 80px" onblur="fillGoodsAmount()"/></td>
+        <td><input class="input-sm" type="text"  placeholder="" name="skuPrice" style="width: 80px"/></td>
+    </tr>
+    #set($num = $!{properties.size()} + 2)
+    <tr align="right">
+        <td colspan="$num">
+            <a href="#" onclick="newRow('p_table')"><font size="2"> 增加 </font></a>&nbsp;&nbsp;
+            <a href="#" onclick="removeRow('p_table')"><font size="2"> 删除 </font></a>
+        </td>
+    </tr>
+</table>
+#else
+    此类目暂时没有配置商品属性
+#end

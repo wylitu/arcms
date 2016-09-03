@@ -1,0 +1,295 @@
+#set($layout = "/layout/blank.vm")
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo interact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px">
+                            <li>
+                            <li>客户互动</li>
+                            </li>
+                            <li class="active">积分商城</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                        <form class="form-search" id="searchFansForm">
+
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-8" style="width:100%; text-align: center">
+                                    <div class="input-group" style="width:100%">
+                                        <span class="ml20">微信昵称：<input class="input-sm" type="text" id="form-field-4" placeholder="" name="wxnm"/></span>
+                                        <span class="ml20">
+                                            是否完成：<select  name="type">
+                                                <option value="">请选择</option>
+                                                <option value="y">已完成兑换</option>
+                                                <option value="n">未完成兑换</option>
+                                                <option value="i">进行中</option>
+                                            </select>
+                                        </span>
+                                        <span class="ml20">兑换日期：<input  type="text" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                                        <span class="ml20">至：<input  type="text" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                                        <span class="ml20">
+                                            <input class="btn_searchA ml20" type="submit" value="搜索"/>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                        </div>
+                </div>
+                <div>&nbsp;</div>
+            <!-- 右边 -->
+            <div class="BoxStyleA">
+                <div class="BoxStyleATop">
+                    <span class="fl">粉丝列表</span>
+                </div>
+                <br/>
+                <div class="table-responsive" style="width:100%; margin: 0px;">
+                    <table id="fansList" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="center">
+                                <label>
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </th>
+                            <th class="hidden-480" style="width: 160px">微信昵称</th>
+                            <th class="hidden-480">累计兑换金额</th>
+                            <th class="hidden-480">兑换次数</th>
+                            <th class="hidden-480">累计积分</th>
+                            <th class="hidden-480">已兑换积分</th>
+                            <th class="hidden-480">最后一次兑换</th>
+                            <th class="hidden-480">是否老客户</th>
+                            <th class="hidden-480">老客户名称</th>
+                            <th class="hidden-480">客户画像</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--
+                        <tr>
+                            <td class="center">
+                                <label>
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a href="#">wx_激情哥</a>
+                            </td>
+                            <td>￥120.00</td>
+                            <td class="hidden-480">1次</td>
+                            <td>2000</td>
+                            <td>100</td>
+                            <td class="hidden-480">
+                                1900
+                            </td>
+                            <td>商品</td>
+                            <td>
+                                是
+                            </td>
+                            <td>是</td>
+                            <td>3次</td>
+                            <td>陈强</td>
+                            <td><a href="#">查看</a></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center">
+                                <label>
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a href="#">wx123456789</a>
+                            </td>
+                            <td>￥120.00</td>
+                            <td class="hidden-480">1次</td>
+                            <td>2000</td>
+                            <td>100</td>
+                            <td class="hidden-480">
+                                1900
+                            </td>
+                            <td>红包</td>
+                            <td>
+                                否
+                            </td>
+                            <td>否</td>
+                            <td>3次</td>
+                            <td>陈强</td>
+                            <td>
+                                <a href="#">查看</a></td>
+                            </td>
+                        </tr>
+                        -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer no-margin-top" style=" border: 0; text-align: center">
+                    <button class="btn btn-info" type="button" onclick="exp()">
+                            导  出
+                    </button>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        $("#fansList").dataTable({
+            "language": {
+                "paginate": {
+                    "first": "首页",
+                    "last": "末页",
+                    "next": "下一页",
+                    "previous": "上一页"
+                },
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有数据",
+                "info": "共 _TOTAL_ 条记录， 当前第 _PAGE_ 页",
+                "sInfoEmpty": "0条记录",
+                "sProcessing":   "加载中,请稍后...",
+                "infoFiltered": ""
+            },
+            "pagingType": "full_numbers",
+            "processing": true,
+            "searching": false,
+            "serverSide": true,
+            "bInfo":true,
+            "ajax": {
+                "url": baseUrl + 'mall/fans/datas',
+                "data": function (d) {
+                    var wxname = $("#searchFansForm :input[name='wxnm']").val();
+                    var type = $("#searchFansForm :input[name='type']").val();
+                    var startDate = $("#searchFansForm :input[name='startDate']").val();
+                    var endDate = $("#searchFansForm :input[name='endDate']").val();
+                    if (!isNullOrEmpty(wxname)) {
+                        d.wxNickName = wxname;
+                    }
+                    if (!isNullOrEmpty(type)) {
+                        d.status = type;
+                    }
+                    if (!isNullOrEmpty(startDate)) {
+                        d.startDate = startDate;
+                    }
+                    if (!isNullOrEmpty(endDate)) {
+                        d.endDate = endDate;
+                    }
+                }
+            },
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                        return '<td class="center"><label><input type="checkbox" class="ace" value="' + data + '"/><span class="lbl"></span></label></td>';
+                    },
+                    "targets": 0
+                },
+                {
+                    "render": function (data, type, row) {
+                        return  data;
+                    },
+                    "targets": 1
+                },
+                {
+                    "render": function (data, type, row) {
+                        return row.paymentTotal/100;
+                    },
+                    "targets": 2
+                },
+                {
+                    "render": function (data, type, row) {
+                        return data;
+                    },
+                    "targets": 3
+                },
+                {
+                    "render": function (data, type, row) {
+                        return data;
+                    },
+                    "targets": 4
+                },
+                {
+                    "render": function (data, type, row) {
+                        return data;
+                    },
+                    "targets": 5
+                },
+                {
+                    "render": function (data, type, row) {
+                        var type = row.lastExchageType;
+                        if (type == 'lw') {
+                            return '商品';
+                        } else if (type == 'hongbao'|| type == 'HB') {
+                            return '红包';
+                        }
+                        return '未知';
+                    },
+                    "targets": 6
+                },
+                {
+                    "render": function (data, type, row) {
+                        var isOldUser = row.isOldUser;
+                        if(isOldUser == '1'){
+                            return "是";
+                        }else if(isOldUser == '0'){
+                            return "否";
+                        }
+                        return "未知";
+                    },
+                    "targets": 7
+                },
+                {
+                    "render": function (data, type, row) {
+                        return data;
+                    },
+                    "targets": 8
+                },{
+                    "render": function (data, type, row) {
+//                        return '<a href="#" onclick=freshUrl("' + baseUrl + 'knowCustomer/userPortrait?userId=' + row.userId + '")>用户画像</a>';
+                        return '<a href="javascript:void(0))" onclick="goPortriat(' + row.userId + ')">用户画像</a>';
+                    },
+                    "targets": 9
+                }
+            ],
+            "sort": false,
+            "columns": [
+                {"data": "userId"},
+                {"data": "wxNickName"},
+                {"data": null},
+                {"data": "exchageCount"},
+                {"data": "pointTotal"},
+                {"data": "exchagePointTotal"},
+                {"data": null},
+                {"data": null},
+                {"data": "userName"},
+                {"data": null}
+            ]
+        });
+
+        //查询
+        $("#searchFansForm").submit(function () {
+            $('#fansList').DataTable().draw()
+            return false; //阻止表单默认提交
+        });
+
+        function exp(){
+            var wxname = $("#searchFansForm :input[name='wxnm']").val();
+            var type = $("#searchFansForm :input[name='type']").val();
+            var startDate = $("#searchFansForm :input[name='startDate']").val();
+            var endDate = $("#searchFansForm :input[name='endDate']").val();
+            window.location.href = '${rc.contextPath}/mall/fans/exportExcel?wxName=' + wxname + '&status=' + type + '&startDate=' + startDate + '&endDate=' + endDate;
+        }
+
+
+</script>
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/knowCustomer/userList.js"></script>

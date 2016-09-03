@@ -1,0 +1,12 @@
+#set($layout = "/layout/blank.vm")
+<!DOCTYPE html>
+
+<html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="UTF-8" name="renderer" content="webkit">
+</head>
+<body>
+<center>${errorMessage}</center>
+</body>
+</html>

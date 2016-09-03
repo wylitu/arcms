@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <classPathEntry location="/Users/apple/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>
+    <!-- data base set configure -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <plugin type="com.arcms.biz.plugin.MybatisPlugin"></plugin>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--mysql数据库链接URL，用户名、密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/icard"
+                        userId="icard" password="icard123">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.arcms.biz.domain.generation.shop" targetProject="arcms-biz/src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="useActualColumnNames" value="true" />
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="persistence/generation/shop" targetProject="arcms-biz/src/main/resources/">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.arcms.biz.dao.generation.shop"
+                             targetProject="arcms-biz/src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成哪些表-->
+        <table tableName="goods" domainObjectName="Goods">
+            <!-- 生成的字段名是否和表字段名一样 true：是 ： false:驼峰方式 -->
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>

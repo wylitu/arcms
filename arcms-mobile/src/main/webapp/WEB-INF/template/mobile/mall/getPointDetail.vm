@@ -1,0 +1,125 @@
+#set($layout = "/layout/blank.vm")
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>获取积分详情</title>
+    <meta name="keywords" content="积分商城,积分兑换,速牛科技,关系链" />
+    <meta name="description" content="速牛科技关系链CRM系统" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="${rc.contextPath}/media/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/mall/main.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+
+    <!-- fonts -->
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="${rc.contextPath}/media/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="${rc.contextPath}/media/js/html5shiv.js"></script>
+    <script src="${rc.contextPath}/media/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12" style="width: 100%">
+            <div class="widget-box">
+                <div class="widget-header widget-header-flat" style="text-align: right; height: 40px; line-height: 40px">
+                    我的积分
+                </div>
+
+                <div class="widget-body" style="margin-top: 5px">
+                    <div class="widget-main">
+                        <div class="row" style="margin-bottom: 5px; text-align: center">
+                            <span style="display: block">
+                                <img src="${rc.contextPath}/media/images/photo.jpg" width="200px" height="200px"/>
+                            </span>
+                            <ul style="width: 100%;margin: 0">
+                                <li style="float:left; width: 50%">账户积分余额：2000</li>
+                                <li style="float:left; width: 50%">累计获得积分：20000</li>
+                                <li style="float:left; width: 50%">累计兑换积分：15000</li>
+                                <li style="float:left; width: 50%">所有粉丝排名第：181</li>
+                                <li style="float:left; width: 50%">兑换红包消耗积分：2000</li>
+                                <li style="float:left; width: 50%">兑换礼物消耗积分：2000</li>
+                            </ul>
+                        </div>
+                        <div class="row" style="margin-bottom: 5px; text-align: center; border: 1px solid #d1d1d1; padding-top: 10px; padding-bottom: 10px">
+                            累计参与人数：100000，累计发放100万
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px; text-align: center;">
+                            <button style="width:100px; height:35px;border-radius: 10px; background:#ECEAE8; line-height:30px; text-align:center;font-size:13px">积分排行</button>
+                            <button style="width:100px; height:35px;border-radius: 10px; background:#ECEAE8; line-height:30px; text-align:center;font-size:13px">积分兑换</button>
+                            <button style="width:100px; height:35px;border-radius: 10px; background:#ECEAE8; line-height:30px; text-align:center;font-size:13px">积分获取</button>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;border: 1px solid #d1d1d1">
+                            <div class="col-sm-12" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                                <table cellpadding="0" cellspacing="5px" style="width: 100%" border="0px">
+                                    <tr>
+                                        <td>
+                                            2015-08-30
+                                        </td>
+                                        <td>
+                                            签到
+                                        </td>
+                                        <td>获取50积分</td>
+                                        <td>已完成</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2015-09-01
+                                        </td>
+                                        <td>
+                                            分享
+                                        </td>
+                                        <td>获取100积分</td>
+                                        <td>已完成</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2015-09-01
+                                        </td>
+                                        <td>
+                                            签到
+                                        </td>
+                                        <td>获取50积分</td>
+                                        <td>已完成</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /span -->
+
+    </div><!-- /row end -->
+
+</body>
+</html>

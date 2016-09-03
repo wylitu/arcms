@@ -1,0 +1,138 @@
+#set($layout = "/layout/mobileBlank.vm")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0057)http://market.cmbchina.com/ccard/weixin/news/zjy/zd1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no">
+
+    <meta name="keywords" content="招商银行, 信用卡, 微信, 查账, 交易提醒, 消费提醒, 跨行还款, 分期, 开卡, 办卡">
+
+    <meta name="description" content="招商银行信用卡官方微信：秒查账单、额度、积分，笔笔消费提醒。还可以快速办卡、开卡、查询申请/寄送进度，一键办理账单分期，0手续费跨行还款，更有专业人工服务。已有1500万人关注并使用！">
+
+    <title>我的主页</title>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/sdc_web.js"  type="text/javascript"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/Fx.js"  type="text/javascript"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/sdc_web.js"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/js.js" type="text/javascript"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/hammer.js"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/index/app_zd.js"></script>
+    <link href="${rc.contextPath}/media/mobile/assets/css/home/style2.css" rel="stylesheet" type="text/css">
+    <link href="${rc.contextPath}/media/mobile/assets/css/home/index.css" rel="stylesheet" type="text/css">
+    <link href="${rc.contextPath}/media/mobile/assets/css/home/animations.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<style>
+    body {margin: 0;padding: 0;text-align: center; font-family:Arial, Helvetica, sans-serif, 微软雅黑; color:#999; text-align:left; }
+    img {border: 0;}
+    a { display:block; text-decoration:none; color:#333; line-height:120px; width:640px; }
+    a:visited { color:#333; }
+    .font1{ font-size:32px; text-indent:145px; height:120px; }
+    .font2{ font-size:20px; text-indent:0px; float:right; position:relative; top:0; right:70px; color:#999;  }
+</style>
+
+
+
+<!--轮播end-->
+
+
+<div id="main">
+    <!--菜单-->
+    <div id="menu_1">
+        <!--<a href="http://xyk.cmbchina.com/LatteSubsite/service/index.html"><img src="./assets/css/home/img/menu_1b.gif" alt="热点问题" width="213" height="200"></a><img src="./assets/css/home/img/menu_2a.gif" alt="快速办理" height="200" vspace="214"><a href="http://xyk.cmbchina.com/Latte/main?WT.mc_id=Z1O00WXA055B412100CC"><img src="./assets/css/home/img/menu_3b.gif" alt="官网首页" height="200" vspace="213"></a></div>-->
+        <!--快捷按钮-->
+        <!--轮播-->
+        <div id="hengping"></div>
+        <section id="main">
+            <div class="box index_scroll" style="-webkit-user-select: none; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                #if( $sellerMobileMenus)
+                    #set ($i=1)
+                    #foreach($sellerMobileMenu in $sellerMobileMenus)
+                        #if($!sellerMobileMenu.functionType=="advertisement")
+                            <div class="liuliang_pages
+                            #if($i==1)
+                            pages_current
+                             #end
+                              " style="-webkit-user-select: none; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><a href="$!sellerMobileMenu.link"><img alt="test" src="${rc.contextPath}$!sellerMobileMenu.url"></a></div>
+                            #set($i=$i+1)
+                         #end
+                      #end
+                #end
+                <!--按钮-->
+                <div class="dot"> <span class="hover"></span> <span class=""></span> <span class=""></span></div>
+            </div>
+            <div class="tiaokuan hover">
+
+                <div class="tc_checkbox"></div>
+            </div>
+        </section>
+
+        <div style="width:0; height:0; overflow:hidden;">
+            <script>
+                window.app.index ();
+            </script>
+
+        </div>
+    </div>
+
+    <div id="menu_3" >
+
+        #if( $sellerMobileMenus)
+            #set ($j=1)
+            #foreach($sellerMobileMenu in $sellerMobileMenus)
+                #if($!sellerMobileMenu.functionType=="module")
+
+                    #if($!sellerMobileMenu.name=="hongbao")
+                        #set ($call="我的红包")
+                        #set ($index=1)
+                    #elseif($!sellerMobileMenu.name=="point")
+                        #set ($call="我的积分")
+                        #set ($index=2)
+                    #elseif($!sellerMobileMenu.name=="share")
+                        #set ($call="我的分享")
+                        #set ($index=3)
+                    #elseif($!sellerMobileMenu.name=="pointmall")
+                        #set ($call="我的积分商城")
+                        #set ($index=4)
+                    #elseif($!sellerMobileMenu.name=="activity")
+                        #set ($call="我的活动")
+                        #set ($index=5)
+                    #elseif($!sellerMobileMenu.name=="evaluate")
+                        #set ($call="我的评价")
+                        #set ($index=8)
+                    #elseif($!sellerMobileMenu.name=="grow")
+                        #set ($call="我的成长")
+                        #set ($index=9)
+                    #elseif($!sellerMobileMenu.name=="shake")
+                        #set ($call="我的摇一摇")
+                        #set ($index=11)
+                    #elseif($!sellerMobileMenu.name=="express")
+                        #set ($call="我的快递")
+                        #set ($index=10)
+                    #elseif($!sellerMobileMenu.name=="birthday")
+                        #set ($call="我的生日")
+                        #set ($index=7)
+                    #elseif($!sellerMobileMenu.name=="identify")
+                        #set ($call="我的认证")
+                        #set ($index=12)
+                    #end
+                    <a class="bt$index
+                            #if($j%4==1)
+                             b_left
+                             #end
+                              " href="${rc.contextPath}$!sellerMobileMenu.link?sellerId=$!sellerId">$!call</a>
+                    #set($j=$j+1)
+                      #end
+                #end
+                #end
+    </div>
+
+
+    <div style="background-color:#29b2cc;height:130px;padding-top: 0px;margin:-90px 20px 0 20px;border-top:10px;border-radius: 10px;text-align: center; ">
+        <font style="color: #ffffff;line-height: 130px;font-size: 35px; ">立即认证</font>
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+#set($layout = "/layout/blank.vm")
+
+<div class="row" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="icon-home home-icon"></i>
+                        </li>
+                        <li>传播有礼</li>
+                        <li class="active">摇一摇规则</li>
+                    </ul>
+                </div>
+                <div class="widget-body" id="integralConfigDiv">
+                    <div class="widget-main">
+                        <form class="form-horizontal markAct" id="integralConfigForm" role="form" style=""  method="post">
+                            <div id ="mdiv">
+                                <div class="form-group">
+                                    <div class="radio">
+                                    </label>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">摇一摇标题设置：</label>
+                                    <div class="col-sm-5" style="padding-left: 25px;">
+                                        <input type="text" name="conertMoney" placeholder="" class="col-xs-10 col-sm-5"/>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">生成带参数：</label>
+                                    <div class="col-sm-1" style="padding-left: 25px;">
+                                        <img src="" width="100" height="100"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">生成链接的地址：</label>
+                                    <div class="col-sm-5" style="padding-left: 25px;">
+                                        <input type="text" name="conertMoney" placeholder="" class="col-xs-10 col-sm-5"/>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">兑换的公众号：</label>
+                                    <div class="col-sm-5" style="padding-left: 25px;">
+                                        <input type="text" name="conertMoney" placeholder="" class="col-xs-10 col-sm-5"/>
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">是否需要验证：</label>
+                                    <div class="col-sm-4">
+                                        <label>
+                                            <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                            <span class="lbl">是</span>
+                                            <input name="isShowOther" type="radio" class="ace" value="0" />
+                                            <span class="lbl">否</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">是否关注公众号：</label>
+                                    <div class="col-sm-4">
+                                        <label>
+                                            <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                            <span class="lbl">是</span>
+                                            <input name="isShowOther" type="radio" class="ace" value="0" />
+                                            <span class="lbl">否</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">领取限制：</label>
+                                    <div class="col-sm-4">
+                                        <label>
+                                            <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                            <span class="lbl">每人一次</span>
+
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">摇的次数限制：</label>
+                                    <div class="col-sm-5" style="padding-left: 25px;">
+                                        <input type="text" name="conertMoney" placeholder="" class="col-xs-10 col-sm-5"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">摇一摇类型：</label>
+                                    <div class="col-sm-4">
+                                        <label>
+                                            <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                            <span class="lbl">自己摇</span>
+
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" style="font-family: 'Helvetica';">起止时间：</label>
+                                    <div class="col-sm-6">
+                                        <label>
+                                            <input name="isShowOther" type="radio" class="ace" value="1" checked="checked" />
+                                            <span class="lbl">设置时间</span>
+                                            <span class="ml20">&nbsp;&nbsp;<input  type="text" name="obtainStartDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                                            <span class="ml20">&nbsp;&nbsp;至</gc><input  type="text" name="obtainEndDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></span>
+                                            <input name="isShowOther" type="radio" class="ace" value="0" />
+                                            <span class="lbl">立即开始</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                            <div class="modal-footer  sn-footer">
+                                <center><input width="200px" class="sure" id="sure" type="submit" value="下一步"></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/rock/rockConfig.js"></script>

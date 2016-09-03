@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+
+.center{margin:10px auto; width:1200px;}
+
+.LeftMenu{ border:1px solid #ccc; border-radius:5px; background:#a8e6f5; width:220px; padding:0 0 10px 0; float:left;}
+ul.menu{ background:#FFF; width:100%; margin-top:0px;}
+ul.menu li{ height:30px; width:170px; padding:5px 0 0 50px; }
+ul.menu li:hover{color:#fff;cursor:pointer;}
+ul.menu li a{ height:30px; width:170px; float:left; font-family:'雅黑'; font-size:13px; }
+ul.menu li a:hover{color:#fff; text-decoration:none; }
+.menuSP,.menuDD,.menuSC,.menuHY,.menuQQ,.menuZF,.menuJF,.menuHTYH,.menuQY{ background:url(../images/all_img.png);}
+.menuSP{background-position:-25px -444px;}
+.menuDD{background-position:-25px -480px;}
+.menuSC{background-position:-25px -520px;}
+.menuHY{background-position:-25px -557px;}
+.menuQQ{background-position:-25px -594px;}
+.menuZF{background-position:-25px -631px;}
+.menuJF{background-position:-25px -667px;}
+.menuHTYH{background-position:-25px -704px;}
+.menuQY{background-position:-25px -743px;}
+
+
+.menuSP:hover{background-position:-355px -444px;}
+.menuDD:hover{background-position:-355px -480px;}
+.menuSC:hover{background-position:-355px -520px;}
+.menuHY:hover{background-position:-355px -557px;}
+.menuQQ:hover{background-position:-355px -594px;}
+.menuZF:hover{background-position:-355px -631px;}
+.menuJF:hover{background-position:-355px -667px;}
+.menuHTYH:hover{background-position:-355px -704px;}
+.menuQY:hover{background-position:-355px -743px;}
+
+ol.submenu{ clear:both; display:table;}
+ol.submenu li{ height:30px;width:170px; background:#eee; padding:0 0 0 50px;}
+ol.submenu li:hover{ text-decoration:none; background:#4abdcc; color:#fff; cursor:pointer; display:table;}
+ol.submenu li a{height:30px;width:170px;}
+
+.RightMain{ float:left; background:#fff; width:80%; margin-left:10px;}
+.BoxStyleA{ border:1px solid #ccc; float:left; border-radius:5px; padding: 0 0 10px 0; margin:0 0 20px; width:958px;}
+.BoxStyleATop{ height:25px; background:#a8e6f5; color:#338c98; font-size:14px; padding:5px 0 0 15px; }
+.BoxStyleATop a{ margin:0 10px; /*clear:both;*/}
+ul.index_menu{ margin:10px 5px;}
+ul.index_menu li{height:150px;  width:140px;padding:0 0 0 0; background:#f7f7f7; border:1px solid #ddd; text-align:center; float:left; margin:10px 8px;}
+ul.index_menu li span{ float:left; width:100%; text-align:center; color:#999;}
+ul.index_menu li a{ float:left; width:100%; text-align:center;}
+
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 0px!important;
+}
+
+
+/*弹框*/
+.W600{width:600px;}
+.W200{width:200px;}
+.W207{width:207px;}
+.Mauto{ margin:0 auto;}
+.popup_box{ border:1px solid #ccc; border-top-left-radius:5px; border-top-right-radius:5px;}
+.popup_top{ width:100%; height:25px; background:#a8e6f5; color:#338c98; font-size:14px; padding:5px 0 0 0;}
+.popup_top span{}
+form.popup_main{ height:300px;}
+form.popup_main div{ margin:10px 0 0 0;}
+form.popup_main div label{ text-align:right; width:100px; float:left; line-height:22px;}
+.popup_textarea{ text-indent:5px; width:205px; height:70px; line-height:22px;}
+.popup_file{ border:1px solid #aaa; width:205px; }
+.remind{ color:#ccc;}
+
+
+/*登陆*/
+html.login_bg{ background:#4abdcc;}
+.login{ background:url(../images/login.png); width:464px; height:339px; margin:100px auto 0 auto; position:relative;}
+.btn_login{ width:240px ;height:48px; background:#4abdcc; font-size:20px; color:#fff; border:0; border-radius:5px; position:absolute; left:195px; top:260px;}
+.login_name,.login_pw{ width:190px; height:44px!important; border:1px solid transparent!important; background:transparent; position:absolute;font-size:18px; }
+.login_name{left:235px; top:77px; }
+.login_pw{left:235px; top:149px; }
+.login_other{position:absolute; left:205px; top:220px;}
+.form-control{float: left;margin-top: 10px}
+/*right side - contins main content*/
+.right-side {
+    background-color: #f9f9f9;
+    margin-left: 187px;
+}
+
+/*left side - contains sidebar*/
+.left-side {
+    position: absolute;
+    width: 187px;
+    display: block;
+}
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ *  Gives us the push menu effect
+ */
+@media screen and (max-width: 992px) {
+    .relative {
+        position: relative;
+    }
+    .row-offcanvas-right .sidebar-offcanvas {
+        right: -220px;
+    }
+    .row-offcanvas-left .sidebar-offcanvas {
+        left: -220px;
+    }
+    .row-offcanvas-right.active {
+        right: 220px;
+    }
+    .row-offcanvas-left.active {
+        left: 220px;
+    }
+    .sidebar-offcanvas {
+        left: 0;
+    }
+    body.fixed .sidebar-offcanvas {
+        margin-top: 50px;
+        left: -220px;
+    }
+    body.fixed .row-offcanvas-left.active .navbar {
+        left: 220px !important;
+        right: 0;
+    }
+    body.fixed .row-offcanvas-left.active .sidebar-offcanvas {
+        left: 0px;
+    }
+}
+*{font-size:9pt;border:0;margin:0;padding:0;}
+body{font-family:'微软雅黑'; margin:0 auto;min-width:980px;}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+img{border:0;}
+/**dl,dt,dd,span{margin:0;padding:0;display:block;}**/
+a,a:focus{text-decoration:none;color:#000;outline:none;blr:expression(this.onFocus=this.blur());}
+a:hover{color:#00a4ac;text-decoration:none;}
+table{border-collapse:collapse;border-spacing: 0;}
+cite{font-style:normal;}
+h2{font-weight:normal;}
+.none{ display:none;}
+/*cloud*/
+
+#mainBody {width:100%;height:100%;position:absolute;z-index:-1;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(../images/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+
+/*-xl-*/
+.checkboxStyle2{height:30px; vertical-align:middle; margin-right:2px; }
+.radioStyle2{height:30px; vertical-align:middle; margin-right:7px; }
+.mr20{ margin-right:20px; float:left;}
+.ml86{margin-left:86px;}
+.fromImg2{height:120px; width:172px; margin:10px 5px 0 0;}
+/*login*/
+.logintop{height:47px; position:absolute; top:0; background:url(../images/loginbg1.png) repeat-x;z-index:100; width:100%;}
+.logintop span{color:#fff; line-height:47px; background:url(../images/loginsj.png) no-repeat 21px 18px; text-indent:44px; color:#afc5d2; float:left;}
+.logintop ul{float:right; padding-right:30px;}
+.logintop ul li{float:left; margin-left:20px; line-height:47px;}
+.logintop ul li a{color:#afc5d2;}
+.logintop ul li a:hover{color:#fff;}
+.loginbody{background:url(../images/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow:hidden; position:absolute; top:47px;}
+.systemlogo{background:url(../images/loginlogo.png) no-repeat center none;width:100%; height:71px; margin-top:75px;}
+.loginbox{width:692px; height:336px; background:url(../images/logininfo.png) no-repeat; margin-top:30px;}
+.loginbox ul{margin-top:88px; margin-left:285px;}
+.loginbox ul li{margin-bottom:25px;}
+.loginbox ul li label{color:#687f92; padding-left:25px;}
+.loginbox ul li label a{color:#687f92;}
+.loginbox ul li label a:hover{color:#3d96c9;}
+.loginbox ul li label input{margin-right:5px;}
+.loginuser{width:299px; height:48px; background:url(../images/loginuser.png) no-repeat; border:none; line-height:48px; padding-left:44px; font-size:14px; font-weight:bold;}
+.loginpwd{width:299px; height:48px; background:url(../images/loginpassword.png) no-repeat; border:none;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc;}
+.loginbtn{width:111px;height:35px; background:url(../images/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer; line-height:35px;}
+.loginbm{height:50px; line-height:50px; text-align:center; background:url(../images/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
+.loginbm a{font-weight:bold;color:#0b3a58;}
+.loginbm a:hover{color:#fff;}

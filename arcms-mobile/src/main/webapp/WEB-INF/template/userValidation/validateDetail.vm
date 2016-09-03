@@ -1,0 +1,70 @@
+#set($layout = "/layout/blank.vm")
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb">
+                        <li>
+                        </li>
+                        <li>与客户互动</li>
+                        <li class="active">客户验证</li>
+                    </ul>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-horizontal markAct" id="searchForm" role="form">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-11 no-padding-left" style="margin-top: 15px;">
+                                    <div class="input-group">
+                                        <span style="float: left;margin-left: 100px;">验证人微信昵称：<input  type="text" name="wxNickName" /></span>
+                                        <span style="float: left;margin-left: 40px;">手机号：<input  type="text" name="mobile" /></span>
+                                        <span style="float: left;margin-left: 40px;">时间：
+                                            <select  name="time" style="width: 150px;">
+                                                <option value="">不限</option>
+                                                <option value="7">最近7天</option>
+                                                <option value="30">最近30天</option>
+                                                <option value="60">最近60天</option>
+                                            </select>
+                                        </span>
+                                        <span class="input-group-btn" style="float: left;margin-left: 100px;">
+                                            <button class="btn_searchA" type="button" id="SearchBut">
+                                                筛选
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="BoxStyleA" style="margin-top: 40px;">
+                <div class="BoxStyleATop">
+                    <span class="fl">明细</span>
+                </div>
+                <div class="validateTable">
+                    <table id="validateDetailTable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>验证人微信昵称</th>
+                            <th>验证手机号</th>
+                            <th>验证结果</th>
+                            <th>验证时间</th>
+                            <th>是否验证人画像</th>
+                            <th>验证人姓名</th>
+                            <th>验证人购物记录</th>
+                            <th>验证人画像</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/userValidation/userValidate.js"></script>

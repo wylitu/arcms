@@ -1,0 +1,25 @@
+#set($layout = "/layout/default.vm")
+<style>
+    html{
+        position: absolute;
+    }
+</style>
+<div class="row">
+    <form class="form-horizontal" role="form" id="addForm" method="post" action="#" enctype="multipart/form-data">
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <td>导入文件：</td>
+                <td>
+                    <input type="file" name="uploadFile" size="50" id="uploadFile"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="提交" value="submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/taobao/trade.js"></script>

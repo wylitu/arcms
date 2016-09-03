@@ -1,0 +1,350 @@
+#set($layout = "/layout/blank.vm")
+<style type="text/css">
+    .table-responsive{
+        margin: 10px 40px 20px 40px;
+    }
+    .main-content1{
+        background-color: #ffffff;
+    }
+    .breadcrumbs{
+        background-color:lightblue;
+    }
+    .breadcrumb {
+        float:left;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    .col-sm-6{
+        text-align: left;
+    }
+</style>
+<div class="row">
+<div class="col-xs-12">
+
+<div class="table-responsive">
+
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <i class="modal-logo know"></i>
+    <ul class="breadcrumb" style="margin-left: 2px">
+        <li>
+            <a href="#">认识客户</a>
+        </li>
+        <li class="active">客户列表</li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+
+
+<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+<thead>
+<tr>
+    <th class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </th>
+    <th>用户姓名</th>
+    <th>电话</th>
+    <th>城市</th>
+    <th>平均购买周期</th>
+    <th>平均购买金额</th>
+    <th>累计购买次数</th>
+    <th>最近一次购买日期</th>
+    <th>购买平台</th>
+    <th>综合贡献价值</th>
+    <th>活跃指数</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" class="ace" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td>
+        <a href="#">激情哥</a>
+    </td>
+    <td>13365421387</td>
+    <td>杭州/浙江</td>
+    <td>5.3天</td>
+    <td>235.00</td>
+    <td>13</td>
+    <td>2015-01-23</td>
+    <td>天猫</td>
+    <td>95.23</td>
+    <td>5星</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function($) {
+        var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+                { "bSortable": false },
+                null, null,null, null, null,null,null,null,null,
+                { "bSortable": false }
+            ] } );
+        $('table th input:checkbox').on('click' , function(){
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function(){
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+        });
+
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+    })
+</script>

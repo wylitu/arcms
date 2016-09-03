@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的积分</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/igrow/css/igrow.css">
+    <link rel="stylesheet" href="assets/igrow/css/igrow.plugins.css">
+    <link rel="stylesheet" href="assets/vendor/swiper/3.0.7/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/suniu.css?t=20150519">
+</head>
+
+
+<body class="suniu-container suniu-home-container">
+<!-- 加载 -->
+<div class="loader " id="loader">
+    <div class="loader-progress">
+        <span id="loader-progress-txt">0%</span>
+    </div>
+    <div class="loader-graph"></div>
+    <div class="loader-text">LOADING</div>
+    <!-- <div class="copyright"></div> -->
+</div>
+
+<div class="suniu-wrapper">
+    <div class="auto-box1">
+        <img src="assets/images/public/bg.jpg" style="height: 120px;width: 100%" alt="" >
+        <img src="assets/images/public/touxiang.png" style="width: 80px;height: 80px;border-radius:50%;margin-top: -55px;margin-left: 30px;margin-bottom: 10px;" >
+    </div>
+    <div class="auto-val">
+        <p><span   class="lab_left">账户积分余额:<i>20.00元</i></span>   <span class="lab_right">累计获得积分:<i>200.00元</i></span></p>
+        <p><span   class="lab_left">累计兑换积分:<i>150.00元</i></span>   <span class="lab_right">所有粉丝排名第:<i>1</i></span></p>
+        <p><span   class="lab_left">兑换红包消耗积分:<i>2000</i></span> <span class="lab_right">兑换礼物消耗积分:<i>2000</i></span>   </p>
+        </br>
+        <p class="home-people">累计参与人数：10000人，累计发放10000万</p>
+    </div>
+
+    <div class="tabs" style="margin:5% 5%"> <a class="">积分排行</a>  <a class="">积分兑换</a> <a class="active">积分获取</a> </div>
+    <div id="tabs-container" class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transition-duration: 0ms; -webkit-transition-duration: 0ms; transform: translate3d(-2698px, 0px, 0px); -webkit-transform: translate3d(-2698px, 0px, 0px);">
+            <div class="swiper-slide swiper-slide-active" style="width: 1349px;">
+                <div class="content-slide">
+                    <ul class="news-list">
+                        <li>朝鲜逃兵越境杀4名中国人被捕</li>
+                        <li>温州立人集团非法吸存案宣判</li>
+                        <li>陈水扁坐狱6年后获准保外就医</li>
+                        <li>她们的家长不觉得丢人吗？</li>
+                        <li>1名韩国毒贩在华被执行死刑</li>
+                        <li>呼格案疑似真凶赵志红受审</li>
+                        <li>媒体披露杨卫泽被带走细节</li>
+                        <li>改样板戏，你能比徐克牛吗?</li>
+                        <li>社保缴费狂涨：穷人不堪重负</li>
+                        <li>A股美元：当负相关已成往事</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-prev" style="width: 1349px;">
+                <div class="content-slide">
+                    <div class="content" >
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>儿童小拖鞋</span><span>消耗:50积分</span><span class="red_font">已完成</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>儿童小拖鞋</span><span>消耗:50积分</span><span class="red_font">已完成</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >积分兑换红包</span><span>消耗:50积分</span><span class="red_font">已完成</span></p>
+                        <p><img src="assets/images/public/gzh/gzh.png"><span>儿童小拖鞋</span><span>消耗:50积分</span><span class="red_font">已完成</span></p>
+                        <p><img src="assets/images/public/gzh/gzh1.png"><span>儿童小拖鞋</span><span>消耗:150积分</span><span class="red_font">已完成</span></p>
+                        <p><img src="assets/images/public/gzh/gzh2.png"><span >积分兑换红包</span><span>消耗:50积分</span><span class="red_font">已完成</span></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-prev" style="width: 1349px;">
+                <div class="content-slide">
+                    <div class="content" >
+                    <p><img src="assets/images/public/gzh/gzh.png"><span>公众号-签到</span><span>2015-06-27</span><span class="red_font">+20积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh1.png"><span>公众号-分享</span><span>2015-06-2</span><span class="red_font">+20积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh2.png"><span >公众号-签到</span><span>2015-06-27</span><span class="red_font">+10积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh3.png"><span >公众号-签到</span><span>2015-06-27</span><span class="red_font">+10积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh4.png"><span >公众号-签到</span><span>2015-06-27</span><span class="red_font">+10积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh5.png"><span >公众号-分享</span><span>2015-06-27</span><span class="red_font">+10积分</span></p>
+                    <p><img src="assets/images/public/gzh/gzh6.png"><span >公众号-分享</span><span>2015-06-27</span><span class="red_font">+10积分</span></p>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="assets/vendor/jquery/1.11.1/jquery.min.js"></script>
+<script src="assets/vendor/swiper/3.0.7/js/swiper.min.js"></script>
+<script src="assets/igrow/igrow.js"></script>
+
+<script type="text/javascript">
+
+
+    var tabsSwiper = new Swiper('#tabs-container',{
+        speed:500,
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active')
+            $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+        }
+    })
+    tabsSwiper.slideTo(1);
+    $(".tabs a").on('touchstart mousedown',function(e){
+        e.preventDefault()
+
+        $(".tabs .active").removeClass('active')
+        $(this).addClass('active')
+        tabsSwiper.slideTo( $(this).index() )
+    })
+    $(".tabs a").click(function(e){
+        e.preventDefault()
+    })
+
+    $(function(){
+        //$('#homeModal').modal('show');
+
+        var suniu = window.suniu = {
+            init:function(){
+                this.bind();
+            },
+            bind:function(){
+                var images = [
+                    './assets/images/suniu/home/bigbang.png',
+                    './assets/images/suniu/home/go.png',
+                    // './assets/images/suniu/home/logo-suniu.png',
+                    './assets/images/suniu/home/bg.jpg',
+                    './assets/images/suniu/home/link1.png',
+                    './assets/images/suniu/home/link2.png',
+                    './assets/images/suniu/home/tab1.png',
+                    './assets/images/suniu/home/tab2.png',
+                    './assets/images/suniu/home/btn-bg.png',
+                ];
+
+                // 预计载图片
+                new IGrow.imgLoad(images);
+                // 绑定moadl tab
+                $('.home-tabs a').click(function (e) {
+                    e.preventDefault();
+
+                    $(this).tab('show');
+                });
+
+
+
+            }
+        };
+        suniu.init();
+    });
+
+
+
+</script>
+</body>
+</html>

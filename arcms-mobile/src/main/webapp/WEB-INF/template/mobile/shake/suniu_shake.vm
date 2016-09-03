@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的摇一摇</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <link rel="stylesheet" href="assets/igrow/css/igrow.css">
+    <link rel="stylesheet" href="assets/igrow/css/igrow.plugins.css">
+    <link rel="stylesheet" href="assets/css/suniu.css?t=20150519">
+
+</head>
+<body class="suniu-container suniu-home-container">
+<!-- 加载 -->
+<div class="loader " id="loader">
+    <div class="loader-progress">
+        <span id="loader-progress-txt">0%</span>
+    </div>
+    <div class="loader-graph"></div>
+    <div class="loader-text">LOADING</div>
+    <!-- <div class="copyright"></div> -->
+</div>
+
+<div class="suniu-wrapper">
+    <div class="auto-box1">
+        <img src="assets/images/public/bg.jpg" style="height: 120px;width: 100%" alt="" >
+        <img src="assets/images/public/touxiang.png" style="width: 80px;height: 80px;border-radius:50%;margin-top: -55px;margin-left: 30px;margin-bottom: 10px;" >
+    </div>
+    <div class="auto-val">
+        <p class="home-people">我可参与的活动</p>
+        <p style="float: left;width:100%; display: inline-block; border-bottom:1px solid #DDDDDD;"><span style="margin-left: 16%">活动名称</span><span span style="margin:2% 7%">参与人数</span><span style="margin:2% 5%">奖励</span><span span style="margin:2% 5%">规则</span></p>
+    </div>
+
+    <div class="content multi-column"  >
+        <p><img src="assets/images/public/gzh/gzh.png"><span>福海堂元旦庆典活动</span><span>30</span><span>礼物</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh1.png"><span >福海堂元旦庆典活动真心是好的啊</span><span>30</span><span>红包</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh2.png"><span>福海堂元旦庆典活动</span><span>30</span><span>礼物</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh3.png"><span >福海堂元旦庆典活动</span><span>30</span><span>积分</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh4.png"><span>福海堂元旦庆典活动</span><span>30</span><span>礼物</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh5.png"><span >福海堂元旦庆典活动</span><span>30</span><span>红包</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh1.png"><span >福海堂元旦庆典活动真心是好的啊</span><span>30</span><span>红包</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh2.png"><span>福海堂元旦庆典活动</span><span>30</span><span>礼物</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh3.png"><span >福海堂元旦庆典活动</span><span>30</span><span>积分</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh4.png"><span>福海堂元旦庆典活动</span><span>30</span><span>礼物</span><span class="blue_font" onclick="">查看</span></p>
+        <p><img src="assets/images/public/gzh/gzh5.png"><span >福海堂元旦庆典活动</span><span>30</span><span>红包</span><span class="blue_font" onclick="">查看</span></p>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="homeModal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+                <div class="modal-body" style="padding: 0px;">
+                    <div class="home-tabs-box clearfix">
+                        <ul class="home-tabs">
+                            <li class="fr active">
+                                <a href="#rule" class="home-tab2">
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!--  -->
+                    <div class="home-tabs-content tab-content">
+
+                        <p><b>活动时间</b></p>
+                        <p>2015年5月12日-2015年5月12日</p>
+                        <br>
+                        <p><b>活动规则</b></p>
+                        <p>1、每个礼盒都有实物哦</p>
+                        <p>2、本活动共设置6个礼盒，用户根据自己的喜好抽取礼盒</p>
+                        <p>3、礼盒均为实物礼盒，礼盒打开后，请根据提示完成兑奖，所有奖品都是先到先得呦！</p>
+                        <p>4、每位用户最多可以抽取2个礼盒赶紧分享出去和小伙伴们一起抢吧</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="assets/vendor/jquery/1.11.1/jquery.min.js"></script>
+<script src="assets/igrow/igrow.js"></script>
+
+<script>
+    $(function(){
+        //$('#homeModal').modal('show');
+
+        var suniu = window.suniu = {
+            init:function(){
+                this.bind();
+            },
+            bind:function(){
+                var images = [
+                    './assets/images/suniu/home/bigbang.png',
+                    './assets/images/suniu/home/go.png',
+                    // './assets/images/suniu/home/logo-suniu.png',
+                    './assets/images/suniu/home/bg.jpg',
+                    './assets/images/suniu/home/link1.png',
+                    './assets/images/suniu/home/link2.png',
+                    './assets/images/suniu/home/tab1.png',
+                    './assets/images/suniu/home/tab2.png',
+                    './assets/images/suniu/home/btn-bg.png',
+                ];
+
+                // 预计载图片
+                new IGrow.imgLoad(images);
+                // 绑定moadl tab
+                $('.home-tabs a').click(function (e) {
+                    e.preventDefault();
+
+                    $(this).tab('show');
+                });
+                // 弹出modal
+                $(document).on('click','.blue_font',function(e){
+                    var link = $(e.currentTarget);
+                    var title = link.attr('title');
+
+                    if(title == '获奖名单') {
+                        $('.home-tabs a').eq(0).trigger('click');
+                    }else {
+                        $('.home-tabs a').eq(1).trigger('click');
+                    }
+
+                    $('#homeModal').modal('show');
+                });
+            }
+        };
+        suniu.init();
+    });
+</script>
+</body>
+</html>

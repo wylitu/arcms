@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+    <data>
+        <key>name</key>
+        <value>severus</value>
+    </data>
+    <!--在velocity中使用classTool-->
+    <tool class="org.apache.velocity.tools.generic.ClassTool">
+        <key>classTool</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.ClassTool</class>
+    </tool>
+    <!--在velocity中直接用${link.contextPath}即可得到当前的contextPath-->
+    <tool>
+        <key>link</key>
+        <scope>request</scope>
+        <class>org.apache.velocity.tools.view.LinkTool</class>
+    </tool>
+    <!--用类似$params.returnUrl，来获取类似 http://xxx.com/login?returnUrl=abc 中的 abc部分-->
+    <tool>
+        <key>params</key>
+        <scope>request</scope>
+        <class>org.apache.velocity.tools.view.ParameterTool</class>
+    </tool>
+    <tool>
+        <key>numTool</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.NumberTool</class>
+    </tool>
+    <tool>
+        <key>dateTool</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.DateTool</class>
+    </tool>
+</toolbox>

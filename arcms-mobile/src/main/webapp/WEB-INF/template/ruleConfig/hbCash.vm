@@ -1,0 +1,115 @@
+#set($layout = "/layout/blank.vm")
+<style type="text/css">
+    .help-block {
+        display: block;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb" style="margin-left: 2px">
+                        <li>
+                        <li>与客户互动</li>
+                        </li>
+                        <li class="active">红包提现规则</li>
+                    </ul><!-- .breadcrumb -->
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-horizontal" role="form" id="addForm" method="post">
+                            <input type="hidden" name="id">
+                            <div class="form-group" style="width: 950px" >
+                                <span  style="margin-left: 200px;float: left"> 设置提现规则 <font color="red">&nbsp&nbsp(如果不输表示不限定日期)</font></span>  <br/>
+                                <label > 固定日期提现，每月 </label>
+                                <input type="text"    style="width: 60px" name="fixDate1"/>
+                                <label >号--</label>
+                                <input type="text"  style="width: 60px" name="fixDate2"/>
+                                <label >号可以提现到零钱账户</label>
+                            </div>
+
+                            <div class="form-group" style="width:720px">
+                                <span  style="margin-left: 200px;float: left"> 设置提现次数<font color="red">&nbsp&nbsp(如果输入0表示不限定次数)</font></span><br/>
+                                <div class="row">
+                                    <label > 每月最多可以提现&nbsp </label>
+                                    <input type="text" style="width: 60px" name="maxCountPerMon"/>
+                                    <label >次</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="width:720px">
+                                <span  style="margin-left: 200px;float: left"> 设置提现每次的面额</span><br/>
+
+                                <input type="text" name="ammount1" value="1" style="width: 60px" readonly="true"/>
+                                <label > 元面额,只能提取1次 </label>
+                                </br></br>
+
+
+                                <input type="text"  name="ammount2" style="width: 60px;margin-left: -80px" class="denomination"/>
+                                <label > 元面额 </label>
+                                </br></br>
+
+
+
+                                <input type="text"  name="ammount3" style="width: 60px;margin-left: -80px" class="denomination"/>
+                                <label > 元面额 </label>
+                                </br></br>
+
+
+                                <input type="text"  name="ammount4"  style="width: 60px;margin-left: -80px" class="denomination"/>
+                                <label > 元面额 </label>
+                                </br></br>
+                            </div>
+
+
+                            <div class="form-group" style="width:720px">
+                                <span  style="margin-left: 200px;float: left"> <font color="red">是否短信提醒用户提现时间</font></span><br/>
+                                <input name="type" type="radio" class="ace" value="true"  onclick="change()"  checked="checkded"/>
+                                <span class="lbl">提现日前一天自动提醒</span>
+                                &nbsp &nbsp
+                                <input name="type" type="radio" class="ace" value="false"  onclick="change()"/>
+                                <span class="lbl">无须提醒</span>
+                            </div>
+
+                            <div class="form-group" style="width:720px">
+                                <span style="margin-left: 200px;margin-top:5px;float: left">提醒时间段：</span>
+                                <input  type="text" style="margin-left: -110px" name="remindDate" onclick="WdatePicker({dateFmt:'HH',minDate:'9',maxDate:'21'})"/>
+                                <label>&nbsp(早上9点到晚上9点之间)</label>
+                            </div>
+
+
+                            <div class="form-group" style="width:720px">
+                                <span  style="margin-left: 200px;float: left">回复短信内容设置,短信内容不超过60个字(包含标点,中间空格)</span><br/>
+                                <textarea style="width: 600px;height: 130px;margin-left: 270px" name="smsContent"></textarea>
+
+                            </div>
+
+                            <!--div class="form-group" style="width: 950px" >
+                                <span  style="margin-left: 200px;float: left"> 购物红包的提现设置</span>  <br/>
+                                <label >领取之后是否冻结: </label>
+                                <input name="type" type="radio" class="ace" value="true"  onclick="change()"  checked="checkded"/>
+                                <span class="lbl">无须提醒</span>
+                                <input name="type" type="radio" class="ace" value="true"  onclick="change()"  checked="checkded"/>
+                                <span class="lbl">无须提醒</span><br/>
+                                <label >购物红包解冻时间: </label>
+                                <input name="type" type="radio" class="ace" value="true"  onclick="change()"  checked="checkded"/>
+                                <span class="lbl">交易成功之后24小时内</span>
+                                <input name="type" type="radio" class="ace" value="true"  onclick="change()"  checked="checkded"/>
+                                <span class="lbl">评价成功之后24小时内</span><br/>
+                            </div-->
+
+                            <div class="modal-footer  sn-footer">
+                                <center><input class="sure" type="submit" value="保存设置" ></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/ruleConfig/hbCashRule.js"></script>

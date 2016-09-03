@@ -1,0 +1,47 @@
+#set($layout = "/layout/blank.vm")
+123
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo know"></i>
+                    <ul class="breadcrumb">
+                        <li>
+                        </li>
+                        <li>认识客户</li>
+                        <li class="active">客户画像</li>
+                    </ul>
+                </div>
+                <div class="widget-body">
+                    <div style="width: 950px;height: auto;float: left;margin-top:20px;">
+                        <canvas style="background: url(${rc.contextPath}/media/images/bg.jpg) repeat-x; border: 1px solid rgb(68, 68, 68); cursor: default;margin-left: 10px;" width="1250" height="690" id="canvas">
+
+                        </canvas>
+                    </div>
+                    <div class="textBody" style="display: none;width: 50px;height: 300px;float: left;border: 1px solid red;margin-top:20px;margin-left: 100px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--正在加载 -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 400px;margin-top: 130px;">
+        <div class="modal-content" >
+            <div class="row">
+                <div style="width: 400px;height: 300px;background: url(${rc.contextPath}/media/images/loading.gif) no-repeat;">
+                    <p style="padding-top:50px;font-size: 16px;letter-spacing: 2px;">正在计算中...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/knowCustomer/contributeModel.js"></script>

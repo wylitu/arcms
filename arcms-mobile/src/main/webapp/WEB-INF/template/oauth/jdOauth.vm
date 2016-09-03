@@ -1,0 +1,10 @@
+#set($layout = "/layout/default.vm")
+<style>
+    html{
+        position: absolute;
+    }
+</style>
+<div>
+    <h1><a href="https://oauth.jd.com/oauth/authorize?response_type=code&client_id=4A7EAC97DB3F2FE47AAD3EFD487F7D2F&redirect_uri=http://121.40.58.169/sf-web/api/oauth/jd&state=1">京东商户授权</a></h1>
+
+</div>
