@@ -72,16 +72,17 @@
                                     <span class="lbl"></span>
                                 </label>
                             </td>
-                            <th>用户名</th>
-                            <th>姓名</th>
-                            <th>邮箱地址</th>
-                            <th>电话</th>
-                            <th>角色</th>
-                            <th>会员</th>
-                            <th>会员卡号</th>
-                            <th>推荐人</th>
-                            <th>状态</th>
+                            <th>用户编号</th>
                             <th>创建时间</th>
+                            <th>用户昵称</th>
+                            <th>姓名</th>
+                            <th>头像</th>
+                            <th>手机号码</th>
+                            <th>角色</th>
+                            <th>寝室号</th>
+                            <th>详细地址</th>
+                            <th>开通时间</th>
+                            <th>账号状态</th>
                         </tr>
 
                         </thead>
@@ -165,7 +166,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
-                                用户状态: </label>
+                                账号状态: </label>
 
                             <div class="col-sm-7">
                                 <select name="enabled">

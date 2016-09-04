@@ -1,72 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.suniusoft.security.biz.dao.defined.permission.UserDAO">
-    <resultMap id="BaseResultMap" type="com.suniusoft.security.biz.domain.defined.permission.UserDO">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP"/>
-        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
-        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
-        <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR"/>
-        <result column="is_deleted" property="isDeleted" jdbcType="INTEGER"/>
-        <result column="user_id" property="userId" jdbcType="BIGINT"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="sex" property="sex" jdbcType="VARCHAR"/>
-        <result column="age" property="age" jdbcType="INTEGER"/>
-        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
-        <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="member_card" property="memberCard" jdbcType="VARCHAR"/>
-        <result column="pay_password" property="payPassword" jdbcType="VARCHAR"/>
-        <result column="member_level_id" property="memberLevelId" jdbcType="BIGINT"/>
-        <result column="integral" property="integral" jdbcType="BIGINT"/>
-        <result column="balance" property="balance" jdbcType="DECIMAL"/>
-        <result column="identity_card" property="identityCard" jdbcType="VARCHAR"/>
-        <result column="province" property="province" jdbcType="VARCHAR"/>
-        <result column="city" property="city" jdbcType="VARCHAR"/>
-        <result column="district" property="district" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="birthday" property="birthday" jdbcType="DATE"/>
-        <result column="secret_question" property="secretQuestion" jdbcType="VARCHAR"/>
-        <result column="secret_answer" property="secretAnswer" jdbcType="VARCHAR"/>
-        <result column="recommend_user_id" property="recommendUserId" jdbcType="BIGINT"/>
-        <result column="seller_id" property="sellerId" jdbcType="BIGINT"/>
-        <result column="enabled" property="enabled" jdbcType="INTEGER"/>
+    <resultMap id="BaseResultMap" type="com.suniusoft.security.biz.domain.defined.permission.UserDO" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+        <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
+        <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="user_no" property="userNo" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+        <result column="province" property="province" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="district" property="district" jdbcType="VARCHAR" />
+        <result column="wx_openid" property="wxOpenid" jdbcType="VARCHAR" />
+        <result column="wx_subscribe" property="wxSubscribe" jdbcType="VARCHAR" />
+        <result column="wx_headimgurl" property="wxHeadimgurl" jdbcType="VARCHAR" />
+        <result column="wx_subscribe_time" property="wxSubscribeTime" jdbcType="VARCHAR" />
+        <result column="bedroom_no" property="bedroomNo" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="ac_open_date" property="acOpenDate" jdbcType="TIMESTAMP" />
+        <result column="enabled" property="enabled" jdbcType="BIT" />
         <result column="role_id" property="roleId" jdbcType="BIGINT"/>
         <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
-
     </resultMap>
 
     <select id="selectUserList" resultMap="BaseResultMap"
             parameterType="com.suniusoft.security.biz.domain.defined.permission.UserDO">
 
         select
-        a.id, a.gmt_created, a.gmt_modified, a.created_by, a.modified_by, a.is_deleted, a.user_id, a.user_name,
-        a.password, a.name, a.sex, a.age, a.mobile, a.phone, a.email, a.member_card, a.pay_password, a.member_level_id,
-        a.integral, a.balance, a.identity_card, a.province, a.city, a.district, a.address, a.birthday,
-        a.secret_question,
-        a.secret_answer, a.recommend_user_id, a.seller_id, a.enabled,c.role_id,c.name role_name
+        a.*,c.role_id,c.name role_name
         from
         user a left join user_role b on a.user_id = b.user_id left join role c on b.role_id = c.role_id
         <where>
             <trim prefixOverrides="and">
                 a.is_deleted = 0
 
-                <if test="userName != null">
-                    and a.user_name like '%${userName}%'
+                <if test="userNo != null">
+                    and a.user_no like '%${userNo}%'
                 </if>
                 <if test="mobile != null">
                     and a.mobile = #{mobile}
                 </if>
                 <if test="roleId != null">
                     and c.role_id = #{roleId}
-                </if>
-                <if test="memberLevelId != null">
-                    and a.member_level_id = #{memberLevelId}
-                </if>
-                <if test="recommendUserId != null">
-                    and a.recommend_user_id = #{recommendUserId}
                 </if>
             </trim>
         </where>

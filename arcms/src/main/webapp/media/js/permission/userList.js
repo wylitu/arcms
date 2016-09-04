@@ -153,14 +153,14 @@ $("#edit").click(function () {
         success: function (data) {
             if (data != null && data != undefined) {
                 $("#editForm input[name='id']").val(data.user.id);
-                $("#editForm input[name='userName']").val(data.user.userName);
+                $("#editForm input[name='userNo']").val(data.user.userNo);
+                $("#editForm input[name='userNick']").val(data.user.userNick);
                 $("#editForm input[name='name']").val(data.user.name);
+                $("#editForm input[name='wxHeadimgurl']").val(data.user.wxHeadimgurl);
                 $("#editForm input[name='mobile']").val(data.user.mobile);
-                $("#editForm input[name='email']").val(data.user.email);
                 $("#editForm input[name='city']").val(data.user.city);
                 $("#editForm input[name='district']").val(data.user.district);
                 $("#editForm input[name='province']").val(data.user.province);
-
 
                 $("#editForm input[name='address']").val(data.user.address);
             }
@@ -197,7 +197,7 @@ function sendAjax(data) {
     })
 }
 
-//成功购买客户列表
+//用户列表
 var tableModal = $('#imgTable').DataTable({
     "language": {
         "paginate": {
@@ -219,20 +219,12 @@ var tableModal = $('#imgTable').DataTable({
     "ajax": {
         "url": baseUrl + "admin/userList",
         "data": function (d) {
-            var userName = $("#searchForm input[name='userName']").val();
+            var userNo = $("#searchForm input[name='userNo']").val();
             var mobile = $("#searchForm input[name='mobile']").val();
             var roleId = $("#searchForm select[name='role'] option:selected").val();
-            var level = $("#searchForm select[name='level'] option:selected").val();
-            var recommendName = $("#searchForm input[name='recommendName']").val();
-
-
-
-
-            d.recommendName = recommendName;
-            d.userName = userName;
+            d.userNo = userNo;
             d.mobile = mobile;
             d.roleId = roleId;
-            d.vipLevel = level;
         }
     },
     "columnDefs": [
@@ -244,7 +236,7 @@ var tableModal = $('#imgTable').DataTable({
         }, {
             "render": function (data, type, row) {
                 if (data == null) {
-                    return row.userName;
+                    return row.userNo;
                 } else {
                     return data;
                 }
@@ -254,9 +246,8 @@ var tableModal = $('#imgTable').DataTable({
             "render": function (data, type, row) {
                 if (data == null) {
                     return '';
-                } else {
-                    return data;
                 }
+                return getLocalTime(data);
             },
             "targets": 2
         }, {
@@ -280,24 +271,28 @@ var tableModal = $('#imgTable').DataTable({
         }, {
             "render": function (data, type, row) {
                 if (data == null || data == '') {
-                    return '无';
+                    return '';
                 } else {
-                    return data;
+                    return "<img style='width:200px;height: 100px;'  src='"+data+"'>";
                 }
             },
             "targets": 5
         },
         {
             "render": function (data, type, row) {
-
-                    return data;
+                if (data == null || data == '') {
+                    return '';
+                }
+                return data;
 
             },
             "targets": 6
         },
         {
             "render": function (data, type, row) {
-
+                if (data == null || data == '') {
+                    return '';
+                }
                 return data;
 
             },
@@ -305,11 +300,26 @@ var tableModal = $('#imgTable').DataTable({
         },
         {
             "render": function (data, type, row) {
-
+                if (data == null || data == '') {
+                    return '';
+                }
                 return data;
 
             },
-            "targets": 7
+            "targets": 8
+        }, {
+            "render": function (data, type, row) {
+                return data;
+            },
+            "targets": 9
+        }, {
+            "render": function (data, type, row) {
+                if (data == null || data == '') {
+                    return '';
+                }
+                return getLocalTime(data);
+            },
+            "targets": 10
         }, {
             "render": function (data, type, row) {
                 if (data == true) {
@@ -318,28 +328,23 @@ var tableModal = $('#imgTable').DataTable({
                     return '不可用';
                 }
             },
-            "targets": 9
-        }, {
-            "render": function (data, type, row) {
-                return getLocalTime(data);
-            },
-            "targets": 10
+            "targets": 11
         }
     ],
     "sort": false,
     "columns": [
         {"data": "id"},
-        {"data": "userName"},
+        {"data": "userNo"},
+        {"data": "gmtCreated"},
+        {"data": "userNick"},
         {"data": "name"},
-        {"data": "email"},
+        {"data": "wxHeadimgurl"},
         {"data": "mobile"},
         {"data": "roleName"},
-        {"data": "vipLevel"},
-        {"data": "memberCard"},
-        {"data": "recommendName"},
-        {"data": "enabled"},
-        {"data": "gmtCreated"}
-
+        {"data": "bedroomNo"},
+        {"data": "address"},
+        {"data": "acOpenDate"},
+        {"data": "enabled"}
 
     ]
 });
