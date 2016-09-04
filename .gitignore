@@ -1,0 +1,31 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.pyc
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+/icard/target/
+/icard-admin/target/
+/icard-biz/target/
+/icard-mobile/target/
+/suniusoft-framework/suniusoft-common/target/
+/suniusoft-framework/suniusoft-security/target/
+/suniusoft-framework/suniusoft-pay/target/
+/icard-shop/target/
+/icard-distribution/target/
+
+/.settings
+/.classpath
+/.project
+*.idea
+*.iml
+*.log
+rebel.xml
+
