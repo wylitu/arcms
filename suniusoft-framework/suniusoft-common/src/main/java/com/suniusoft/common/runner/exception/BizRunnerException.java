@@ -2,7 +2,7 @@ package com.suniusoft.common.runner.exception;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 异步执行器异常类
  *                </p>

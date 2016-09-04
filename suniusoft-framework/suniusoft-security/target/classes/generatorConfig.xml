@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="C:\Users\sflitu\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+    <classPathEntry location="/Users/dadi/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>
     <!-- data base set configure -->
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="com.suniusoft.security.plugin.MybatisPlugin"></plugin>
@@ -14,8 +14,8 @@
         </commentGenerator>
 
         <!--mysql数据库链接URL，用户名、密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/icard"
-                        userId="icard" password="icard123">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/arcms"
+                        userId="arcms" password="arcms123">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -37,7 +37,7 @@
         </javaClientGenerator>
 
         <!-- 要生成哪些表-->
-        <table tableName="user" domainObjectName="User">
+        <table tableName="user" domainObjectName="SecurityUser">
             <!-- 生成的字段名是否和表字段名一样 true：是 ： false:驼峰方式 -->
             <property name="useActualColumnNames" value="false"/>
         </table>

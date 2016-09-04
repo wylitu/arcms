@@ -1,0 +1,71 @@
+#set($layout = "/layout/mobileDefault.vm")
+
+<head>
+    <title>
+        线下扫码订单
+    </title>
+</head>
+##<script type="text/javascript" src="${rc.contextPath}/media/js/user/user.js"></script>
+<section class="wrap">
+    <section class="wrap">
+        <section class="pages" style="margin-top:50px">
+            <div class="login">
+                <form id="offTradeForm" class="form-horizontal" role="form" action="${rc.contextPath}/mobile/seller/doOffTrade" method="post">
+                    <input name="buyerId" value="${buyerId}" type="hidden"/>
+                    <input name="bToken" value="${bToken}" type="hidden"/>
+                    <ul>
+                        <li class="binding">
+                            <input name="payment"class="inp" placeholder="请输入金额">
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="binding">
+                            <input name="comment"class="inp" placeholder="备注">
+                        </li>
+                    </ul>
+                    <div class="submit">
+                        <button type="submit" class="br20 combtn">提 交</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+</section>
+<script>
+
+    var validate = $("#offTradeForm").validate({
+        debug: false, //调试模式取消submit的默认提交功能
+        //errorClass: "label.error", //默认为错误的样式类为：error
+        focusInvalid: true, //当为false时，验证无效时，没有焦点响应
+        onkeyup: false,
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+            alert("确认线下订单");
+            form.submit();   //提交表单
+        },
+
+        rules:{
+            payment:{
+                required:true,
+                number:true
+            },
+            comment:{
+                required:true
+            }
+        },
+        messages:{
+            payment:{
+                required:"金额必填",
+                number:"必须为数字"
+            },
+            comment:{
+                required:"备注必填"
+            }
+        },
+        errorPlacement: function(error, element) {
+//                $('#error a').html("(" + error[0].innerHTML + ")") ;
+            alert(error[0].innerHTML)
+        }
+
+    });
+
+</script>

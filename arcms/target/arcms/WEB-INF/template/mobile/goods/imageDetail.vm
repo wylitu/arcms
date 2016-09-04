@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        商品详情
+    </title>
+</head>
+<body>
+<section class="wrap" style="padding-bottom:0">
+    <section class="pages">
+        <div class="photo-text-detail">
+
+            <div class="b-bt photo-text-detail-intro">
+                <div class="p10 b-b item-hd"><span class="col_0">本单详情</span></div>
+                <div class="p10 item-bd">
+                    <div class="table">
+                        <div class="table-cell t1">套餐内容</div>
+                        <div class="table-cell t1">单价</div>
+                        <div class="table-cell t1">数量/规格</div>
+                        <div class="table-cell t1">小计</div>
+                    </div>
+                    <div class="table">
+                        <div class="table-cell t1">好套餐</div>
+                        <div class="table-cell t1">10.0元</div>
+                        <div class="table-cell t1">1次</div>
+                        <div class="table-cell t1">158元</div>
+                    </div>
+                </div>
+            </div>
+            <div class="b-bt photo-text-detail-notice">
+                <div class="p10 b-b item-hd"><span class="col_0">购买须知</span></div>
+                <div class="p10 item-bd">
+                    <p class="col_b">有效期:</p>
+                    <p>2015.11.1到2017.12.12（周末、法定节假日通用）</p>
+                    <p class="col_b">使用时间:</p>
+                    <p>08:00-21:30</p>
+                    <p class="col_b">使用规则:</p>
+                    <p>1、xxxxxxxxxxx<br>
+                        2、xxxxxxxxxxxxxxxxx<br>
+                        3、xxxxxxxxxxxxxxxxxxx </p>
+                </div>
+            </div>
+            <div class="b-bt photo-text-detail-shooting">
+                <div class="p10 b-b item-hd"><span class="col_0">实景拍摄</span></div>
+                <div class="p10 item-bd">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; 详细描述详细描述详细描述详细描述详细描述详细描述详细
+                        详细描述详细描述详细描述详细描述详细描述详细描述详细详细
+                        详细描述详细描述详细描述详细描</p>
+                    <p><img src="images/p4.jpg"></p>
+                </div>
+            </div>
+            <div class="bg-w b-t photo-text-detail-info" style="margin-top:10px;">
+                <ul>
+                    <li><a href="${rc.contextPath}/mobile/order/submit" class="fr br5 btn">立即抢购</a><span class="fs18 p1">109<i>元</i></span><span class="p2">169元</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+<script type="text/javascript" charset="utf-8" src="${rc.contextPath}/media/mobile/js/jquery.raty.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.star').raty({ readOnly: true, score: 3 ,size:15,starOn:"o-star-on.png"});
+    });
+</script>
+</body>
+</html>

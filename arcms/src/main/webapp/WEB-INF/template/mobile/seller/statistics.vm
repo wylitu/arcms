@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<title>商家统计详情</title>
+<body>
+<section class="wrap">
+    <section class="pages">
+        <div class="business-detail">
+            <div class="p10 b-b business-detail-item">
+                <div class="table">
+
+                    <div class="table-cell v-t item-con">
+                        <div class="fs16 col_0 tit">$!{sellerStatisticsVO.sellerName}</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-w business-detail-guide">
+                <ul>
+
+                    <li ><a href="#">
+                        <p class="fs16 col_o t1" style="height: 18px">$!{sellerStatisticsVO.orderNum}</p>
+                        <p class="t2">消费总单数</p>
+                    </a></li>
+                    <li><a href="#">
+                        <p class="fs16 col_o t1" style="height: 18px">$!{sellerStatisticsVO.icardBTotalAmount}爱卡币</p>
+                        <p class="t2">爱卡币支付</p>
+                    </a></li>
+                    <li><a href="#">
+                        <p class="fs16 col_o t1" style="height: 18px">$!{sellerStatisticsVO.moneyTotalAmount}人民币</p>
+                        <p class="t2">人民币支付</p>
+                    </a></li>
+
+
+                    <li><a href="#">
+                        <p class="fs16 col_o t1" style="height: 18px">$!{sellerStatisticsVO.profit}</p>
+                        <p class="t2">实际盈收</p>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-n2"> <a href="payCode">收款码</a> </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-search"> <a href="orderSearch">订单查询</a> </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-search"> <a href="orderConfirm">确认消费</a> </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-cash"> <a href="orderCashList">申请提现</a> </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-updatePasswd"> <a href="${rc.contextPath}/mobile/seller/updatePasswd">修改密码</a> </div>
+            <div class="p10"> <button id="sellerLoginOut" type="button" class="br20 combtn combtn3">退出</button></div>
+
+            <div class="p10 b-bt business-detail-list">
+                <div class="col_3 item-hd">
+                    <div class="table">
+                        <div class="table-cell t1" style="width: 20%;text-align: center">用户</div>
+                        <div class="table-cell t2" style="width: 20%;text-align: center">销售时间</div>
+                        <div class="table-cell t3" style="width: 20%;text-align: center">消费金额</div>
+                        <div class="table-cell t4" style="width: 20%;text-align: center">获利</div>
+                    </div>
+                </div>
+
+
+                <div class="item-bd">
+                    #foreach($item in $sellerStatisticsVO.recommendDistributionDetailDOList)
+                    <div class="table">
+                        <div class="table-cell t1" style="width: 20%;text-align: center"">${item.name}</div>
+                        <div class="table-cell t2" style="width: 20%;text-align: center"">$!dateTool.format("yyyy-MM-dd", ${item.saleTime})</div>
+                        <div class="table-cell t3" style="width: 20%;text-align: center"">${item.payment}</div>
+                        <div class="table-cell t4" style="width: 20%;text-align: center"">${item.targerIcard}</div>
+                    </div>
+                    #end
+
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script>
+    $('#sellerLoginOut').click(function(){
+        window.location='${rc.contextPath}/mobile/sellerLoginOut';
+    })
+</script>
+</body>
+</html>

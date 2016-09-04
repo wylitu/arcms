@@ -1,0 +1,110 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        订单详情
+    </title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="order-evaluation">
+            <div class="b-b order-evaluation-item">
+                <div class="p10 b-b item"><a href="#" class="arrow-icon arrow-icon-g">
+                    <div class="table item">
+                        <div class="table-cell item-photo"><img src="${rc.contextPath}/${trade.orders.get(0).goods.imgsUrl}"></div>
+                        <div class="table-cell v-m item-con">
+                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                            <div class="info">总价：<span class="fs18 col_b">$!{trade.fee}元</span>&nbsp;&nbsp;数量：$!{trade.orders.get(0).quantity}</div>
+                        </div>
+                    </div>
+                </a> </div>
+                <div class="item-ft"><span class="fl tui">随时退</span><span class="fr num">已售$!{trade.orders.get(0).goods.purchaseQuantity}</span></div>
+            </div>
+
+
+
+            <div class="b-bt p10 order-evaluation-card">
+                <ul>
+                    <li>爱卡劵</li>
+                    <li>有效期至: $!dateTool.format("yyyy-MM-dd HH:mm:ss", $!{trade.endTime})</li>
+                    <li><span class="fr fs16 tit">已到账</span>卡卷密码：$!{trade.orders.get(0).cardCoupon.couponId}</li>
+                </ul>
+            </div>
+
+
+            <div class="b-bt photo-text-detail-business">
+                <div class="p10 b-b item-hd"><span class="col_0">商家信息</span></div>
+                <div class="p10 item-bd">
+                    <div class="table">
+                        <div class="table-cell item-con">
+                            <div class="col_0 t1">$!{seller.sellerName}</div>
+                            <div class="t2">$!{seller.address}</div>
+                            <div class="t3 distance">$!{seller.distance}m</div>
+                        </div>
+                        <div class="table-cell v-m item-btn"> <a href="#" class="btn">&nbsp;</a> </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="b-bt photo-text-detail-intro">
+                <div class="p10 b-b item-hd"><span class="col_0">套餐内容</span></div>
+                <div class="p10 item-bd">
+                    <div class="table">
+                        <div class="table-cell t1">套餐内容</div>
+                        <div class="table-cell t1">单价</div>
+                        <div class="table-cell t1">数量/规格</div>
+                        <div class="table-cell t1">小计</div>
+                    </div>
+                    #foreach($combo in $comboes)
+                        <div class="table">
+                            <div class="table-cell t1">$combo.title</div>
+                            <div class="table-cell t1">$combo.price元</div>
+                            <div class="table-cell t1">$combo.quantity次</div>
+                            <div class="table-cell t1">$combo.quantity</div>
+                        </div>
+                    #end
+                </div>
+                <div class="p10 arrow-icon arrow-icon-g item-ft">
+                    <a href="${rc.contextPath}/${trade.orders.get(0).goods.detailUrl}">查看图文详情</a>
+                </div>
+            </div>
+
+
+            <div class="b-bt order-evaluation-info">
+                <div class="b-b item-hd"><span class="col_0">订单信息</span></div>
+                <div class="p10 item-bd">
+                    <div class="table">
+                        <div class="table-cell item-tit">订单号：</div>
+                        <div class="table-cell item-con">$!{trade.tid}</div>
+                    </div>
+                    <div class="table">
+                        <div class="table-cell item-tit">购买用户：</div>
+                        <div class="table-cell item-con">$!{user.userName}</div>
+                    </div>
+                    <div class="table">
+                        <div class="table-cell item-tit">付款时间：</div>
+                        <div class="table-cell item-con">$!dateTool.format("yyyy-MM-dd HH:mm:ss", $!{trade.payTime})</div>
+                    </div>
+                    <div class="table">
+                        <div class="table-cell item-tit">数量：</div>
+                        <div class="table-cell item-con">$!{trade.orders.get(0).quantity}</div>
+                    </div>
+                    <div class="table">
+                        <div class="table-cell item-tit">总价：</div>
+                        <div class="table-cell item-con">$!{trade.fee}元</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript" charset="utf-8" src="js/jquery.raty.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.star').raty({ readOnly: true, score: 3 ,size:15,});
+    });
+</script>

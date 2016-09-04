@@ -1,32 +1,32 @@
 package com.suniusoft.security.biz.dao.generation.permission;
 
-import com.suniusoft.security.biz.domain.generation.permission.User;
-import com.suniusoft.security.biz.domain.generation.permission.UserExample;
+import com.suniusoft.security.biz.domain.generation.permission.SecurityUser;
+import com.suniusoft.security.biz.domain.generation.permission.SecurityUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SecurityUserMapper {
-    int countByExample(UserExample example);
+    int countByExample(SecurityUserExample example);
 
-    int deleteByExample(UserExample example);
+    int deleteByExample(SecurityUserExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(User record);
+    int insert(SecurityUser record);
 
-    int insertSelective(User record);
+    int insertSelective(SecurityUser record);
 
-    List<User> selectByExample(UserExample example);
+    List<SecurityUser> selectByExample(SecurityUserExample example);
 
-    User selectByPrimaryKey(Long id);
+    SecurityUser selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+    int updateByExampleSelective(@Param("record") SecurityUser record, @Param("example") SecurityUserExample example);
 
-    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+    int updateByExample(@Param("record") SecurityUser record, @Param("example") SecurityUserExample example);
 
-    int updateByPrimaryKeySelective(@Param("record") User record);
+    int updateByPrimaryKeySelective(@Param("record") SecurityUser record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(SecurityUser record);
 }

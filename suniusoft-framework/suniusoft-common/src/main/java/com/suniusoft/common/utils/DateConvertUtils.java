@@ -33,6 +33,16 @@ public class DateConvertUtils {
             return str;
         }
 
+
+        public static String dateToStr(Date date, String formatStr) {
+
+            SimpleDateFormat format = new SimpleDateFormat(formatStr);
+
+            String str = format.format(date);
+
+            return str;
+        }
+
         /**
          * 字符串转换成日期
          * @param str

@@ -78,17 +78,21 @@ public class BeanCopierUtils {
      * @param targetClass
      * @throws Exception
      */
-    public static void copyListProperties(List<?> source, List target, Class<?> targetClass) throws Exception {
+    public static <T> void copyListProperties(List<?> source, List<T> target, Class<T> targetClass) {
 
-        if (CollectionUtils.isEmpty(source) || target==null) {
+        if (CollectionUtils.isEmpty(source) || target == null) {
             return;
         }
-
         for (Object obj : source) {
-
-            Object targetObject = targetClass.newInstance();
+            T targetObject = null;
+            try {
+                targetObject = (T) targetClass.newInstance();
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
             copyProperties(obj, targetObject);
-
             target.add(targetObject);
         }
     }

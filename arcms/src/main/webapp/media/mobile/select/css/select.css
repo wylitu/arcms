@@ -1,0 +1,42 @@
+select{-webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance: none;}
+.btn-select { 
+position: relative; 
+display: inline-block; 
+height: 25px; 
+font: 14px/20px "Microsoft YaHei"; 
+color: #000; 
+min-width: 80px;	
+width: 100%;
+padding-right: 12px;
+border-color: #A9CBEE;
+background: url(../images/arrow.png) no-repeat scroll right center #ECF2FA;
+} 
+.btn-select .cur-select { 
+position: absolute; 
+display: block; 
+width: 150px; 
+height: 25px; 
+line-height: 25px; 
+text-indent: 10px; 
+} 
+.btn-select:hover .cur-select { 
+background-color: #f90; 
+} 
+.btn-select select { 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 150px; 
+height: 25px; 
+opacity: 0; 
+filter: alpha(opacity: 0;); 
+font: 14px/20px "Microsoft YaHei"; 
+color: #f80; 
+} 
+.btn-select select option { 
+text-indent: 10px; 
+} 
+.btn-select select option:hover { 
+background-color: #f80; 
+color: #fff; 
+} 

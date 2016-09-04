@@ -1,0 +1,165 @@
+#set($layout = "/layout/mobileDefault.vm")
+<title>找回密码</title>
+<section class="wrap">
+    <section class="pages">
+        <form class="registerform"  method="post">
+            <div class="login resetPasswd-form">
+                <ul>
+                    <li>
+                        <input name="mobile" id="mobile" type="text" class="inp"  datatype="m" errormsg="请输入正确的手机号码！"  nullmsg="请输入您的手机号码"  placeholder="请输入手机号码" >
+                    </li>
+                    <li>
+
+                        <input name="smsCode" type="text" class="inp" placeholder="请输入验证码">
+##                        <input name="validSmsCode" type="hidden"/>
+                        <input name="sign" type="hidden"/>
+                        <input name="goodsId" type="hidden" value="${goodsId}"/>
+                        <button type="button" id="getCode" class="getCode">获取验证码</button>
+                       <span id="timer" style="position: absolute;right: 4px;top: -2px;background: #aca5a5;width:58px;height: 40px;text-align:center;color:#f4f4f4;display: none;line-height: 42px;border-radius: 3px;">
+                        <b id="timeCount" style="padding: 0 2px;">120</b>秒</span>
+                        <div class="Validform_checktip Validform_checktip_2"></div>
+                    </li>
+                    <li>
+                        <input name="password" id="password"  type="password" datatype="s" placeholder="请输入新密码" errormsg="请输入新密码！" nullmsg="请输入新密码">
+                        <button type="button" class="eyebtn"></button>
+                    </li>
+                    <li>
+                        <input name="repassword" id="repassword"  type="password"  datatype="s" placeholder="请再次输入新密码" errormsg="请再次输入新密码！" nullmsg="请再次输入新密码">
+                        <button type="button" class="eyebtn"></button>
+                    </li>
+                </ul>
+                <div class="submit">
+                    <input id="submit" type="submit" value="确定" class="br20 combtn" />
+                </div>
+            </div>
+        </form>
+    </section>
+</section>
+<script type="text/javascript">
+
+    $(function(){
+        $(".registerform").Validform({
+            tiptype:3,
+            showAllError:true
+        });
+
+        $('#submit').click(function(event){
+
+            event.preventDefault()
+            var mobile = $('input[name="mobile"]').val();
+            var repassword = $('input[name="repassword"]').val();
+            var password = $('input[name="password"]').val();
+            var smsCode = $('input[name="smsCode"]').val();
+            if (mobile == '' || mobile == null) {
+                $('input[name="mobile"]').parent().find('span').remove()
+                $('input[name="mobile"]').parent().append('<span class="Validform_checktip Validform_wrong">手机号为空</span>');
+                return;
+            }else if (!(/^1\d{10}$/).test(mobile)){
+                $('input[name="mobile"]').parent().find('span').remove()
+                $('input[name="mobile"]').parent().append('<span class="Validform_checktip Validform_wrong">手机号码格式错误</span>');
+                return;
+            }
+
+            if (password!=repassword) {
+                alert("两次密码输入不一致!");
+                return;
+            }
+
+            if (smsCode == '' || smsCode == null) {
+                $('input[name="smsCode"]').parent().find('span').remove()
+                $('input[name="smsCode"]').parent().append('<span class="Validform_checktip Validform_wrong">验证码不能为空!</span>');
+                return;
+            }
+
+            var password = $.md5(password);
+            var sign = $.md5("mobile=" + mobile +"&password=" + password+"&smsCode=" + smsCode+ "&key=icard1234").toUpperCase();
+            $('input[name="sign"]').val(sign);
+            $.ajax({
+                        type: "post",
+                        url: baseUrl + "/mobile/doResetPasswd",
+                        data:　{mobile:mobile, sign:sign, password:password,smsCode:smsCode},
+                        dataType : "json",
+                        success:function (data) {
+                            if(data.errorCode == '0'){
+                                $('input[name="mobile"]').parent().find('span').remove();
+                                $('input[name="password"]').parent().find('span').remove();
+                                $('input[name="repassword"]').parent().find('span').remove();
+                                alert(data.info);
+                            }else{
+                                $('input[name="mobile"]').parent().find('span').remove();
+                                $('input[name="password"]').parent().find('span').remove();
+                                $('input[name="repassword"]').parent().find('span').remove();
+                                $('input[name="mobile"]').parent().append('<span class="Validform_checktip Validform_wrong">'+data.errorMessage+'</span>');
+                            }
+                        },error : function () {
+                            alert("不好意思，系统有点小问题,请稍后再试谢谢!");
+                        }
+                    }
+            );
+        })
+
+    })
+
+
+    //获取验证码
+    var timer;//定时器
+
+    $(".getCode").click(function(event) {
+
+        event.preventDefault();
+
+        var mobile = $("#mobile").val();
+        if (mobile == '' || mobile == null) {
+            alert('手机号为空');
+            return;
+        }else if (!(/^1\d{10}$/).test(mobile)){
+            alert('手机号码格式错误');
+            return;
+        }
+
+        $('#getCode').hide();
+        $('#timer').show();
+        timer = window.setInterval("run();", 1000);
+
+
+        var sign = $.md5("mobile=" + mobile + "&key=icard1234").toUpperCase();
+
+        $.ajax({
+                    type: "post",
+                    url: baseUrl + "/mobile/smsCode",
+                    data:　{mobile:mobile,sign:sign},
+                    dataType : "json",
+                    success:function (data) {
+                        if (data.errorCode == '0') {
+                            alert('验证码已发送，请注意查收');
+                        } else {
+                            alert('获取验证码失败:'+data.errorMessage);
+                            $('#getCode').show();
+                            $('#timer').hide();
+                            $('#timeCount').html(120);
+                            window.clearInterval(timer);
+                        }
+                    },error : function () {
+                        $('#getCode').show();
+                        $('#timer').hide();
+                        $('#timeCount').html(120);
+                        window.clearInterval(timer);
+                        alert("不好意思，系统有点小问题,请稍后再试谢谢!");
+                    }
+                }
+        );
+    });
+
+    //倒计时
+    function run() {
+        var s = document.getElementById("timeCount");
+        if (s.innerHTML == 0) {
+            $('#getCode').show();
+            $('#timer').hide();
+            $('#timeCount').html(120);
+            window.clearInterval(timer);
+            return false;
+        }
+        s.innerHTML = s.innerHTML * 1 - 1;
+    }
+</script>

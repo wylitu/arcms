@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: 获取token
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/15  
@@ -25,7 +25,7 @@ public class TokenCreateController extends BaseController {
     @ResponseBody
     Map<String, Object> CreateToken(HttpServletRequest request) {
         Map<String, Object> datas = Maps.newHashMap();
-        datas.put("token", request.getAttribute("token"));
+        datas.put("submit_token", request.getAttribute("submit_token"));
         return datas;
     }
 

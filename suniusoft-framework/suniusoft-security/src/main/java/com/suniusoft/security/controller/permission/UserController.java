@@ -1,10 +1,9 @@
 package com.suniusoft.security.controller.permission;
 
-import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.suniusoft.security.biz.domain.defined.permission.UserDO;
 import com.suniusoft.security.biz.domain.generation.permission.Role;
-import com.suniusoft.security.biz.domain.generation.permission.User;
+import com.suniusoft.security.biz.domain.generation.permission.SecurityUser;
 import com.suniusoft.security.biz.domain.generation.permission.UserRole;
 import com.suniusoft.security.biz.service.permission.SecurityManageService;
 import com.suniusoft.security.biz.service.permission.UserRoleService;
@@ -13,11 +12,11 @@ import com.suniusoft.security.controller.BaseController;
 import com.suniusoft.security.vo.RoleVO;
 import com.suniusoft.security.vo.UserRoleVO;
 import com.suniusoft.security.vo.UserVO;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +27,7 @@ import java.util.Map;
 
 /**
  *   
- *  @ProjectName: icard 
+ *  @ProjectName: arcms 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com
@@ -47,6 +46,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private SecurityManageService securityManageService;
+
+
 
     @RequestMapping(value = "/admin/userManage")
     public ModelAndView index(ModelMap modelMap) {
@@ -71,11 +72,33 @@ public class UserController extends BaseController {
 
         Map<Long, UserDO> map = new HashMap<Long, UserDO>();
         for (UserDO userDo : userList) {
+            if (userDo.getMemberLevelId()==1){
+                userDo.setVipLevel("普通会员");
+            }else if(userDo.getMemberLevelId()==2){
+                userDo.setVipLevel("VIP会员");
+            }else if(userDo.getMemberLevelId()==3){
+                userDo.setVipLevel("银卡会员");
+            }else if(userDo.getMemberLevelId()==4){
+                userDo.setVipLevel("金卡会员");
+            }
+
+            if (userDo.getRecommendUserId()!=null){
+                UserDO findUser  = securityUserService.findUserByUserId(userDo.getRecommendUserId());
+                if (findUser!=null){
+                    userDo.setRecommendName(findUser.getUserName());
+                }
+
+            }
+
+
+
+
             if (map.get(userDo.getUserId()) == null) {
                 map.put(userDo.getUserId(), userDo);
             } else {
                 map.get(userDo.getUserId()).setRoleName(map.get(userDo.getUserId()).getRoleName() + " " + userDo.getRoleName());
             }
+
         }
         List<UserDO> userDos = new ArrayList<UserDO>();
         List<UserDO> pageUserDos = new ArrayList<UserDO>();
@@ -124,7 +147,7 @@ public class UserController extends BaseController {
 
         Map<String, Object> dataMap = Maps.newHashMap();
 
-        User user = securityUserService.getUserById(id);
+        SecurityUser user = securityUserService.getUserById(id);
 
         dataMap.put("user", user);
 
@@ -149,7 +172,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/admin/userRoles")
     public Map<String, Object> showRoles(UserVO userVO) {
 
-        User user = securityUserService.getUserById(userVO.getId());
+        SecurityUser user = securityUserService.getUserById(userVO.getId());
         Map<String, Object> dataMap = Maps.newHashMap();
         UserRoleVO vo = new UserRoleVO();
         vo.setUserId(user.getUserId());

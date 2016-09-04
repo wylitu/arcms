@@ -1,11 +1,11 @@
 package com.suniusoft.security.controller.permission;
 
 import com.suniusoft.common.utils.Md5Encrypt;
+import com.suniusoft.common.utils.StringUtils;
 import com.suniusoft.security.biz.service.permission.SecurityUserService;
 import com.suniusoft.security.controller.BaseController;
-import com.suniusoft.security.interceptor.constant.LoginConstant;
+import com.suniusoft.security.interceptor.login.constant.SecurityConstant;
 import com.suniusoft.security.vo.UserVO;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +26,7 @@ import java.util.Map;
  */
 @Controller
 public class SecurityController extends BaseController {
+
 
     @Resource(name = "securityUserService")
     private SecurityUserService securityUserService;
@@ -48,12 +48,23 @@ public class SecurityController extends BaseController {
             return "redirect:/login";
         }
 
-        UserVO user = securityUserService.findUserByUserName(userVO.getUserName());
+        UserVO user;
+
+        if(StringUtils.isMobile(userVO.getUserName())){
+
+            user = securityUserService.findUserByMobile(userVO.getUserName());
+
+        }else{
+
+            user = securityUserService.findUserByUserName(userVO.getUserName());
+
+        }
+
 
         String password = Md5Encrypt.md5(userVO.getPassword());
 
         if (user != null && password.equals(user.getPassword())) {
-            session.setAttribute(LoginConstant.SESSION_KEY, user);
+            session.setAttribute(SecurityConstant.SESSION_KEY, user);
             return "redirect:/";
         }
 
@@ -62,9 +73,9 @@ public class SecurityController extends BaseController {
     }
 
     @RequestMapping("/loginOut")
-    public String loginOut(HttpSession session,HttpServletRequest request) {
+    public String loginOut(HttpSession session) {
 
-        session.setAttribute(LoginConstant.SESSION_KEY, null);
+        session.setAttribute(SecurityConstant.SESSION_KEY, null);
 
         return "redirect:/login";
 
@@ -73,7 +84,7 @@ public class SecurityController extends BaseController {
     @RequestMapping("/passwd")
     public
     @ResponseBody
-    Map<String, String> passwd(UserVO userVO, BindingResult result, HttpSession session) {
+    Map<String, String> passwd(UserVO userVO, BindingResult result) {
 
         Map<String, String> returnMap = new HashMap<String, String>();
         returnMap.put(ERROR_CODE_KEY, ErrorCode.ERROR);
@@ -105,7 +116,8 @@ public class SecurityController extends BaseController {
 
         try {
             userVO.setNewpasswd1(Md5Encrypt.md5(userVO.getNewpasswd1()));
-            userVO.setModifiedBy(getUserName(session));
+            userVO.setModifiedBy(getUserName());
+            userVO.setPassword(Md5Encrypt.md5(userVO.getPassword()));
             boolean flag = securityUserService.updatePasswd(userVO);
             if (!flag) {
                 returnMap.put(ERROR_MESSAGE_KEY, "修改密码失败");

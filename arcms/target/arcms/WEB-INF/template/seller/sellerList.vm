@@ -1,0 +1,421 @@
+#set($layout = "/layout/blank.vm")
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/geo.js"></script>
+<div id="web">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb" style="margin-left: 2px;">
+                        <li></li>
+                        <li>商家管理</li>
+                        <li>商家列表</li>
+                    </ul><!-- .breadcrumb -->
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-search" id="searchForm">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="ml20">商家名称：<input  type="text" name="sellerName" /></span>
+
+                            <span class="ml20">&nbsp;&nbsp;&nbsp;状态：
+                                <select  style="width: 150px;" name="isChecked">
+                                    <option value="">全部</option>
+                                    <option value="0">未审核</option>
+                                    <option value="1" >已审核</option>
+                                </select>
+                            </span>
+                                        <span class="ml20">&nbsp;&nbsp;创建时间：<input  type="text" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                                        <span class="ml20">&nbsp;&nbsp;至：<input  type="text" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                            <span >
+                                <input class="btn_searchA ml20" type="button" id="sellerSearch" value="搜索"/>
+                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>&nbsp</div>
+            <div class="BoxStyleA">
+                <div class="BoxStyleATop">
+                    <span class="fl">商家信息</span>
+                    <div class="icon_box fl">
+                        <a class="icon_add"   onclick="showAddForm()" >添加</a>
+                        <a id="delSeller" href="" class="icon_del">删除</a>
+                        <a class="icon_layout" style="text-indent : -10px" onclick="setCommissionForm()" >设置佣金</a>
+                        <a id="delHbpool" href="" class="icon_shelves"  onclick="setStateForm()" style="text-indent : -10px">审核通过</a>
+                    </div>
+                    <!--<a href="" class="fr">X</a>-->
+                </div>
+                <table id="imgTable" class="table table-striped table-bordered table-hover" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="checkbox" class="ace" id="allCheckbox" onclick="javascript:selectAll()" value="true" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
+                        <th style="width:12%">名称</th>
+                        <th style="width:8%">佣金比例(%)</th>
+                        <th style="width:8%">状态</th>
+                        <th style="width:8%">联系人</th>
+                        <th>电话</th>
+                        <th>详细地址</th>
+                        <th>商家推荐码</th>
+                        <th>入驻时间</th>
+                        <th style="width:10%">操作</th>
+                    ##                        <th style="width: 13%">结束时间</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="tbContainer">
+                    </tbody>
+
+                    <tfoot>
+                    <tr>
+                        <th>合计:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th id="sumTotalAmount"></th>
+                        <th id="sumOverAmount"></th>
+                        <th id="sumNumber"></th>
+                        <th id="sumNumberObtain"></th>
+                        <th id="sumOverNumber"></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sellerModal" tabindex="-1" role="dialog" aria-labelledby="sellerModal" aria-hidden="true" >
+<div class="modal-dialog" style="width: 800px">
+<div class="modal-content" >
+<div class="tiptop"><span>新建商家信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <form class="form-horizontal" role="form" id="addForm" method="post">
+
+        <div class="form-group" style="margin-top: 5px">
+                <label  class="col-xs-2">商家名称:</label>
+                <input class="col-xs-3" type="text"  name="sellerName"/>
+                <span  class="required">*</span>
+                <label class="col-xs-2">用户推荐码:</label>
+                <input type="text" class="col-xs-3"  name="businesstouserRecommendCode" />
+        </div>
+
+        <div class="form-group" style="margin-top: 5px">
+            <label  class="col-xs-2">联系人:</label>
+            <input class="col-xs-3" type="text"  name="contacts"/>
+            <span  class="required">*</span>
+            <label class="col-xs-2">手机号:</label>
+            <input type="text" class="col-xs-3"  name="mobile" />
+            <span  class="required">*</span>
+        </div>
+
+        <div class="form-group" style="margin-top: 5px">
+            <label  class="col-xs-2">商家折扣(9即9折):</label>
+            <input class="col-xs-3" type="text"  name="discount"/>
+            <span  class="required">*</span>
+            <label class="col-xs-2">营业执照复印件:</label>
+            <div style="margin-left: 12px;">
+                <div style="position: relative;float: left;width: 70px;height: 30px;text-align: center;border-radius: 2px;background-color: #428bca;">
+                    <a style="color: #fff;font-size: 14px;line-height: 30px;">选择</a>
+                    <div style="position: absolute;top:0;left:0;">
+                        <input type="file" name="businessLicense" id="businessLicense" style="width: 200px; height: 30px;background: rgb(255, 255, 255) none repeat scroll 0% 0%;"
+                               />
+                    </div>
+                </div>
+                <p  class="required" style="margin-left: 140px;display: inline-block">*</p>
+            </div>
+
+        </div>
+
+
+            <div class="form-grounp"  >
+                <label class="col-xs-1">省</label>
+                    <select id="province" name="province" class="col-xs-2">
+                        <option></option>
+                    </select>
+
+                <label class="col-xs-1">市</label>
+                <select id="city" name="city" class="col-xs-2">
+                    <option></option>
+                </select>
+
+                <label class="col-xs-1">区/县</label>
+                <select id="district" name="district" class="col-xs-3">
+                    <option></option>
+                </select>
+
+            </div>
+
+            <div class="form-group" style="margin-top:60px">
+                <label  class="col-xs-2">详细地址:</label>
+                <input class="col-xs-8" type="text"  name="address"/>
+                <span  class="required">*</span>
+            </div>
+
+            <div class="form-group"  style="margin-top: 5px;">
+                <label  class="col-xs-2">电子邮箱:</label>
+                <input class="col-xs-3" type="text"  name="email"/>
+                <span  class="required">*</span>
+                <label class="col-xs-2">座机号:</label>
+                <input type="text" class="col-xs-3"  name="phone" />
+                <span  class="required">*</span>
+            </div>
+
+            <div class="form-group"  style="margin-top: 5px;">
+                <label  class="col-xs-2">支付宝账户:</label>
+                <input class="col-xs-3" type="text"  name="alipayUserId"/>
+                <span  class="required">*</span>
+                <label class="col-xs-2">支付宝名称:</label>
+                <input type="text" class="col-xs-3"  name="alipayUserName" />
+                <span  class="required">*</span>
+            </div>
+
+
+            <div class="form-group" style="margin-top: 5px">
+                <label  class="col-xs-2">简介:</label>
+                <input class="col-xs-8" type="text"  name="sellerBrief"/>
+                <span  class="required">*</span>
+            </div>
+
+           <div class="form-group">
+            <label class="col-xs-2">商家缩略图:</label>
+            <div style="margin-left: 12px;">
+                <div style="position: relative;float: left;width: 70px;height: 30px;text-align: center;border-radius: 2px;background-color: #428bca;">
+                    <a style="color: #fff;font-size: 14px;line-height: 30px;">选择</a>
+                    <div style="position: absolute;top:0;left:0;">
+                        <input type="file" name="sellerPicture" id="sellerPicture" style="width: 200px; height: 30px;background: rgb(255, 255, 255) none repeat scroll 0% 0%;"
+                                />
+                    </div>
+                </div>
+                <p  class="required" style="margin-left: 140px;display: inline-block;">*</p>
+            </div>
+               <p style="display: block;float: left;color: red">&nbsp&nbsp(图片规格140 * 128)</p>
+           </div>
+
+
+            <div class="form-group" style="display: none">
+                <label  class="col-xs-2">商家详情:</label>
+                 <div class="col-sm-9" style="text-align: left">
+                    <script id="editor" type="text/plain" style="width:100%; height:300px;" name="content">
+                        $!mallGoods.goodsDetail
+                    </script>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <center><input class="sure" type="submit" id="saveOrUpdate"  value="确定" >&nbsp;
+                    <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="sellerModalDetail" tabindex="-1" role="dialog" aria-labelledby="sellerModalDetail" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>商家详细信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="detailForm" method="post">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="sellerId">
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">商家名称:</label>
+                            <input class="col-xs-3" type="text"  name="sellerName"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">用户推荐码:</label>
+                            <input type="text" class="col-xs-3"  name="businesstouserRecommendCode" />
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">联系人:</label>
+                            <input class="col-xs-3" type="text"  name="contacts"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">手机号:</label>
+                            <input type="text" class="col-xs-3"  name="mobile" />
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">商家折扣(9即9折):</label>
+                            <input class="col-xs-3" type="text"  name="discount"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">营业执照复印件:</label>
+                            <div style="margin-left: 12px;">
+                                <img name="businessLicense" style="display: none;width:200px;height: 100px;"  />
+                                <div style="position: relative;float: left;width: 70px;height: 30px;text-align: center;border-radius: 2px;background-color: #428bca;">
+                                    <a style="color: #fff;font-size: 14px;line-height: 30px;">选择</a>
+                                    <div style="position: absolute;top:0;left:0;">
+                                        <input type="file" name="businessLicenseDetail" id="businessLicenseDetail" style="width: 200px; height: 30px;background: rgb(255, 255, 255) none repeat scroll 0% 0%;"
+                                                />
+                                    </div>
+                                </div>
+                                <p  class="required" style="margin-left: 140px;display: inline-block">*</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grounp"  >
+                            <label class="col-xs-1">省</label>
+                            <select id="provinceEdit" name="provinceEdit" class="col-xs-2">
+                                <option></option>
+                            </select>
+
+                            <label class="col-xs-1">市</label>
+                            <select id="cityEdit" name="cityEdit" class="col-xs-2">
+                                <option></option>
+                            </select>
+
+                            <label class="col-xs-1">区/县</label>
+                            <select id="districtEdit" name="districtEdit" class="col-xs-3">
+                                <option></option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group" style="margin-top:60px">
+                            <label  class="col-xs-2">详细地址:</label>
+                            <input class="col-xs-8" type="text"  name="address"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group"  style="margin-top: 5px;">
+                            <label  class="col-xs-2">电子邮箱:</label>
+                            <input class="col-xs-3" type="text"  name="email"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">座机号:</label>
+                            <input type="text" class="col-xs-3"  name="phone" />
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group"  style="margin-top: 5px;">
+                            <label  class="col-xs-2">支付宝账户:</label>
+                            <input class="col-xs-3" type="text"  name="alipayUserId"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">支付宝名称:</label>
+                            <input type="text" class="col-xs-3"  name="alipayUserName" />
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">简介:</label>
+                            <input class="col-xs-8" type="text"  name="sellerBrief"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2">商家缩略图:</label>
+                            <div style="margin-left: 12px;">
+                                <img name="sellerPicture" style="display: none;width:200px;height: 100px;"  />
+                                <div style="position: relative;float: left;width: 70px;height: 30px;text-align: center;border-radius: 2px;background-color: #428bca;">
+                                    <a style="color: #fff;font-size: 14px;line-height: 30px;">选择</a>
+                                    <div style="position: absolute;top:0;left:0;">
+                                        <input type="file" name="sellerPictureDetail" id="sellerPictureDetail" style="width: 200px; height: 30px;background: rgb(255, 255, 255) none repeat scroll 0% 0%;"
+                                                />
+                                    </div>
+                                </div>
+                                <p  class="required" style="margin-left: 140px;display: inline-block;">*</p>
+                            </div>
+                            <p style="display: block;float: left;color: red">&nbsp&nbsp(图片规格140 * 128)</p>
+                        </div>
+
+
+                        <div class="form-group" style="display: none">
+                            <label  class="col-xs-2">商家详情:</label>
+                            <div class="col-sm-9" style="text-align: left">
+                                <script id="editor" type="text/plain" style="width:100%; height:300px;" name="sellerContent">
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer" id="footer">
+                            <center><input class="sure" type="submit" id="updateForm"  value="确定" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--设置佣金Modal-->
+<div class="modal fade" id="setCommissionModal" tabindex="-1" role="dialog" aria-labelledby="setCommissionModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>设置佣金</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="CommissionForm" method="post">
+
+                        <input type="hidden" name="commissionId">
+
+                        <div class="form-group" style="margin-top: 5px; margin-left:20%;margin-right: 20%">
+                            <label  class="col-xs-4">设置佣金比例(%):</label>
+                            <input class="col-xs-4" type="text"  name="commission"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="modal-footer">
+                            <center><input class="sure" type="submit" id="saveOrUpdateCommission"  value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/seller/seller.js"></script>
+
+</div>
+
+
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    //    var ue = UE.getEditor('editor');
+    var editor = new baidu.editor.ui.Editor();
+    editor.render("editor");
+
+
+    // 省市区三级联动
+    new Dsy({
+        // 绑定三个select的id
+        s:['province','city','district'],
+        // 是否是大陆
+        isMainLand:true,
+        // 默认浙江省
+        p_key:'浙江省'
+    });
+
+</script>

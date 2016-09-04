@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+         我的便民
+    </title>
+</head>
+<body>
+<section class="wrap">
+
+    <section class="pages">
+
+        <div class="bg-w m-guide">
+            <ul>
+
+                    #foreach($contentManag in $contentManageList)
+                    <li><a href="$!contentManag.linkUrl"><img style="width: 36px;height: 36px" src="$!{rc.contextPath}$!contentManag.contentUrl">
+                             <p class="t2">$!contentManag.title</p>
+                   </a></li>
+                    #end
+
+            </ul>
+        </div>
+
+    </section>
+</section>
+</body>
+</html>

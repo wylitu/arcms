@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<body>
+<section class="wrap">
+    <header><span class="local">杭州</span>
+        <div class="br30 header-search">
+            <form id="search" method="post" action="${rc.contextPath}/mobile/search/result">
+                <input name="key" type="text" class="inp" placeholder="输入商家名称">
+                <input name="city" type="hidden"/>
+                <input name="lat" type="hidden"/>
+                <input name="lng" type="hidden"/>
+                <button type="button" class="btn"></button>
+            </form>
+        </div>
+        <a href="javasript:void(0)" class="scan"></a></header>
+    <section class="pages">
+        <section  id="mainslide" class="mainslide">
+            <div class="hd">
+                <ul>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul>
+                    <li><a href="#"><img src="${rc.contextPath}/media/mobile/images/banner.jpg"></a></li>
+                    <li><a href="#"><img src="${rc.contextPath}/media/mobile/images/banner.jpg"></a></li>
+                    <li><a href="#"><img src="${rc.contextPath}/media/mobile/images/banner.jpg"></a></li>
+                    <li><a href="#"><img src="${rc.contextPath}/media/mobile/images/banner.jpg"></a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="main-guide">
+            <ul>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=1&city=杭州市"><i class="icon"></i>住宿</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=2&city=杭州市"><i class="icon"></i>美食</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>生活</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>旅游</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>汽车</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>教育</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>百货</a></li>
+                <li><a href="${rc.contextPath}/mobile/search/result?cid=3&city=杭州市"><i class="icon"></i>理财</a></li>
+            </ul>
+        </section>
+        <section class="main-block-one">
+            <div class="item-hd"><a href="${rc.contextPath}/mobile/seller/statistics"><i class="icon"><img src="${rc.contextPath}/media/mobile/images/txt-sjrk.png"></i><span>手机端最新最全的商户管理</span></a></div>
+            <div class="item-bd">
+                <ul>
+                    <li><a href="#">新闻资讯</a></li>
+                    <li><a href="${rc.contextPath}/mobile/config/convenienceList">我的便民</a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="home-ad"><a href="${rc.contextPath}/mobile/user/memberActivity"><img src="${rc.contextPath}/media/mobile/images/ad-1.jpg"></a></section>
+        <section class="home-hot-pro">
+            <div class="home-hot-pro-hd"><span class="fs16">热门推荐</span></div>
+            <div class="home-hot-pro-bd">
+                <ul>
+
+                </ul>
+            </div>
+        </section>
+    </section>
+</section>
+<nav>
+    <ul>
+        <li class="on"><a href="${rc.contextPath}/mobile/"><i class="icon"></i>首页</a></li>
+        <li><a href="${rc.contextPath}/mobile/user/memberIntroduce"><i class="icon"></i>推荐</a></li>
+        <li><a href="${rc.contextPath}/mobile/user"><i class="icon"></i>我的</a></li>
+        <li><a href="${rc.contextPath}/mobile/message/showFeedback"><i class="icon"></i>更多</a></li>
+    </ul>
+</nav>
+<script type="text/javascript" src="${rc.contextPath}/media/mobile/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript">
+    TouchSlide({ slideCell:"#mainslide",titCell:".hd ul", mainCell:".bd ul",autoPlay:true,autoPage:true,effect:"leftLoop" });
+    $('#search input[name="key"]').keyup(function (event) {
+        if(event.keyCode==13) {
+            $('#search input[name="city"]').val(cityLocation)
+            $('#search input[name="lat"]').val(lat)
+            $('#search input[name="lng"]').val(lng)
+            $('#search').submit()
+        }
+        event.preventDefault()
+    });
+
+</script>
+<script type="text/javascript" src="${rc.contextPath}/media/mobile/js/index/index.js"></script>
+
+</html>

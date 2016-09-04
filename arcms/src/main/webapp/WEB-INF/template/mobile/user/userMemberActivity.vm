@@ -1,0 +1,34 @@
+#set($layout = "/layout/mobileDefault.vm")
+<link href="${rc.contextPath}/media/css/trade/reset.css" rel="stylesheet" type="text/css" />
+<link href="${rc.contextPath}/media/css/trade/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${rc.contextPath}/media/js/user/user.js"></script>
+<head>
+    <title>
+        会员活动
+    </title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="user-active">
+            <ul>
+                #foreach(${activity} in ${activities})
+                    <li>
+                        <div class="item-hd"><img src="${rc.contextPath}/media/images/ad-2.jpg"></div>
+                        <div class="item-ft">
+                            <div class="info">${activity.stDate} -  ${activity.eDate} ${activity.name}</div>
+                            <div class="submit"><a href="${rc.contextPath}/mobile/hongbao/receiveOrUserBound?hbActivityId=${activity.activityId}" class="br5 btn">马上参加</a></div>
+                        </div>
+                    </li>
+                #end
+
+##                <li>
+##                    <div class="item-hd"><img src="${rc.contextPath}/media/images/ad-2.jpg"></div>
+##                    <div class="item-ft">
+##                        <div class="info">2015年10月20-2016年1月30日 黄山3日游</div>
+##                        <div class="submit"><a href="#" class="br5 btn">马上参加</a></div>
+##                    </div>
+##                </li>
+            </ul>
+        </div>
+    </section>
+</section>

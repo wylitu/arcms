@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *   
@@ -20,7 +21,7 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    private static Logger log =  Logger.getLogger(DateUtil.class);
+    private static Logger log = Logger.getLogger(DateUtil.class);
     /**
      * yyyy-MM-dd HH:mm:ss 格式
      */
@@ -47,50 +48,50 @@ public class DateUtil {
     public static final String DEFAULT_TIME_HHmm_FORMAT_PATTERN = "HH:mm";
     /**
      * yyyy/MM/dd HH:mm 格式
-     * */
+     */
     public static final String DEFAULT_DATE_TIME_HHmm_FORMAT_PATTERN_1 = "yyyy/MM/dd HH:mm";
 
     /**
      * 年
      * <p>可以通过DateTime.now().get(DateTime.YEAR_FIELD)来获取当前时间的年</p>
      */
-    public static final int YEAR_FIELD = java.util.Calendar.YEAR;
+    public static final int YEAR_FIELD = Calendar.YEAR;
     /**
      * 月
      * <p>可以通过DateTime.now().get(DateTime.MONTH_FIELD)来获取当前时间的月</p>
      */
-    public static final int MONTH_FIELD = java.util.Calendar.MONTH;
+    public static final int MONTH_FIELD = Calendar.MONTH;
     /**
      * 日
      * <p>可以通过DateTime.now().get(DateTime.DAY_FIELD)来获取当前时间的日</p>
      */
-    public static final int DAY_FIELD = java.util.Calendar.DATE;
+    public static final int DAY_FIELD = Calendar.DATE;
     /**
      * 小时 <p>可以通过DateTime.now().get(DateTime.HOUR_FIELD)来获取当前时间的小时</p>
      */
-    public static final int HOUR_FIELD = java.util.Calendar.HOUR_OF_DAY;
+    public static final int HOUR_FIELD = Calendar.HOUR_OF_DAY;
     /**
      * 分钟 <p>可以通过DateTime.now().get(DateTime.MINUTE_FIELD)来获取当前时间的分钟</p>
      */
-    public static final int MINUTE_FIELD = java.util.Calendar.MINUTE;
+    public static final int MINUTE_FIELD = Calendar.MINUTE;
     /**
      * 秒
      * <p>可以通过DateTime.now().get(DateTime.SECOND_FIELD)来获取当前时间的秒</p>
      */
-    public static final int SECOND_FIELD = java.util.Calendar.SECOND;
+    public static final int SECOND_FIELD = Calendar.SECOND;
     /**
      * 毫秒 <p>可以通过DateTime.now().get(DateTime.MILLISECOND_FIELD)来获取当前时间的毫秒</p>
      */
-    public static final int MILLISECOND_FIELD = java.util.Calendar.MILLISECOND;
-    private java.util.Calendar c;   //日历类
+    public static final int MILLISECOND_FIELD = Calendar.MILLISECOND;
+    private Calendar c;   //日历类
     /**
      * yyyy-MM-dd  格式
      */
-    private static final SimpleDateFormat shortSdf  =new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat shortSdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * yyyy-MM-dd HH 格式
      */
-    private static final SimpleDateFormat longHourSdf=new SimpleDateFormat("yyyy-MM-dd HH");
+    private static final SimpleDateFormat longHourSdf = new SimpleDateFormat("yyyy-MM-dd HH");
     /**
      * yyyy-MM-dd HH:mm:ss 格式
      */
@@ -99,10 +100,11 @@ public class DateUtil {
 
     /**
      * 将字符串日期转换为日期类型，yyyy-MM-dd HH:mm:ss
+     *
      * @param dateStr 字符串日期
      * @return Date:yyyy-MM-dd HH:mm:ss
      */
-    public static Date strToDate(String dateStr){
+    public static Date strToDate(String dateStr) {
         Date date = null;
         try {
             date = longSdf.parse(dateStr);
@@ -147,7 +149,7 @@ public class DateUtil {
      *
      * @return
      */
-    public static final  Date getCurrentMonthStartTime() {
+    public static final Date getCurrentMonthStartTime() {
         Calendar c = Calendar.getInstance();
         Date now = null;
         try {
@@ -161,16 +163,17 @@ public class DateUtil {
 
     /**
      * 获取昨天结束时间
+     *
      * @return
      */
-    public static final Date getYearterDayEndTime(){
+    public static final Date getYearterDayEndTime() {
         Calendar c = Calendar.getInstance();
         Date date = null;
-        try{
+        try {
             //c.set(Calendar.DATE,1);
-            c.add(Calendar.DATE,-1);
-            date = longSdf.parse(shortSdf.format(c.getTime())+" 23:59:59");
-        }catch (Exception e){
+            c.add(Calendar.DATE, -1);
+            date = longSdf.parse(shortSdf.format(c.getTime()) + " 23:59:59");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -178,16 +181,17 @@ public class DateUtil {
 
     /**
      * 获取N天前的结束时间 23:59:59
+     *
      * @param n
      * @return
      */
-    public static final Date getNDayEndTime(Integer n){
+    public static final Date getNDayEndTime(Integer n) {
         Calendar c = Calendar.getInstance();
         Date date = null;
-        try{
-            c.add(Calendar.DATE,-n);
-            date = longSdf.parse(shortSdf.format(c.getTime())+" 23:59:59");
-        }catch (Exception e){
+        try {
+            c.add(Calendar.DATE, -n);
+            date = longSdf.parse(shortSdf.format(c.getTime()) + " 23:59:59");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -195,16 +199,17 @@ public class DateUtil {
 
     /**
      * 获取N天前的开始时间 00：00：00
+     *
      * @param n
      * @return
      */
-    public static final Date getNDayStartTime(Integer n){
+    public static final Date getNDayStartTime(Integer n) {
         Calendar c = Calendar.getInstance();
         Date date = null;
-        try{
-            c.add(Calendar.DATE,-n);
-            date = longSdf.parse(shortSdf.format(c.getTime())+" 00:00:00");
-        }catch (Exception e){
+        try {
+            c.add(Calendar.DATE, -n);
+            date = longSdf.parse(shortSdf.format(c.getTime()) + " 00:00:00");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -215,7 +220,7 @@ public class DateUtil {
      *
      * @return
      */
-    public static final   Date getCurrentMonthEndTime() {
+    public static final Date getCurrentMonthEndTime() {
         Calendar c = Calendar.getInstance();
         Date now = null;
         try {
@@ -230,47 +235,68 @@ public class DateUtil {
     }
 
     /**
-     *  data 转换成 字符串
-     *  格式为： yyyy-MM-dd HH:mm:ss
-     * */
-    public static String getDateToString(Date date){
+     * data 转换成 字符串
+     * 格式为： yyyy-MM-dd HH:mm:ss
+     */
+    public static String getDateToString(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT_PATTERN);
         return format.format(date);
     }
 
     /**
-     *  格式为yyyy-MM-dd HH:mm:ss字符串转换成date
-     * */
-    public static Date getDateFromString(String datesStr){
+     * data 转换成 字符串
+     * 格式为： yyyy-MM-dd HH:mm:ss
+     */
+    public static String getDateToString2(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_HHmm_FORMAT_PATTERN);
+        return format.format(date);
+    }
+
+    /**
+     * 格式为yyyy-MM-dd HH:mm:ss字符串转换成date
+     */
+    public static Date getDateFromString(String datesStr) {
         SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT_PATTERN);
-        try{
-            if(StringUtils.isBlank(datesStr)){
+        try {
+            if (StringUtils.isBlank(datesStr)) {
                 throw new IllegalArgumentException("datesStr is null");
             }
             return format.parse(datesStr);
-        }catch(Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
     /**
-     *  yyyy/MM/dd HH:mm格式的字符串转换成yyyy-MM-dd HH:mm格式的date
-     * */
-    public static Date getDateFromStr(String str){
+     * yyyy/MM/dd HH:mm格式的字符串转换成yyyy-MM-dd HH:mm格式的date
+     */
+    public static Date getDateFromStr(String str) {
         SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_HHmm_FORMAT_PATTERN_1);
         try {
             Date d = format.parse(str);
             String ss = getDateToString(d);
             return getDateFromString(ss);
-        }catch(Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
-    public static void main(String[] agrs){
-        System.out.print(getNDayEndTime(0));
+    public static Date addYear(Date date, int num) {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(date);
+        gc.add(1, num);
+        return gc.getTime();
+    }
+
+    public static void main(String[] agrs) {
+
+        Date date = addYear(new Date(), 2);
+
+        System.out.print(date);
     }
 
 

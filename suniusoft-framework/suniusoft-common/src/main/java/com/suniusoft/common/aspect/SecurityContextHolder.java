@@ -13,7 +13,7 @@ public class SecurityContextHolder {
 
     private static final ThreadLocal<Map<String,Object>> contextHolder = new ThreadLocal<Map<String,Object>>();
 
-    public static void setLoginName(Map<String,Object> map) {
+    public static void setLoginInfo(Map<String,Object> map) {
         contextHolder.set(map);
     }
 
@@ -21,7 +21,7 @@ public class SecurityContextHolder {
         return  contextHolder.get();
     }
 
-    public static void clearDataSourceKey() {
+    public static void clearLoginInfo() {
         contextHolder.remove();
     }
 }

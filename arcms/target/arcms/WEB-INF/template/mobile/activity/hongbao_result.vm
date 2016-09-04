@@ -1,0 +1,98 @@
+#set($layout = "/layout/blank.vm")
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>获得红包</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/shake/shakeHB.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/mobileStyle.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/igrow/css/igrow.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/igrow/css/igrow.plugins.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/suniu.css?t=20150519">
+
+    <script src="${rc.contextPath}/media/mobile/assets/vendor/jquery/1.11.1/jquery.min.js"></script>
+    <script src="${rc.contextPath}/media/js/zepto.min.js"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/jweixin-1.0.0.js"></script>
+</head>
+
+<body>
+<div class="wap personal-page">
+    <div class="personal-box">
+##        <div class='user-pic'>
+##            <img id="headImg" src="$!user.wxHeadimgurl" />
+##        </div>
+
+        <h4>恭喜你！获得$!ammount 爱卡币</h4>
+        <p>通过其它方式获取更多红包哦!</p>
+
+    </div>
+    <ul class="more-hb" style="display:none;">
+
+        <li>
+            <p class="infor"><span id="pointTotal"></span></p>
+
+        </li>
+
+    </ul>
+</div>
+<div class="giveTip" id="giveTip" style="display:none;">
+    <p class="icon-friend"><img src="${rc.contextPath}/media/mobile/assets/images/shake/share_to_friend.png" /></p>
+    <div class="giveTip-content">
+        <h4>点击分享</h4>
+        <p>邀请好友一起来玩</p>
+        <a href="javascript:;" class="give-colseBtn">我知道了</a>
+    </div>
+</div>
+
+<div id="yzmWindow" >
+    <div class="box">
+        <div class="window">
+            <h2 style="font-weight: bold">领取失败<i>!</i></h2>
+            $!errorMessage！<br>
+            <a href="javascript:">确定</a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    if("-1"=='$!errorCode'){
+        $('#yzmWindow').fadeIn();
+    }
+
+  $('#yzmWindow .box .window a').click(function(){
+      $(this).parent().parent().parent().hide();
+      $('#phonenumber').focus();
+      $('#phonenumber').select();
+  });
+
+
+    function getArgs()
+    {
+        var args = new Object( ); //声明一个空对象
+        var query = window.location.search.substring(1); // 取查询字符串，如从 http://www.snowpeak.org/testjs.htm?a1=v1&a2=&a3=v3#anchor 中截出 a1=v1&a2=&a3=v3。
+        var pairs = query.split("&"); // 以 & 符分开成数组
+        for(var i = 0; i < pairs.length; i++) {
+            var pos = pairs[i].indexOf('='); // 查找 "name=value" 对
+            if (pos == -1) continue; // 若不成对，则跳出循环继续下一对
+            var argname = pairs[i].substring(0,pos); // 取参数名
+            var value = pairs[i].substring(pos+1); // 取参数值
+            value = decodeURIComponent(value); // 若需要，则解码
+            args[argname] = value; // 存成对象的一个属性
+        }
+        return args; // 返回此对象
+
+    }
+
+</script>
+
+</body>
+</html>

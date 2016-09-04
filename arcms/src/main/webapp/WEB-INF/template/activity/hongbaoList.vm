@@ -1,0 +1,219 @@
+#set($layout = "/layout/blank.vm")
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/geo.js"></script>
+<div id="web">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb" style="margin-left: 2px;">
+                        <li></li>
+                        <li>活动管理</li>
+                        <li>红包活动配置</li>
+                    </ul><!-- .breadcrumb -->
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-search" id="searchForm">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="ml20">活动名称：<input  type="text" name="name" /></span>
+
+                                        <span class="ml20">&nbsp;&nbsp;创建时间：<input  type="text" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                                        <span class="ml20">&nbsp;&nbsp;至：<input  type="text" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                            <span >
+                                <input class="btn_searchA ml20" type="submit" value="搜索"/>
+                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>&nbsp</div>
+            <div class="BoxStyleA">
+                <div class="BoxStyleATop">
+                    <span class="fl">红包活动信息</span>
+                    <div class="icon_box fl">
+                        <a class="icon_add"   onclick="showAddForm()" >添加</a>
+                        <a id="delActivity" href="" class="icon_del">删除</a>
+                     </div>
+                    <!--<a href="" class="fr">X</a>-->
+                </div>
+                <table id="imgTable" class="table table-striped table-bordered table-hover" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="checkbox" class="ace" id="allCheckbox" onclick="javascript:selectAll()" value="true" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
+                        <th>红包活动名称</th>
+                        <th style="width: 13%">创建时间</th>
+                        <th>状态</th>
+                        <th>总爱卡数</th>
+                        <th>单个红包爱卡数</th>
+                        <th>总数量</th>
+                        <th>领取数量</th>
+                        <th>剩余数量</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="tbContainer">
+                    </tbody>
+
+                    <tfoot>
+                    <tr>
+                        <th>合计:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th id="sumTotalAmount"></th>
+                        <th id="sumOverAmount"></th>
+                        <th id="sumNumber"></th>
+                        <th id="sumNumberObtain"></th>
+                        <th id="sumOverNumber"></th>
+
+                    </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="activityModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>新建红包活动</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="addForm" method="post">
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">活动名称:</label>
+                            <input class="col-xs-3" type="text"  name="name"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">单个红包爱卡数:</label>
+                            <input type="text" class="col-xs-3"  name="icardCoin" />
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">总数量:</label>
+                            <input class="col-xs-3" type="text"  name="number"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">活动时间 </label>
+                            <span  class="required">*</span>
+                            <div class="col-sm-6" style="float: left;text-align: left">
+                                <input type="text" id="form-field-1"  name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                <label >至</label>
+                                <input type="text" id="form-field-1"  name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <center><input class="sure" type="submit" id="saveOrUpdate"  value="确定" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="sellerModalDetail" tabindex="-1" role="dialog" aria-labelledby="sellerModalDetail" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>红包活动详细信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="detailForm" method="post">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="activityId">
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">活动名称:</label>
+                            <input class="col-xs-3" type="text"  name="name"/>
+                            <span  class="required">*</span>
+                            <label class="col-xs-2">单个红包爱卡数:</label>
+                            <input type="text" class="col-xs-3"  name="icardCoin" />
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">总数量:</label>
+                            <input class="col-xs-3" type="text"  name="contacts"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">活动时间 </label>
+                            <span  class="required">*</span>
+                            <div class="col-sm-6" style="float: left;text-align: left">
+                                <input type="text" id="form-field-1"  name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                <label >至</label>
+                                <input type="text" id="form-field-1"  name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <center><input class="sure" type="submit" id="saveOrUpdate"  value="确定" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--设置佣金Modal-->
+<div class="modal fade" id="setCommissionModal" tabindex="-1" role="dialog" aria-labelledby="setCommissionModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>设置佣金</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="CommissionForm" method="post">
+
+                        <input type="hidden" name="commissionId">
+
+                        <div class="form-group" style="margin-top: 5px; margin-left:20%;margin-right: 20%">
+                            <label  class="col-xs-4">设置佣金比例(%):</label>
+                            <input class="col-xs-4" type="text"  name="commission"/>
+                            <span  class="required">*</span>
+                        </div>
+
+                        <div class="modal-footer">
+                            <center><input class="sure" type="submit" id="saveOrUpdateCommission"  value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/activity/hongbao.js"></script>
+
+</div>

@@ -34,7 +34,7 @@ public class MemberLevel {
     private String rmbReturnRatio;
 
     /** 爱卡返现比例(百分比) */
-    private String icardReturnRatio;
+    private String arcmsReturnRatio;
 
     /** 该级别所需积分 */
     private Long requiredIntegral;

@@ -35,11 +35,7 @@
             <artifactId>suniusoft-common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.arcms</groupId>-->
-            <!--<artifactId>icard-biz</artifactId>-->
-            <!--<version>1.0.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
+
         <!-- Spring 3 dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -231,6 +227,29 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
+        <!--<dependency>
+            <groupId>json</groupId>
+            <artifactId>json</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>baidu</groupId>
+            <artifactId>ueditor</artifactId>
+            <version>1.1.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.arcms</groupId>
+            <artifactId>arcms-biz</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -295,8 +314,8 @@
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <scanTargets>
                         <scanTarget>target/classes</scanTarget>
-                        <scanTarget>../icard-security/target/classes</scanTarget>
-                        <scanTarget>../icard-common/target/classes</scanTarget>
+                        <scanTarget>../suniusoft-security/target/classes</scanTarget>
+                        <scanTarget>../suniusoft-common/target/classes</scanTarget>
                     </scanTargets>
                     <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
                     <stopKey>jetty</stopKey>

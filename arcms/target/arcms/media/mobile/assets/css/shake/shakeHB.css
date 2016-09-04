@@ -1,0 +1,100 @@
+/*===reset===*/
+body,h1,h2,h3,h4,h5,h6,ul,ol,li,p,form,dt,dd,input,textarea,th,td,fieldset,legend,dl,dt,dd{margin:0;padding:0;}
+fieldset,img{border:0 none;}
+ul,ol,li{list-style:none;}
+table{border-spacing:0;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+*:focus{outline:none;}
+q:before,q:after{content:"";}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+body,input,select,button,textarea{font:16px/1.5 "\5FAE\8F6F\96C5\9ED1","\5B8B\4F53",Arial,Helvetica,sans-serif;}
+*,*:after,*:before{-webkit-text-size-adjust:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+html,body{-webkit-user-select: none;color: #333333;}
+table{border-collapse:collapse;border-spacing:0;}
+input{ border:1px solid #b8b7b3;}
+em{font-style:normal;font-weight:normal;}
+sub, sup {font-size:75%;line-height:0;position:relative;vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+img{vertical-align:top;width:100%;}
+a:link,a:visited{text-decoration:none;}
+p{margin:0;}
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+.clearfix:after{
+    clear: both;
+    content: "";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+.clearfix{zoom:1;}
+/*===reset end===*/
+.fl{float: left;}
+.fr{float: right;}
+.hb-page{height: 100%;background-color: #939393;padding-top: 1px;margin-top: -1px;}
+.hb-box{position: relative;margin:20px;}
+.open-hb{position: absolute;z-index: 1;width: 30%;top: 15%;left: 35%;}
+.hb-infor{position: absolute;top: 40%;width: 100%;left: 0;color: #FFF;text-align: center;}
+.hb-infor p{margin:  10px 0;}
+.user-pic{width: 20%;margin: auto;border-radius: 200px;overflow: hidden;}
+.hb-infor .share-btn{display: block;width: 80%;margin: 20px auto;background-color: #FFA430;border: 1px solid #FFFF63;color: #FFF;text-align: center;border-radius: 6px;padding: 10px 0;}
+.personal-box{background-color: #F3F2F0;padding: 20px;text-align: center;}
+.personal-box h4{margin: 10px 0;}
+.bottom-row .btn{display: block;width: 45%;padding: 1px 0;border-radius: 6px;color: #FFF;}
+.bottom-row{overflow: hidden;margin-top: 20px;margin-bottom: 20px;}
+.bottom-row .show-hb{float: left;background-color: #ED4B3B;}
+.bottom-row .share-btn{float: right;background-color: #FF9024;}
+.more-hb{padding: 0 10px 20px 10px;background-color: #FFF;}
+.more-hb li{border-bottom: 1px solid #CCC;padding: 10px;}
+.more-hb li:last-child{border-bottom: 0;}
+.more-hb .infor{overflow: hidden;clear: both;}
+.more-hb .name{float: left;}
+.more-hb .num{float: right;margin-right: 20px;}
+.more-hb .zan-btn{float: right;background: url(../../images/shake/zan.png) left center no-repeat;padding-left: 22px;background-size: 20px;color: #000;}
+.more-hb time{color: #C8C8C8;font-size: 14px;}
+
+.rank-page{background-color: #EAEBEB;padding: 1px 10px;min-height: 100%;margin-top: -2px}
+.rank-head{margin-top:22px;border-radius: 6px;background-color: #FAFAFA;padding:10px;color: #3FB752;}
+.rank-head .infor{overflow: hidden;text-align: center;}
+.rank-head .infor > div{padding: 0 10px;}
+.rank-head .infor strong{font-size: 20px; }
+.rank-head .infor p{font-size: 12px;}
+.rank-head .rank-text{color: #3FB752;display: block;clear:both;overflow: hidden;line-height: 40px;margin-top: 10px;border-top: 1px solid #EAEBEB;padding-top: 5px;}
+.rank-head .user-pic{float: left;width: 40px;margin-right: 10px;}
+
+.comment-list{margin-top: 20px;padding: 0 10px;border-radius: 6px;background: rgba(255,255,255,0.6);}
+.comment-list li{overflow: hidden;border-bottom: 1px solid #CCC;line-height: 40px;padding: 10px 0;}
+.comment-list li:last-child{border-bottom: 0;}
+.comment-list li .user-pic{float: left;width: 40px;margin-right: 10px;}
+.back-btn{color: #000;margin-top: 20px;display: inline-block;}
+
+.handle-row{text-align: right;padding: 10px 0;}
+.handle-row a{color: #000;margin-left:10px;}
+.user-list{border-radius: 6px;background: rgba(255,255,255,0.6);padding: 0 10px;}
+.user-list li{overflow: hidden;zoom:1;padding: 10px 0;clear: both;}
+.user-list .user-photo{float: left;width: 50px;margin-right: 10px;}
+.user-list .user-photo img{border-radius: 200px;overflow: hidden;border: 1px solid #c4c4c4;display: block;}
+.user-list .user-photo .user-name{text-align: center;font-size: 14px;}
+.user-list .info{overflow: hidden;zoom:1;}
+.user-list .support-text{margin-bottom: 15px;font-size: 12px;text-indent: 10px;margin-top: 10px;}
+.user-list .support-icon-btn{font-size: 12px;width: 90%;}
+.user-list .rank-num{float: left;margin-top:16px;width: 30px;text-align: center;font-size: 20px;}
+
+.user-list .zan-btn{float: right;background: url(../../images/shake/icon_heart.png) center bottom no-repeat;padding:0 10px 20px 10px;background-size: 20px;margin: 5px 5px 0 5px;color: #999;font-size: 14px;}
+.user-list .zan-btn.active{background-image:url(../../images/shake/icon_heart_active.png); }
+/*进度条*/
+.progress{ height: 10px;margin-top: 10px;overflow: hidden;background-color: #EFEEEC;border-radius: 4px;-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);box-shadow: inset 0 1px 2px rgba(0,0,0,.1);position: relative;}
+.progress-bar {float: left;width: 0;height: 100%;font-size: 12px;line-height: 40px;color: #fff;text-indent:10px;background-color: #3FB752;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);-webkit-transition: width .6s ease;-o-transition: width .6s ease;transition: width .6s ease;}
+.sr-only{color: #999;}
+.num{margin-left: 10px;float: right;}
+.progress-text{font-size: 14px;margin-top: 8px;color: #999;}
+
+.giveTip{position:absolute;left:0;top:0;width:100%;bottom:0;background:rgba(0,0,0,.8);z-index:100;}
+.giveTip .icon-friend{float:right;width:20%;text-align:right;padding-right:30px;-webkit-transform: rotate(45deg);margin-top: 10px;margin-bottom: -40px;}
+.giveTip-content{clear: both;color: #FFF;text-align: center;}
+.giveTip-content .give-colseBtn{background-color: #FFCA00;color: #FFF;border-radius: 6px;padding:  4px 30px;border:1px solid #FFF;}
+.giveTip-content p{margin: 20px 0;}

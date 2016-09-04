@@ -1,20 +1,15 @@
 package com.suniusoft.security.controller.permission;
 
-import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.suniusoft.common.utils.JSONUtils;
 import com.suniusoft.security.biz.domain.generation.permission.Resource;
-import com.suniusoft.security.biz.domain.generation.permission.Role;
-import com.suniusoft.security.biz.domain.generation.permission.User;
 import com.suniusoft.security.biz.service.permission.ResourceService;
 import com.suniusoft.security.biz.service.permission.SecurityManageService;
 import com.suniusoft.security.biz.service.permission.SecurityUserService;
 import com.suniusoft.security.biz.service.permission.UserRoleService;
 import com.suniusoft.security.controller.BaseController;
-import com.suniusoft.security.interceptor.constant.LoginConstant;
 import com.suniusoft.security.vo.ResourceVO;
-import com.suniusoft.security.vo.UserVO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,16 +17,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *   
- *  @ProjectName: icard 
+ *  @ProjectName: arcms 
  *  @Description: <p>
  * </p>
  *  @author yuyuchi  yuyc@suniusoft.com

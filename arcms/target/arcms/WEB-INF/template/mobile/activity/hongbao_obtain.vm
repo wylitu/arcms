@@ -1,0 +1,100 @@
+#set($layout = "/layout/blank.vm")
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/shake/shakeHB.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/mobileStyle.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/igrow/css/igrow.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/igrow/css/igrow.plugins.css">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/assets/css/suniu.css?t=20150519">
+
+    <script src="${rc.contextPath}/media/mobile/assets/vendor/jquery/1.11.1/jquery.min.js"></script>
+    <script src="${rc.contextPath}/media/js/zepto.min.js"></script>
+    <script src="${rc.contextPath}/media/mobile/assets/js/jweixin-1.0.0.js"></script>
+    <title>拆红包</title>
+</head>
+<style>
+    body{
+        background-color: #939393;
+    }
+</style>
+
+<div class="wap hb-page">
+    <div class="hb-box">
+        <img src="${rc.contextPath}/media/mobile/assets/images/shake/hb_bg.png" />
+
+        #if("-1"!=$!errorCode)
+            <a href="${rc.contextPath}/mobile/hongbao/dismantle?sellerId=$!sellerId&userId=$!userId&hbObtainId=$!hbObtainId" class="open-hb"><img src="${rc.contextPath}/media/images/hb_btn.png" /></a>
+            <div class="hb-infor">
+##                <div class="user-pic">
+##                    <img src="$!user.wxHeadimgurl" />
+##                </div>
+                <p>获得 1 红包</p>
+                <h4>恭喜发财,大吉大利</h4>
+            </div>
+        #end
+
+    </div>
+
+    <div>
+        <p style="position: absolute;bottom: 15px;left:15%;right:15%;color: white;font-size: 14px;text-align: center;">本活动及活动奖品均与苹果公司无关</p>
+    </div>
+    <div class="giveTip" id="giveTip" style="display:none;">
+        <p class="icon-friend"><img src="${rc.contextPath}/media/mobile/assets/images/shake/share_to_friend.png" /></p>
+        <div class="giveTip-content">
+            <h4>点击分享</h4>
+            <p>邀请好友一起来玩</p>
+            <a href="javascript:;" class="give-colseBtn">我知道了</a>
+        </div>
+    </div>
+</div>
+
+<div id="yzmWindow">
+    <div class="box">
+        <div class="window">
+            <h2 style="font-weight: bold">领取失败<i>!</i></h2>
+            $!errorMessage<br>
+            <a href="javascript:">确定</a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+
+    if("-1"=='$!errorCode'){
+        $('#yzmWindow').fadeIn();
+    }
+
+    $('#yzmWindow .box .window a').click(function(){
+        $(this).parent().parent().parent().hide();
+        $('#phonenumber').focus();
+        $('#phonenumber').select();
+    });
+
+    Zepto(function($){
+        $(".share-btn").bind('click', function(event) {
+            giveTipShow();
+            event.preventDefault();
+        });
+
+        // 分享JS
+        function giveTipShow(){
+            $('#giveTip').show();
+        }
+        $('.give-colseBtn').bind('click', function(event) {
+            $('#giveTip').hide();
+        });
+    })
+</script>
+</body>
+</html>

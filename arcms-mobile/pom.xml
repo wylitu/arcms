@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.arcms</groupId>
-        <artifactId>arcms</artifactId>
+        <artifactId>arcms-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <groupId>com.arcms</groupId>
@@ -295,10 +295,10 @@
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <scanTargets>
                         <scanTarget>target/classes</scanTarget>
-                        <scanTarget>../icard-security/target/classes</scanTarget>
-                        <scanTarget>../icard-common/target/classes</scanTarget>
-						<scanTarget>../icard-pay/target/classes</scanTarget>
-					    <scanTarget>../icard-distribution/target/classes</scanTarget>
+                        <scanTarget>../arcms-security/target/classes</scanTarget>
+                        <scanTarget>../arcms-common/target/classes</scanTarget>
+						<scanTarget>../arcms-pay/target/classes</scanTarget>
+					    <scanTarget>../arcms-distribution/target/classes</scanTarget>
                     </scanTargets>
 					  
                     <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>

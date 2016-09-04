@@ -247,7 +247,7 @@ public class SecurityManageService {
         RoleExample example = new RoleExample();
         RoleExample.Criteria c = example.createCriteria();
         if (roleVO.getName() != null && !"".equals(roleVO.getName())) {
-            c.andNameLike("%" + roleVO.getName() + "%");
+            c.andNameLike("%" +roleVO.getName()+ "%");
 
         }
 

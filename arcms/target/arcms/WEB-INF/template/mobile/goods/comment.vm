@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>评价详情</title>
+</head>
+<body>
+<section class="wrap">
+    <section class="pages">
+        <div class="bg-w home-comment">
+            <div class="p10 b-b home-comment-hd">总体评价：<span class="star star-0"></span></div>
+            <div class="home-comment-bd">
+                <ul>
+                    #foreach($comment in $comments)
+                    <li>
+                        <div class="table">
+                            <div class="table-cell item-face"><div class="circle face"><img src="$!{rc.contextPath}$!{comment.faceImgUrl}"></div></div>
+                            <div class="table-cell item-con">
+                                <div class="tit">$comment.userName</div>
+                                <div class="info"><span class="star star-1" star="$comment.starLevel"></span><span class="date">$!dateTool.format("yyyy-MM-dd", ${comment.gmtCreated})</span></div>
+                            </div>
+                        </div>
+                        <div class="text-block">$!comment.content</div>
+                        <div class="photo-block">
+                            <dl>
+                                <dd><img src="$!comment.imgUrl"></dd>
+##                                <dd><img src="images/p2.jpg"></dd>
+##                                <dd><img src="images/p2.jpg"></dd>
+##                                <dd><img src="images/p2.jpg"></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    #end
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript" charset="utf-8" src="js/jquery.raty.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.star-0').raty({ readOnly: true, score: $!{star},size:15,});
+        $.each($('.star-1'), function(index, data){
+            var star = $(data).attr('star')
+            $(data).raty({ readOnly: true, score: star ,size:15});
+        })
+    });
+</script>
+</body>
+</html>

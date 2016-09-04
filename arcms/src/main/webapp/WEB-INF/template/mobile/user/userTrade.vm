@@ -1,0 +1,182 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        我的订单
+    </title>
+</head>
+<section class="wrap">
+
+    <section class="pages">
+        <section class="myOrder">
+            <div class="b-b myOrder-tab">
+                <ul>
+                    <li><a href="#">全部</a></li>
+                    <li><a href="#">未付款</a></li>
+                    <li><a href="#">未消费</a></li>
+                    <li><a href="#">待评价</a></li>
+                    <li><a href="#">退款</a></li>
+##                    <li><a href="#">退款单</a></li>
+                </ul>
+            </div>
+            <div class="myOrder-content">
+                <div class="content content-1">
+                    <ul>
+                        #foreach($trade in $trades)
+                            #if($trade.status == "WAIT_BUYER_PAY")
+                                #set($tradeUrl="${rc.contextPath}/mobile/user/unPay?tradeId=$trade.tid")
+                            #elseif($trade.status == "WAIT_BUYER_CONSUME")
+                                #set($tradeUrl="${rc.contextPath}/mobile/user/unConsume?tradeId=$trade.tid")
+                            #elseif($trade.status == "WAIT_BUYER_JUDGE")
+                                #set($tradeUrl="${rc.contextPath}/mobile/user/unjudge?tradeId=$trade.tid")
+                            #elseif($trade.status == "REFUND")
+                                #set($tradeUrl="${rc.contextPath}/mobile/user/refundDetail?tradeId=$trade.tid")
+                            #elseif($trade.status == "COMPLETED" && $trade.type != "SELLER_SCAN_CODE")
+                                #set($tradeUrl="${rc.contextPath}/mobile/user/completed?tradeId=$trade.tid")
+
+                            #end
+                        <li href=" #if($!trade.type == "SELLER_SCAN_CODE" || $!trade.type == "USER_SCAN_CODE")# #else$!tradeUrl#end">
+                            <div class="table item">
+                                #if($!trade.type == "SELLER_SCAN_CODE" || $!trade.type == "USER_SCAN_CODE")
+                                    #set($imgUrl = "#")
+                                #else
+                                    #set($imgUrl = "${rc.contextPath}/${trade.orders.get(0).goods.imgsUrl}")
+                                #end
+
+                                <div class="table-cell item-photo">
+                                    #if($!trade.type != "SELLER_SCAN_CODE" && $!trade.type != "USER_SCAN_CODE")
+                                      <img src="$imgUrl">#end</div>
+                                    <div class="table-cell v-t item-con">
+                                        #if($trade.type == "SELLER_SCAN_CODE"|| $!trade.type == "USER_SCAN_CODE")
+                                            <div class="fs16 col_3 tit">$!{trade.title}</div>
+                                            <div class="info">总价：$!{trade.fee}元</div>
+                                        #else
+                                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                                            <div class="info">总价：$!{trade.fee}元   数量：$!{trade.orders.get(0).quantity}</div>
+                                        #end
+                                        #if($trade.status == "WAIT_BUYER_PAY")
+                                            <div class="other"><span class="fl status">待付款</span><a href="${rc.contextPath}/mobile/orderPay/orderPayView?tradeId=$trade.tid" class="fr br5 btn">付 款</a></div>
+                                        #elseif($trade.status == "WAIT_BUYER_CONSUME")
+                                            <div class="other"><span class="fl status">未消费</span><a href="${rc.contextPath}/mobile/user/applyRefund?tradeId=$trade.tid" class="fr br5 btn">退 款</a></div>
+                                        #elseif($trade.status == "WAIT_BUYER_JUDGE")
+                                            <div class="other"><span class="fl status">待评价</span><a href="${rc.contextPath}/mobile/user/judge?tradeId=$trade.tid" class="fr br5 btn">评 价</a></div>
+                                        #elseif($trade.status == "REFUND")
+                                            <div class="other"><span class="fl status">已退款</span></div>
+                                        #elseif($trade.status == "COMPLETED")
+                                            <div class="other">
+                                                #if($trade.type != "SELLER_SCAN_CODE" && $trade.type != "USER_SCAN_CODE")
+                                                    <span class="fl status">已评价：$!{trade.comment.starLevel}分</span>
+                                                #end
+                                                #if(!$!trade.isCollect)
+                                                    #if($trade.type != "SELLER_SCAN_CODE" && $trade.type != "USER_SCAN_CODE")
+                                                        <a href="${rc.contextPath}/mobile/user/doCollection?tradeId=$!{trade.tid}" class="collection fr br5 btn">收 藏</a>
+                                                    #end
+
+                                                #else
+                                                        <span class="fr cancel">已收藏</span>
+                                                #end
+                                            </div>
+                                        #end
+                                    </div>
+                            </div>
+                        </li>
+                        #end
+                    </ul>
+                </div>
+                <div class="content content-2">
+                    <ul>
+                        #foreach($trade in $trades)
+                            #if($trade.status == "WAIT_BUYER_PAY")
+                                <li>
+                                    <div class="table item">
+                                        <div class="table-cell item-photo"><img src="${rc.contextPath}/$!{trade.orders.get(0).goods.imgsUrl}"></div>
+                                        <div class="table-cell v-t item-con">
+                                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                                            <div class="info">总价：$!{trade.fee}元   数量：$!{trade.orders.get(0).quantity}</div>
+                                            <div class="other"><span class="fl status">待付款</span><a href="${rc.contextPath}/mobile/orderPay/orderPayView?tradeId=$!{trade.tid}" class="fr br5 btn">付 款</a></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            #end
+                        #end
+
+                    </ul>
+                </div>
+                <div class="content content-3">
+                    <ul>
+                        #foreach($trade in $trades)
+                            #if($trade.status == "WAIT_BUYER_CONSUME")
+                                <li>
+                                    <div class="table item">
+                                        <div class="table-cell item-photo"><img src="${rc.contextPath}/$!{trade.orders.get(0).goods.imgsUrl}"></div>
+                                        <div class="table-cell v-t item-con">
+                                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                                            <div class="info">总价：$!{trade.fee}元   数量：$!{trade.orders.get(0).quantity}</div>
+                                            <div class="other"><span class="fl status">未消费</span><a href="${rc.contextPath}/mobile/user/applyRefund?tradeId=$!{trade.tid}" class="fr br5 btn">退 款</a></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            #end
+                        #end
+
+                    </ul>
+                </div>
+                <div class="content content-4">
+                    <ul>
+
+                        #foreach($trade in $trades)
+                            #if($trade.status == "WAIT_BUYER_JUDGE" && !$trade.orders.isEmpty())
+                                <li>
+                                    <div class="table item">
+                                        <div class="table-cell item-photo"><img src="${rc.contextPath}/$!{trade.orders.get(0).goods.imgsUrl}"></div>
+                                        <div class="table-cell v-t item-con">
+                                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                                            <div class="info">总价：$!{trade.fee}元   数量：$!{trade.orders.get(0).quantity}</div>
+                                            <div class="other"><span class="fl status">待评价</span><a href="${rc.contextPath}/mobile/user/unjudge?tradeId=$!trade.tid" class="fr br5 btn">评 价</a></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            #end
+                        #end
+
+                    </ul>
+                </div>
+                <div class="content content-5">
+                    <ul>
+                        #foreach($trade in $trades)
+                            #if($trade.status == "REFUND")
+                                <li>
+                                    <div class="table item">
+                                        <div class="table-cell item-photo"><img src="${rc.contextPath}/$!{trade.orders.get(0).goods.imgsUrl}"></div>
+                                        <div class="table-cell v-t item-con">
+                                            <div class="fs16 col_3 tit">$!{trade.orders.get(0).goods.title}</div>
+                                            <div class="info">总价：${trade.fee}元   数量：$!{trade.orders.get(0).quantity}</div>
+                                            <div class="other"><span class="fl status">已退款</span></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            #end
+                        #end
+                    </ul>
+                </div>
+
+
+            </div>
+        </section>
+    </section>
+</section>
+<script>
+    /*$('.collection').click(function(event){
+        window.location = $(this).attr('href')
+        event.preventDefault();
+        event.preventBubble()
+    })*/
+    $('.myOrder-content li').click(function(){
+        var href = $(this).attr('href')
+        if(href){
+            href = href + '&lat=' + lat + '&lng=' + lng
+            window.location = href
+        }
+
+    })
+
+</script>

@@ -1,5 +1,7 @@
 package com.suniusoft.common.utils;
 
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -198,12 +200,14 @@ public class FileUtils {
         String bizDir = "";
         if(StringUtils.isNotBlank(fileName)){
             String[] bizDirSplit = fileName.split("_");
-            if(bizDirSplit!=null && bizDirSplit.length>1){
+            if(bizDirSplit!=null && bizDirSplit.length>1){// TODO 文件名必须包含下划线？
                for(int i=0 ; i<bizDirSplit.length-1 ; i++){
                    bizDir = bizDir+bizDirSplit[i]+"/";
                }
-
+            }else{
+                bizDir = fileName;
             }
+
         }
         if(StringUtils.isNotBlank(bizDir)){
             filePath = uploadFile(bizDir, picture);
@@ -212,6 +216,30 @@ public class FileUtils {
 
         return filePath;
 
+    }
+
+
+    /**
+     * @desc 文件上传
+     *       前台传过来的文件名规则是:业务模块_业务ID_相关属性名(相关业务名称不确定或不唯一用时间戳)
+     *       examples:
+     *               1.会员头像:member_1000_head.jpg
+     *               2.会员发帖图片:cirle_post_1000_1426239225834.jpg(时间搓)
+     * @author litu
+     * @param picture
+     * @return
+     */
+    public static String uploadQrFile(BitMatrix bitMatrix)throws Exception{
+
+        if(bitMatrix == null){
+            return null;
+        }
+        String fileName = System.currentTimeMillis() + "";
+        String savePath = getDoPath(PropertyReader.getValue("uploadPath"))+fileName;
+
+        FileUtils.mkDir(savePath);//目录不存在创建
+        MatrixToImageWriter.writeToFile(bitMatrix, "png", new File(savePath));
+        return savePath;
     }
 
     /**
@@ -240,6 +268,7 @@ public class FileUtils {
 
         return null;
     }
+
 
 
     /**

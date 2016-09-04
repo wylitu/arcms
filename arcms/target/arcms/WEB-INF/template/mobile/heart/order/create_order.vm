@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <meta charset="utf-8">
+    <title>提交订单</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="web">
+    <meta name="keywords" content="web">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+</head>
+<body>
+<section class="wrap">
+##    <header>
+##        <a href="javascript:history.go(-1);location.reload()" class="back"></a>
+##        <span class="tit">提交订单</span>
+##    </header>
+
+    <section class="bg-w duobao-order">
+        <ul>
+            <li>
+                <img src="${rc.contextPath}$goodsDetail.goodsImg" width="80" height="80" class="fl">
+                <div class="con">
+                    <div class="col_3 fs15 tit">$goodsDetail.goodsName</div>
+                    #set($tmp=$goodsDetail.goodsShare - $goodsDetail.goodsCollectShare)
+                    <div class="col_8 fs14 info">总需 $goodsDetail.goodsShare / 剩余 <span class="red">$tmp</span></div>
+                    <div class="item-num">
+                        <span class="box_count">
+                            <i class="duobao_minus" rel="$goodsDetail.goodsShare">-</i>
+                            <input id="buy_share" name="xxx" type="text" class="br10 value" value="$goodsDetail.goodsMinShare" />
+                            <i class="duobao_plus" rel="$goodsDetail.goodsShare">+</i>
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </section>
+
+
+    <section class="duobao-footer">
+        <span class="fl  col_9 tit">共 <span class="red" id="payment"> $goodsDetail.goodsMinShare </span> 爱卡币</span>
+        #if($goodsDetail.goodsStatusCode == 10)
+            <a id="submitOrderBtn" href="javascript:void(0);" class="fr btn">立即参与</a>
+        #else
+            <a href="javascript:void(0);" class="fr btn btn-disabled">立即参与</a>
+        #end
+
+    </section>
+
+</section>
+
+<style>
+    body {background-color:#fff}
+</style>
+
+
+    <script>
+        $(function(){
+            var mobileAndAddressExist = $mobileAndAddressExist;
+            var id = $goodsDetail.id;
+            var max = $goodsDetail.goodsShare - $goodsDetail.goodsCollectShare;
+            $("#buy_share").change(function(){
+                var val = $(this).val();
+                try{
+                    val = parseInt(val);
+                    if(val <= max){
+                        $("#payment").text(val);
+                    } else{
+                        $("#payment").text(max);
+                        $(this).val(max);
+                    }
+                }catch(e){
+                    $(this).val(1);
+                }
+                var val = $(this).val();
+            });
+
+            $("#submitOrderBtn").click(function(){
+                if(!mobileAndAddressExist){
+                    alert("请先完善手机号码和收货地址!");
+                    return;
+                }
+                var buyShareVal = $("#buy_share").val();
+                if(max == 0){
+                    alert("该宝贝已经收集完成");
+                    return ;
+                }
+                if(buyShareVal > max){
+                    alert("最多只能购买" + max + "个");
+//                    buyShareVal = max;
+                    return;
+                }
+
+                location.href = "${rc.contextPath}/mobile/heart/order/createPayment?goodsId="+id+"&share="+buyShareVal;
+//                var data = {
+//                    "goodsId":id,
+//                    "share":buyShareVal
+//                }
+##                $.ajax({
+##                    "type":"post",
+##                    "url":"${rc.contextPath}/mobile/heart/order/createPayment",
+##                    "data":data,
+##                    "success":function(resp){
+##                        if(resp && resp.errorCode == 0){
+##                            window.location.href = "${rc.contextPath}/mobile/heart/order/list";
+##                        }
+##                    }
+##                })
+            });
+
+        });
+    </script>
+</html>

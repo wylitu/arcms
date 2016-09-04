@@ -1,0 +1,24 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>意见反馈</title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="feedback">
+            <ul>
+                <li class="p10 b-bt">
+                    <input name="" id="msgTitle"  type="text" class="inp" placeholder="意见标题就写这里吧！">
+                </li>
+                <li class="p10 b-bt">
+                    <textarea name="" id="msgContent" style="color: #000000" cols="" rows="" placeholder="嗨，来吐槽几句吧！"></textarea>
+                </li>
+                <li class="p10">
+                    <button type="button" class="br30 combtn" onclick="feedbackMessage()">提 交</button>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript" src="${rc.contextPath}/media/mobile/js/feedback.js"></script>

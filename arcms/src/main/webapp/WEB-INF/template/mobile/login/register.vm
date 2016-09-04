@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        注 册
+    </title>
+</head>
+<body>
+<section class="wrap">
+    <section class="pages">
+        <div class="login reg-form2">
+            <ul>
+                <li>
+                    <input name="mobile" id="mobile" type="hidden" value="$!{mobile}">
+                    <input name="password" id="password" type="password"  placeholder="请输入密码">
+                    <button type="button" class="eyebtn"></button>
+                </li>
+                <li>
+                    <input name="recommendUserId"  id="recommendUserId" type="text" class="inp"  value="$!{recommendUserId}" placeholder="请输入好友推荐码">
+                </li>
+            </ul>
+            <div class="submit">
+                <button type="button" id="submit_" class="br20 combtn">确 定</button>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+<script>
+
+
+    $('#submit_').click(function(event){
+        event.preventDefault()
+        var mobile = $('#mobile').val();
+        var recommendUserId = $('#recommendUserId').val();
+
+        var password= $('#password').val();
+        if(!password || password==''){
+            alert("密码不能为空!");
+            return;
+        }
+        var password = $.md5(password);
+
+        var recommendUserId = $('#recommendUserId').val();
+        if(!recommendUserId){
+            recommendUserId='';
+        }
+
+        var md5Str= "mobile=" + mobile +"&password=" + password +(recommendUserId==''?"":("&recommendUserId="+recommendUserId))+ "&key=icard1234";
+
+        var sign = $.md5(md5Str).toUpperCase();
+        $.post("${rc.contextPath}/mobile/doRegister", {mobile:mobile, sign:sign, password:password,recommendUserId:recommendUserId}, function(data){
+
+            if(data.errorCode == '0'){
+                window.location='${icardAppLoadUrl}';
+            }else{
+                $('input[name="password"]').parent().find('span').remove()
+                $('input[name="password"]').parent().append('<span class="Validform_checktip Validform_wrong">'+data.errorMessage+'</span>');
+            }
+        })
+    })
+</script>
+</html>

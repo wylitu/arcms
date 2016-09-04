@@ -1,0 +1,188 @@
+#set($layout = "/layout/blank.vm")
+
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/geo.js"></script>
+<div id="web">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <div class="BoxStyleA">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <i class="modal-logo interact"></i>
+                        <ul class="breadcrumb" style="margin-left: 2px;">
+                            <li></li>
+                            <li>活动管理</li>
+                            <li>宝贝管理</li>
+                        </ul><!-- .breadcrumb -->
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <form class="form-search" id="searchForm">
+                                <div class="row">
+                                    <div class="col-xs-16 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="ml20">宝贝名称：<input  type="text" name="goodsName" /></span>
+
+##                                            <span class="ml20">&nbsp;&nbsp;有效时间：<input  type="text" name="goodsStartDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+##                                            <span class="ml20">&nbsp;&nbsp;至：<input  type="text" name="goodsEndDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                                            <span >
+                                                <input class="btn_searchA ml20" type="submit" value="搜索"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>&nbsp</div>
+                <div class="BoxStyleA">
+                    <div class="BoxStyleATop">
+                        <span class="fl">宝贝信息</span>
+                        <div class="icon_box fl">
+                            <a href="javascript:void(0);" class="icon_add"   onclick="addHeartGoodsUI()" >添加</a>
+                        </div>
+                        <!--<a href="" class="fr">X</a>-->
+                    </div>
+                    <table id="imgTable" class="table table-striped table-bordered table-hover" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" class="ace" id="allCheckbox" onclick="javascript:selectAll()" value="true" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                            <th>宝贝名称</th>
+                            <th>创建时间</th>
+                            <th>宝贝状态</th>
+##                            <th>起始时间</th>
+##                            <th>截止时间</th>
+                            <th>宝贝份额</th>
+                            <th>已收集份额</th>
+                            <th>中奖者号码</th>
+                            <th>操作</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="tbContainer">
+                        </tbody>
+
+##                        <tfoot>
+##                        <tr>
+##                            <th>合计:</th>
+##                            <th></th>
+##                            <th></th>
+##                            <th></th>
+##                            <th id="sumTotalAmount"></th>
+##                            <th id="sumOverAmount"></th>
+##                            <th id="sumNumber"></th>
+##                            <th id="sumNumberObtain"></th>
+##                            <th id="sumOverNumber"></th>
+##
+##                        </tr>
+##                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal start -->
+<div class="modal fade" id="addHeartGoodsModal" tabindex="-1" role="dialog" aria-labelledby="activityModal" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content" >
+            <div class="tiptop"><span>新建宝贝</span><a data-dismiss="modal" aria-hidden="true"></a></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form" id="addForm" method="post">
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">宝贝档期:</label>
+                            <input class="col-xs-3" type="text"  name="goodsPeriod"/>
+                            <span class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">宝贝名称:</label>
+                            <input class="col-xs-3" type="text"  name="goodsName"/>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="form-group" style="margin-top: 5px">
+                            <label class="col-xs-2">宝贝图片:</label>
+                            <input id="goodsImg" type="file" class="col-xs-3" accept="image/png,image/gif,image/jpg"  name="goodsImg" />
+                            <span class="required">*</span>
+                            <span style="color: red;">推荐尺寸:310px*310px</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label class="col-xs-2">宝贝详情图片:</label>
+                            <input id="goodsDetailImg" type="file" multiple="multiple" accept="image/png,image/gif,image/jpg"  class="col-xs-3"  name="goodsDetailImg" />
+                            <span class="required">*</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">宝贝描述:</label>
+                            <textarea  name="goodsDesc" cols="70" rows="5"></textarea>
+                        </div>
+
+
+
+                        <div class="form-group" style="margin-top: 5px">
+                            <label  class="col-xs-2">宝贝份额:</label>
+                            <input class="col-xs-3" type="text"  name="goodsShare"/>
+                            <span  class="required">*</span>
+                        </div>
+##                        <div class="form-group" style="margin-top: 5px">
+##                            <label  class="col-xs-2">购买最小份额:</label>
+##                            <input class="col-xs-3" type="text"  name="goodsMinShare"/>
+##                            <span  class="required">*</span>
+##                        </div>
+
+##                        <div class="form-group" style="margin-top: 5px">
+##                            <label  class="col-xs-2">购买最小金额:</label>
+##                            <input class="col-xs-3" type="text"  name="goodsMinPrize"/>
+##                            <span class="required">*</span>
+##                        </div>
+##                        <div class="form-group" style="margin-top: 5px">
+##                            <label class="col-sm-2 control-label">金额单位</label>
+##                            <select class="col-xs-3" name="goodsMinPrizeUnit">
+##                                <option value="LOVE">爱特币</option>
+##                            </select>
+##                        </div>
+
+##                        <div class="form-group" style="margin-top: 5px">
+##                            <label class="col-sm-2 control-label no-padding-right" for="form-field-1">活动时间 </label>
+##                            <span  class="required">*</span>
+##                            <div class="col-sm-7" style="float: left;text-align: left">
+##                                <input type="text" id="form-field-1"  name="goodsStartDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+##                                <label >至</label>
+##                                <input type="text" id="form-field-1"  name="goodsEndDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+##
+##                            </div>
+##                        </div>
+
+                        <div class="modal-footer">
+                            <center>
+                                <input class="sure" type="submit" id="saveOrUpdate"  value="确定" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消">
+                            </center>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- addHeartGoodsModal end -->
+
+
+
+<!-- Modal end -->
+
+    <script type="text/javascript" src="${rc.contextPath}/media/js/admin/heart/goods/heartGoods.js"></script>
+
+</div>

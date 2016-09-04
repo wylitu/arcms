@@ -1,10 +1,12 @@
 package com.suniusoft.common.utils;
 
+import org.springframework.util.CollectionUtils;
+
 import java.util.*;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 字符串工具类
  *                </p>

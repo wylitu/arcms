@@ -1,0 +1,15 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        线下订单
+    </title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="b-bt order-evaluation-info">
+            <div class="b-b item-hd"><span class="col_0">线下订单成功!</span></div>
+
+            </div>
+        </div>
+    </section>
+</section>

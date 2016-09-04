@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.arcms</groupId>
-    <artifactId>arcms</artifactId>
+    <artifactId>arcms-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>arcms</name>
+    <name>arcms-parent</name>
     <url>http://maven.apache.org</url>
 
 
@@ -27,6 +27,7 @@
 		<module>arcms-biz</module>
         <module>arcms-admin</module>
         <module>arcms-mobile</module>
+        <module>arcms</module>
     </modules>
     <build>
         <plugins>

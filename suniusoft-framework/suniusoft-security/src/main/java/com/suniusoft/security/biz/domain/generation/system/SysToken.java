@@ -25,10 +25,16 @@ public class SysToken {
     private String modifiedBy;
 
     /** 是否删除：1(删除) 0(未删除) */
-    private Integer isDeleted;
+    private Boolean isDeleted;
+
+    /** 用户id */
+    private Long userId;
 
     /** 用户名 */
     private String userName;
+
+    /** 类型，login:作为登陆session、repeat_submit：防止表单重复提交 */
+    private String type;
 
     /** token 值 */
     private String token;

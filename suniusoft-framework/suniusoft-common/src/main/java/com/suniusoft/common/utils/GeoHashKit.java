@@ -2,7 +2,7 @@ package com.suniusoft.common.utils;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: GeoHash经纬转换，经纬间距离
  *  @author zoujian  zoujian@suniusoft.com
  *  @date 15/11/25 下午9:01  
@@ -162,10 +162,11 @@ public class GeoHashKit {
 
     public static void main(String[] args) {
         GeoHashKit ghf = new GeoHashKit();
-        String gc1 = ghf.encode(30.1110000, 120.1110000);
+        String gc1 = ghf.encode(120.111, 30.11111);
         String gc2 = ghf.encode(30.021, 119.621);
 
-        System.out.println(gc1.substring(0,2));
+
+        System.out.println(gc1);
         System.out.println(gc2);
 
         double[] gd1 = ghf.decode(gc1);

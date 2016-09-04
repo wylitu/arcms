@@ -492,6 +492,10 @@ public class PropertyReader {
         _log.info("value0 = " + v);
 
 
+        String v1 = PropertyReader.getValue(path, "sms.sign");
+        _log.info("value5 = " + v);
+
+
         Hashtable<String, String> ht = new Hashtable<String, String>();
         ht.put("name", "dengcd");
         PropertyReader.setValueAndStore(path, ht);

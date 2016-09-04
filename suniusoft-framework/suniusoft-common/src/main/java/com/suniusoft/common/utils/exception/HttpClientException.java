@@ -2,7 +2,7 @@ package com.suniusoft.common.utils.exception;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: httpclient异常类
  *  @author litu  litu@shufensoft.com
  *  @date 2015/4/13 14:02  

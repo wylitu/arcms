@@ -115,6 +115,9 @@
         and ur.user_id = u.user_id
         and u.id=#{id}
         and u.enabled=1
+        and u.is_deleted=0
+        and ur.is_deleted=0
+        and r.is_deleted=0
     </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     update role

@@ -2,6 +2,7 @@ package com.suniusoft.common.aspect;
 
 import com.suniusoft.common.annotation.BizId;
 import com.suniusoft.common.annotation.Domain;
+import com.suniusoft.common.utils.IdGenUtils;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: insert切面
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/10 11:26  
@@ -50,7 +51,7 @@ public class InsertAspect {
                         throw new RuntimeException(joinPoint.toString()
                                 + "；参数"
                                 + cla.getName()
-                                + "没有setGmtCreated或setGmtModified方法");
+                                + "没有setGmtCreated或setGmtModified方法", e);
                     }
 
 
@@ -66,8 +67,7 @@ public class InsertAspect {
                                     null) == null) {
                                 String setFiledName = "set"
                                         + StringUtils.capitalize(fieldName);
-                                MethodUtils.invokeMethod(arg, setFiledName,
-                                        System.currentTimeMillis() - 1434000000000l);// 设置业务Id
+                                MethodUtils.invokeMethod(arg, setFiledName, IdGenUtils.idGen());// 设置业务Id
                             }
 
                             break;
@@ -82,8 +82,6 @@ public class InsertAspect {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis() - 1434000000000l);
-    }
+
 
 }

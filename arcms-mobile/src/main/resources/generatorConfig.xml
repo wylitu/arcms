@@ -14,25 +14,25 @@
         </commentGenerator>
 
         <!--mysql数据库链接URL，用户名、密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/icard"
-                        userId="icard" password="icard123">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/arcms"
+                        userId="arcms" password="arcms123">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.arcms.biz.domain.generation.shop" targetProject="icard-biz/src/main/java/">
+        <javaModelGenerator targetPackage="com.arcms.biz.domain.generation.shop" targetProject="arcms-biz/src/main/java/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="useActualColumnNames" value="true" />
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="persistence/generation/shop" targetProject="icard-biz/src/main/resources/">
+        <sqlMapGenerator targetPackage="persistence/generation/shop" targetProject="arcms-biz/src/main/resources/">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.arcms.biz.dao.generation.shop"
-                             targetProject="icard-biz/src/main/java/">
+                             targetProject="arcms-biz/src/main/java/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成哪些表-->

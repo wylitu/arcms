@@ -1,0 +1,159 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>我的推荐</title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <section class="myRecommend">
+            <div class="b-b myRecommend-tab">
+                <ul>
+                    <li class="on"><a href="#">推荐好友</a></li>
+                    <li class=""><a href="#">商家推荐</a></li>
+                </ul>
+            </div>
+            <div class="myRecommend-content">
+                <div class="content content-1" style="display: block;">
+                    <div class="b-d myRecommend-code">
+                        <div class="b-b item-hd">
+                            <p class="t1">我的好友推荐码</p>
+
+                            <p class="fs16 col_o t2">$!{user.userId}</p>
+                        </div>
+                    </div>
+                    <div class="bg-w myRecommend-list">
+                        <div class="b-bt p10 myRecommend-list-hd"><span class="fs15 col_3 tit">推荐好友列表</span></div>
+                        <div class="p10 myRecommend-list-bd">
+                            <div class="col_3 info">&nbsp;&nbsp;&nbsp;&nbsp;共推荐好友: $!{myRecommend.recommendCount}人  获利:$!{myRecommend.recommendDistribution}
+                                爱卡币
+                            </div>
+                            <div class="p10 b-b choose">
+                                <div class="b-d  choose-bd">
+                                    <div class="select-txt"><span class="icon-dot">全部</span></div>
+                                    <div class="select">
+                                        <select>
+                                            <option>全部</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-w p10 business-detail-list">
+                        <div class="col_3 item-hd">
+                            <div class="table">
+                                <div align="center" class="table-cell t1" style="width: 30%;">用户昵称</div>
+                                <div align="center" class="table-cell t2" style="width: 30%;">消费时间</div>
+                                <div align="center" class="table-cell t3" style="width: 20%;">消费金额</div>
+                                <div align="center" class="table-cell t3" style="width: 20%;">获利卡币</div>
+                            </div>
+                        </div>
+                        <div class="item-bd" id="recommendFromUserItem">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-2" style="display: none;">
+                    <div class="b-d myRecommend-code">
+                        <div class="b-b item-hd">
+                            <p class="t1">我的商家推荐码</p>
+
+                            <p class="fs16 col_o t2">$!{user.userId}</p>
+                        </div>
+                    </div>
+                    <div class="bg-w myRecommend-list">
+                        <div class="b-bt p10 myRecommend-list-hd"><span class="fs15 col_3 tit">推荐商家列表</span></div>
+                        <div class="p10 myRecommend-list-bd">
+                            <div class="col_3 info">&nbsp;&nbsp;&nbsp;&nbsp; 共推荐商家: $!{mySellerRecommend.recommendCount}家  获利:$!{mySellerRecommend.recommendDistribution}
+                                爱卡币
+                            </div>
+                            <div class="p10 b-b choose">
+                                <div class="b-d  choose-bd">
+                                    <div class="select-txt"><span class="icon-dot">全部</span></div>
+                                    <div class="select">
+                                        <select>
+                                            <option>全部</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-w p10 business-detail-list">
+                        <div class="col_3 item-hd">
+                            <div class="table">
+                                <div align="center" class="table-cell t1" style="width: 30%;">商家名称</div>
+                                <div align="center" class="table-cell t2" style="width: 30%;">注册时间</div>
+                                <div align="center" class="table-cell t3" style="width: 20%;">销售金额</div>
+                                <div align="center" class="table-cell t3" style="width: 20%;">获利卡币</div>
+                            </div>
+                        </div>
+                        <div class="item-bd" id="recommendFromSellerItem">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+
+<script>
+
+    showUserRecommendFromUser();
+    showUserRecommendFromSeller();
+    function showUserRecommendFromUser() {
+
+
+        $.ajax({
+            type: "post", // 请求方式
+            url: baseUrl + "/mobile/userRecommend?token=$!token", //url地址
+            data: {type: 'USER'},
+            dataType: "json",
+            success: function (data) {
+
+                if (data.errorCode == 0) {
+
+                    $.each(data.info, function (i, value) {
+
+                        $("#recommendFromUserItem").append('<div class="table"><div align="center" class="table-cell t1" style="width: 30%;">' + value.name + '</div><div align="center" class="table-cell t2" style="width: 30%;">' + getFormatTime(value.saleTime) + '</div><div align="center" class="table-cell t3" style="width: 20%;">' + value.payment + '</div><div align="center" class="table-cell t3" style="width: 20%;">' + value.targerIcard+ '</div></div>');
+                    });
+
+
+                }
+            }, error: function () {
+                alert("error");
+            }
+        });
+    }
+
+    function showUserRecommendFromSeller() {
+
+        $.ajax({
+            type: "post", // 请求方式
+            url: baseUrl + "/mobile/userRecommend?token=$!token", //url地址
+            data: {type: 'SELLER'},
+            dataType: "json",
+            success: function (data) {
+
+                if (data.errorCode == 0) {
+
+                    $.each(data.info, function (i, value) {
+
+                        $("#recommendFromSellerItem").append('<div class="table"><div align="center" class="table-cell t1" style="width: 30%;">'+value.name+'</div><div align="center" class="table-cell t2" style="width: 30%;">'+getFormatTime(value.saleTime)+'</div><div align="center" class="table-cell t3" style="width: 20%;">'+value.payment+'</div><div align="center" class="table-cell t3" style="width: 20%;">'+value.targerIcard+'</div></div>');
+                    });
+
+
+                }
+            }, error: function () {
+                alert("error");
+            }
+        });
+
+
+
+
+    }
+
+
+</script>
+

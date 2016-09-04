@@ -1,0 +1,97 @@
+#set($layout = "/layout/mobileDefault.vm")
+
+<head>
+    <title>
+        申请提现
+    </title>
+</head>
+<section class="wrap">
+    <section class="wrap">
+        <section class="pages" style="margin-top:30px">
+
+            <form id="orderConfirm" method="post">
+                <div class="br30 header-search" style="height: 40px;top:50px;position: absolute">
+                <input name="icardMoney" id="icardMoney" type="text" class="inp" placeholder="输入提现金额" style="height: 40px;">
+
+                </div>
+
+                <div class="br30" >
+                    <button onclick="orderCashSubmit()" type="button" class="br30 combtn" style="margin-left : 15%;margin-right : 15%; margin-top: 70px;width: 70%;">申请提现</button>
+                </div>
+
+                <div style="margin-top: 5px!important;text-align: center">
+                <label style="color: #00a0e9;">注:当前爱卡币$!{totalIcardMoney},爱卡提现区间$!{cashMoneyMin}-$!{cashMoneyMax}</label>
+                </div>
+            </form>
+
+            <div class="p10 b-bt business-detail-list">
+                <div class="col_3 item-hd">
+                    <div class="table">
+                        <div class="table-cell t1" style="width: 30%;text-align: center">提现时间</div>
+                        <div class="table-cell t2" style="width: 30%;text-align: center">提现金额</div>
+                        <div class="table-cell t3" style="width: 30%;text-align: center">状态</div>
+                    </div>
+                </div>
+
+
+            <div class="item-bd">
+                #foreach($icardCash in $icardCashList)
+                    <div class="table">
+                    <div class="table-cell t1" style="width: 30%;text-align: center"">$!dateTool.format("yyyy-MM-dd", ${icardCash.gmtCreated})</div>
+                    <div class="table-cell t2" style="width: 30%;text-align: center"">$!{icardCash.icardMoney}</div>
+                    <div class="table-cell t3" style="width: 30%;text-align: center"">#if($!{icardCash.status}=="WAIT_CASH") 待提现#else 已提现#end </div>
+                    </div>
+                #end
+                </div>
+            </div>
+
+
+        </section>
+
+    </section>
+</section>
+
+<script>
+
+    function orderCashSubmit(){
+
+        var icardMoney = $("#icardMoney").val();
+        var reg = new RegExp("^[0-9]*$");
+
+        if (!reg.test(icardMoney)){
+            alert("请输入数字。");
+            return;
+        }
+        if(icardMoney>$!{totalIcardMoney}){
+            alert("输入金额应小于等于当前爱卡币!");
+            return;
+        }
+
+        if(icardMoney<$!{cashMoneyMin}||icardMoney>$!{cashMoneyMax}){
+            alert("输入金额应在规定提现区间内!");
+            return;
+        }
+     var data ="icardMoney="+icardMoney;
+
+        $.ajax({
+            type: "post", // 请求方式
+            url: baseUrl + "/mobile/seller/cash", //url地址
+            data: data,
+            dataType: "json",
+            success: function (data) {
+
+                if (data.errorCode == 0 ){
+                    alert("申请提现成功。")
+                    location.href = baseUrl + "/mobile/seller/orderCashList";
+                }else{
+                    alert("系统错误！")
+                }
+
+
+            }, error: function () {
+                alert("error");
+            }
+        });
+    }
+
+</script>

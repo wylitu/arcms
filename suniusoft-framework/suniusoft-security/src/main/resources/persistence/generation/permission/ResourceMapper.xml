@@ -44,6 +44,10 @@
         and rr.resource_id = res.resource_id
         and r.id=#{id}
         and res.enabled=1
+        and r.is_deleted=0
+        and res.is_deleted=0
+        and rr.is_deleted=0
+        and res.parent_resource_id=0
         order by res.priority asc
     </select>
 

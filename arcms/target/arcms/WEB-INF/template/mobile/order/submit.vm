@@ -1,0 +1,75 @@
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        提交订单
+    </title>
+</head>
+    <section class="wrap">
+    <form id="generateOrder" action="${rc.contextPath}/mobile/order/add" method="post">
+        <input type="hidden" name="goodsId" value="${goods.goodsId}"/>
+        <input type="hidden" name="price" value="${goods.nowPrice}"/>
+        <input name="token" type="hidden" class="br10" value="$!{token}"/>
+
+        <section class="pages">
+        <div class="order-submit">
+            <ul class="b-bt no_last p10">
+                <li>
+                    <div class="table">
+                        <div class="table-cell item-tit">${goods.title}</div>
+                        <div class="table-cell item-con"><span class="col_0 price">${goods.nowPrice}元</span></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="table">
+                        <div class="table-cell item-tit">数量：</div>
+                        <div class="table-cell item-con"> <span class="box_count"><i class="minus">-</i>
+              <input name="quantity" type="text" class="br10" value="1"/>
+              <i class="plus">+</i></span> </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="table">
+                        <div class="table-cell item-tit">订单总价：</div>
+                        <input name="payment" type="hidden"/>
+                        <div class="table-cell item-con"><span class="col_o price">${goods.nowPrice}元</span></div>
+                    </div>
+                </li>
+            </ul>
+            <input id="mobile" type="hidden" value="$!{user.mobile}">
+            #if($!{user.mobile} != "" && ${user.mobile})
+                <div class="p10 text-block">您绑定的手机号码</div>
+                <div class="b-bt p10 arrow-icon tel"><a href="#">${user.mobile}</a></div>
+                <div class="p10 submit">
+                    <button type="submit" class="br30 combtn">提交订单</button>
+                </div>
+            #else
+                <div class="p10 text-block">未绑定的手机号码</div>
+                <div class="b-bt p10 arrow-icon tel"><a href="${rc.contextPath}/mobile/user/bind?goodsId=$!{goods.goodsId}">去绑定</a></div>
+                <div class="p10 submit">
+                <button onclick="return validate();" type="submit" class="br30 combtn">提交订单</button>
+            </div>
+            #end
+        </div>
+    </section>
+    </form>
+</section>
+</body>
+    <script>
+
+       function validate(){
+
+           var mobile = $("#mobile").val();
+           if (mobile == '' || mobile == null) {
+               alert('手机号为空');
+               return false;
+           }else if (!(/^1\d{10}$/).test(mobile)){
+               alert('手机号码格式错误');
+               return false;
+           }
+
+           return false;
+
+       }
+
+    </script>
+</html>

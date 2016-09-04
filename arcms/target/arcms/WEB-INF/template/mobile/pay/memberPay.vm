@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <meta charset="utf-8">
+    <title>会员缴费</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="web">
+    <meta name="keywords" content="web">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/functions.js"></script>
+    <style type="text/css">#dialog{display:none;}</style>
+</head>
+<body>
+<section class="wrap">
+    <section class="pages">
+        <div class="user-center">
+            <div class="b-b  p10 arrow-icon arrow-icon-g user-center-item"> <a href="#">
+                <div class="table item">
+                    <div class="table-cell item-face">
+                        <div class="circle face"><img src="$user.headImg"></div>
+                    </div>
+                    <div class="table-cell v-m item-con">
+                        <div class="col_0 tit">$user.userName</div>
+                        <div class="col_b vip">有效期：$!dateTool.format("yyyy-MM-dd", ${user.vipExpireDate})</div>
+                    </div>
+                </div>
+            </a> </div>
+
+            <div class="b-bt  user-center-length">
+                <div class="b-b item-hd"><span class="col_3">开通时长</span></div>
+                <div class="item-bd">
+                    <ul>
+                        #foreach($item in $baseVos)
+                            <li onclick="setM('$item.packageMoney','$item.packageName','$item.packageYear')"><a href="javascript:void(0)"><p class="fs18 t1"><i>$item.packageMoney 元/$item.packageIcardMoney 爱卡币</i></p><p class="t2">$item.packageName - $item.packageYear 年</p></a></li>
+                        #end
+                    </ul>
+                </div>
+                <div class="col_3 item-value">应付金额： <i>0</i>
+                </div>
+            </div>
+
+
+            <div class="b-bt payment-order-choose">
+                <div class="p10 b-b item-hd item5"><span class="col_3">支付方式</span></div>
+                <ul class="no_last">
+                    <li>
+                        <label class="radio-label">
+                            <input name="choose" type="radio" value="1">
+                            爱卡币支付</label>
+                    </li>
+                    #if($!fromType == "app")
+                        <li>
+                            <label class="radio-label">
+                                <input name="choose" type="radio" value="3">
+                                支付宝支付</label>
+                        </li>
+                    #end
+                    <li>
+                        <label class="radio-label">
+                            <input name="choose" type="radio" value="2" >
+                            微信支付</label>
+                    </li>
+
+
+
+                </ul>
+            </div>
+
+
+            <div class="p10 submit">
+                <button onclick="showDialog();" type="button" class="br30 combtn">去付款</button>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+<div id="dialog" title="输入密码">
+    <div class="login" style="background-color: #708090;">
+        <ul>
+            <li class="binding">
+                <input id="pword" name="pword"class="inp" placeholder="请输入登陆密码">
+            </li>
+        </ul>
+        <div class="submit">
+            <button id="pwButton" type="button" class="br20 combtn" onclick="pay()">提 交</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${rc.contextPath}/media/mobile/js/jweixin-1.0.0.js"></script>
+<script>
+
+    var packageMoney = "";
+    var packageName = "";
+    var packageYear = "";
+    var setM = function(p,n,oId){
+        packageMoney = p;
+        packageName = n;
+        packageYear = oId;
+    }
+
+    var showDialog =  function(){
+
+        var choose = $('input[name="choose"]:checked').val();
+
+        if(choose == "1"){
+            $("#dialog").dialog({
+                draggable: false,
+                resizable: false,
+                height: 280,
+                modal: true,
+                buttons: {
+                    "取消": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }else{
+            pay();
+        }
+
+
+    }
+
+    function pay(){
+
+        if(packageMoney=="" &&  packageName=="" &&  packageYear==""){
+            alert("选择开通时长");
+            return;
+        }
+
+        var choose = $('input[name="choose"]:checked').val();
+
+        if(choose != "1" && choose != "2"&& choose != "3" ){
+            alert("请选择支付方式");
+            return;
+        }
+
+        var pword = $('#pword').val();
+
+        #if($!fromType == "app")
+
+            $.ajax({
+                type: 'POST',
+                url: "${rc.contextPath}/mobile/memberPay/toPay?fromType=app&token=$!token",
+                data:{
+                    "pword":pword,
+                    "packageMoney":packageMoney,
+                    "packageName":packageName,
+                    "choose":choose,
+                    "packageYear":packageYear
+                },
+                success: function (data) {
+
+                    if(choose == "1"){
+
+                        if(data != 'errorPwd'){
+                            alert(data);
+                            location.reload();
+                        }else{
+                            alert("密码错误");
+                        }
+
+                    }else{
+                        //走APP支付
+                        var type = "";
+                        if(choose == "2"){
+                            type = "wxpay";
+                        }else if(choose == "3"){
+                            type = "alipay";
+                        }
+                        var obj=eval("("+data+")");
+                        window.location.href = "jscall://"+type+"?orderid="+obj.payCode+"&title=会员充值&price="+obj.payAmount;
+                    }
+
+                },
+                error: function(data){
+                    alert("登陆失效，请重新登陆")
+                }
+            });
+
+        #else
+            $.ajax({
+                type: 'POST',
+                url: "${rc.contextPath}/mobile/memberPay/toPay?fromType=wx&token=$!token",
+                data:{
+                    "pword":pword,
+                    "packageMoney":packageMoney,
+                    "packageName":packageName,
+                    "choose":choose,
+                    "packageYear":packageYear
+                },
+                success: function (data) {
+                    //爱卡币支付
+                    if(choose == "1"){
+
+                        if(data != 'errorPwd'){
+                            alert(data);
+                            location.reload();
+                        }else{
+                            alert("密码错误");
+                        }
+                    }else{
+                        //新创建订单,走微信支付
+                        var obj=eval("("+data+")");
+                        if(obj.self_result!='suc'){
+                            alert(obj.self_msg);
+                            return;
+                        }
+                        WeixinJSBridge.invoke('getBrandWCPayRequest',{
+                            "appId" : obj.appId,
+                            "timeStamp":obj.timeStamp,
+                            "nonceStr" : obj.nonceStr,
+                            "package" : obj.packageValue,
+                            "signType" : obj.signType,
+                            "paySign" : obj.paySign
+                        },function(res){
+                            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                                //成功跳转的url
+                                window.location.href=obj.sendSucUrl;
+                            }else{
+                                //失败跳转的url
+                                window.location.href=obj.sendFailUrl;
+                            }
+                        });
+                    }
+                },
+                error: function(data){
+                    alert("登陆失效，请重新登陆")
+                }
+            });
+        #end
+
+
+
+    }
+
+    function appCall(){
+        window.location.href = "${rc.contextPath}/mobile/memberPay/memberPayView?fromType=app";
+    }
+
+</script>
+
+</body>
+</html>

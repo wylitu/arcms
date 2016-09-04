@@ -1,0 +1,28 @@
+#set($layout = "/layout/blank.vm")
+
+<div class="row" >
+    <div class="col-xs-12">
+        <div >
+            <table align="center" border="1" style="margin-top: 10px;">
+                <tr style="color:deepskyblue;font-size: 16px">
+                    <th width="150px">用户总数</th>
+                    <th width="150px">会员消费总额</th>
+                    <th width="150px">会员爱卡支付</th>
+                    <th width="150px">会员人民币支付</th>
+                    <th width="150px">交易完成笔数</th>
+                    <th width="150px">卡劵数</th>
+                    <th width="150px">获利金额</th>
+                </tr>
+                <tr style="color:#000000">
+                    <td>${userCount}</td>
+                    <td>${memberCount}</td>
+                    <td>${icardCost}</td>
+                    <td>${cnyCost}</td>
+                    <td>${tradeFinish}</td>
+                    <td>${consumedCard}</td>
+                    <td>${sellerProfit}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

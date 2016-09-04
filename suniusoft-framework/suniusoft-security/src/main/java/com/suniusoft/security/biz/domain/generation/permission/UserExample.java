@@ -137,6 +137,18 @@ public class UserExample {
         this.queryColumns.add("password");
     }
 
+    public void addQqOpenIdQueryColumn() {
+        this.queryColumns.add("qq_open_id");
+    }
+
+    public void addWxOpenIdQueryColumn() {
+        this.queryColumns.add("wx_open_id");
+    }
+
+    public void addHeadImgQueryColumn() {
+        this.queryColumns.add("head_img");
+    }
+
     public void addSexQueryColumn() {
         this.queryColumns.add("sex");
     }
@@ -935,6 +947,216 @@ public class UserExample {
 
         public Criteria andPasswordNotBetween(String value1, String value2) {
             addCriterion("password not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdIsNull() {
+            addCriterion("qq_open_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdIsNotNull() {
+            addCriterion("qq_open_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdEqualTo(String value) {
+            addCriterion("qq_open_id =", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdNotEqualTo(String value) {
+            addCriterion("qq_open_id <>", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdGreaterThan(String value) {
+            addCriterion("qq_open_id >", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdGreaterThanOrEqualTo(String value) {
+            addCriterion("qq_open_id >=", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdLessThan(String value) {
+            addCriterion("qq_open_id <", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdLessThanOrEqualTo(String value) {
+            addCriterion("qq_open_id <=", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdLike(String value) {
+            addCriterion("qq_open_id like", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdNotLike(String value) {
+            addCriterion("qq_open_id not like", value, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdIn(List<String> values) {
+            addCriterion("qq_open_id in", values, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdNotIn(List<String> values) {
+            addCriterion("qq_open_id not in", values, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdBetween(String value1, String value2) {
+            addCriterion("qq_open_id between", value1, value2, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqOpenIdNotBetween(String value1, String value2) {
+            addCriterion("qq_open_id not between", value1, value2, "qqOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdIsNull() {
+            addCriterion("wx_open_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdIsNotNull() {
+            addCriterion("wx_open_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdEqualTo(String value) {
+            addCriterion("wx_open_id =", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdNotEqualTo(String value) {
+            addCriterion("wx_open_id <>", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdGreaterThan(String value) {
+            addCriterion("wx_open_id >", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdGreaterThanOrEqualTo(String value) {
+            addCriterion("wx_open_id >=", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdLessThan(String value) {
+            addCriterion("wx_open_id <", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdLessThanOrEqualTo(String value) {
+            addCriterion("wx_open_id <=", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdLike(String value) {
+            addCriterion("wx_open_id like", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdNotLike(String value) {
+            addCriterion("wx_open_id not like", value, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdIn(List<String> values) {
+            addCriterion("wx_open_id in", values, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdNotIn(List<String> values) {
+            addCriterion("wx_open_id not in", values, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdBetween(String value1, String value2) {
+            addCriterion("wx_open_id between", value1, value2, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxOpenIdNotBetween(String value1, String value2) {
+            addCriterion("wx_open_id not between", value1, value2, "wxOpenId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgIsNull() {
+            addCriterion("head_img is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgIsNotNull() {
+            addCriterion("head_img is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgEqualTo(String value) {
+            addCriterion("head_img =", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotEqualTo(String value) {
+            addCriterion("head_img <>", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgGreaterThan(String value) {
+            addCriterion("head_img >", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgGreaterThanOrEqualTo(String value) {
+            addCriterion("head_img >=", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLessThan(String value) {
+            addCriterion("head_img <", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLessThanOrEqualTo(String value) {
+            addCriterion("head_img <=", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLike(String value) {
+            addCriterion("head_img like", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotLike(String value) {
+            addCriterion("head_img not like", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgIn(List<String> values) {
+            addCriterion("head_img in", values, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotIn(List<String> values) {
+            addCriterion("head_img not in", values, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgBetween(String value1, String value2) {
+            addCriterion("head_img between", value1, value2, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotBetween(String value1, String value2) {
+            addCriterion("head_img not between", value1, value2, "headImg");
             return (Criteria) this;
         }
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+
+    var lng = 0, lat = 0, cityLocation = '金华', bigCity = '金华';
+    function rendLocation(lngx, latx, cityx, bigCityx){
+        lng = lngx
+        lat = latx
+        cityLocation = cityx
+        bigCity = bigCityx
+    }
+    var baseUrl =window.location.origin + "${rc.contextPath}";
+    function isNullOrEmpty(strVal) {
+        return strVal == '' || strVal == null || strVal == undefined || strVal == "undefined"
+    }
+
+    //获取时间函数
+    function getLocalTime(nS) {
+        return new Date(parseInt(nS)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+    }
+
+    function getFormatTime(data){
+
+        var datetime = new Date();
+        datetime.setTime(data);
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        var hour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+        var minute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        var second = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+
+    function getFormatTime(data){
+
+        var datetime = new Date();
+        datetime.setTime(data);
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+
+        return year + "-" + month + "-" + date;
+    }
+</script>
+
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="icard">
+    <meta name="keywords" content="icard">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="${rc.contextPath}/media/css/jquery-ui-1.10.3.full.min.css" />
+    <script src="${rc.contextPath}/media/mobile/js/jquery-1.11.0.min.js"></script>
+    <script src="${rc.contextPath}/media/js/jquery.validate.min.js"></script>
+    <script src="${rc.contextPath}/media/js/jquery.qrcode.min.js"></script>
+    <script src="${rc.contextPath}/media/mobile/js/functions.js"></script>
+    <script src="${rc.contextPath}/media/mobile/js/jQuery.md5.js"></script>
+    <script src="${rc.contextPath}/media/mobile/js/Validform_v5.3.2_min.js"></script>
+    <script src="${rc.contextPath}/media/mobile/js/index/provinceList.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="${rc.contextPath}/media/mobile/js/jquery.raty.min.js"></script>
+    <script src="${rc.contextPath}/media/js/jquery-ui-1.10.3.full.min.js"></script>
+    <!-- inline scripts related to this page -->
+
+<body>
+$screen_content
+</body>
+</html>

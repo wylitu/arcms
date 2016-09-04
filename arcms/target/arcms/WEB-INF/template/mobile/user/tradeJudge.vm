@@ -1,0 +1,38 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>商品评价</title>
+</head>
+<section class="wrap">
+    <form action="${rc.contextPath}/mobile/user/doJudge" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="tid" value="$trade.tid"/>
+    <section class="pages">
+        <div class="order-evaluation-form">
+            <input type="hidden" name="starLevel"/>
+            <input type="hidden" name="token" value="${token}"/>
+            <div class="p10 b-bt order-evaluation-form-star" style="margin-top: 50px"> <span class="fr"><i id="hint"></i>星</span><span class="star"></span> </div>
+            <div class="p10 b-bt order-evaluation-form-textarea">
+                <textarea name="content" cols="" rows="" placeholder="对这次消费满意吗？分享一下吧！"></textarea>
+            </div>
+            <div class="p10 b-bt order-evaluation-form-photo"> <a href="javascript:void(0)" class="btn"><input name="files" type="file" accept="image/*" /></a> </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-search"> <button id="btnSubmit" type="submit" class="br20 combtn">提 交</button> </div>
+
+        </div>
+    </section>
+    </form>
+</section>
+<script type="text/javascript">
+    $(function() {
+        $('.star').raty({path: "${rc.contextPath}/media/mobile/star", score: 4 ,size:15,  target    : '#hint',targetType: 'number',targetKeep: true});
+    });
+    $("#btnSubmit").click(function(event){
+        var starLevel = $("#hint").html();
+        if(!starLevel){
+            alert("请给商家打分");
+            return;
+        }
+        $('input[name="starLevel"]').val(starLevel)
+        $("form").submit();
+        event.preventDefault();
+    });
+
+</script>

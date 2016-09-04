@@ -1,0 +1,75 @@
+#set($layout = "/layout/blank.vm")
+<script type="text/javascript" src="${rc.contextPath}/media/js/admin/statistics/statistics.js"></script>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <div class="BoxStyleA">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <i class="modal-logo interact"></i>
+                    <ul class="breadcrumb" style="margin-left: 2px;">
+                        <li></li>
+                        <li>统计分析</li>
+                        <li>消费详情</li>
+                    </ul>
+                    <!-- .breadcrumb -->
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form class="form-search" id="statisticsSearchForm">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="ml20">商家名称：<input type="text" name="sellerName"/></span>
+                                        <span class="ml20">商家分类：<input type="text" name="sellerType"/></span>
+                                        <span class="ml20">所属区域：<input type="text" name="sellerCity"/></span>
+                                        <span>
+                                          <button class="btn_searchA ml20" type="button" id="statisticsSearch"> 查询  </button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 20px">
+                                        <span class="ml20">消费开始时间：<input  type="text" name="stStart" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                                        <span class="ml20">消费结束时间：<input  type="text" name="stEnd" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></span>
+                                        <span class="ml20">推荐人：<input type="text" name="recommendName"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>&nbsp</div>
+            <div class="BoxStyleA">
+                <div class="BoxStyleATop">
+                    <span class="fl">用户信息</span>
+                    <!--<a href="" class="fr">X</a>-->
+                </div>
+                <table id="costDetailTable" class="table table-striped table-bordered table-hover" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>商家</th>
+                        <th>商品</th>
+                        <th>商品类型</th>
+                        <th>所属区域</th>
+                        <th>佣金比列(%)</th>
+                        <th>消费用户</th>
+                        <th>消费方式</th>
+                        <th>消费时间</th>
+                        <th>消费总金额</th>
+                        <th>商家获利</th>
+                        <th>爱卡获利</th>
+                        <th>会员获利</th>
+                        <th>推荐人获利</th>
+                        <th>推荐人用户</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="tbContainer">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 /**
  *   
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 线程池
  *                </p>
@@ -37,7 +37,7 @@ public class ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor 
 
     public ThreadPoolExecutor(){
 
-        this(DEFAULT_CORE_POOLSIZE, DEFAULT_MAXIMUM_POOLSIZE, DEFAULT_KEEP_ALIVE_TIME, TimeUnit.SECONDS, new ArrayBlockingQueue(DEFAULT_ARRAY_BLOCKING_QUEUE_SIZE),new ThreadPoolExecutor.CallerRunsPolicy());
+        this(DEFAULT_CORE_POOLSIZE, DEFAULT_MAXIMUM_POOLSIZE, DEFAULT_KEEP_ALIVE_TIME, TimeUnit.SECONDS, new ArrayBlockingQueue(DEFAULT_ARRAY_BLOCKING_QUEUE_SIZE),new CallerRunsPolicy());
 
     }
 

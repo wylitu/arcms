@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suniusoft.common.biz.dao.IdGenMapper" >
+  <resultMap id="BaseResultMap" type="com.suniusoft.common.biz.domain.IdGen" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.suniusoft.common.biz.domain.IdGen" useGeneratedKeys="true" keyProperty="id" >
+    insert into id_gen (id)
+    values (#{id,jdbcType=BIGINT})
+  </insert>
+
+</mapper>

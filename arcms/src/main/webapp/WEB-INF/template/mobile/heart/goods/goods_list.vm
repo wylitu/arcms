@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <meta charset="utf-8">
+   <title>爱卡夺宝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="web">
+    <meta name="keywords" content="web">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+##    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+##    <link rel="stylesheet" href="css/style.css" type="text/css" />
+##    <script src="js/jquery-1.11.0.min.js"></script>
+##    <script src="js/functions.js"></script>
+
+</head>
+<body>
+<section class="wrap">
+    <header>
+        <div class="br30 header-search">
+            <form action="${rc.contextPath}/mobile/heart/goods/list" method="post">
+                <input name="goodsName" type="text" class="inp" required placeholder="输入宝贝名称" value="$!goodsName">
+                <button type="submit" class="btn"></button>
+            </form>
+        </div>
+    </header>
+    <section class="flexslider mainslide">
+        <ul class="slides">
+            #foreach($ad in $adList)
+                <li>
+                    <a href="${rc.contextPath}/$ad.contentDetail">
+                        <img src="${rc.contextPath}/$ad.contentUrl" />
+                    </a>
+                </li>
+            #end
+##
+##            <li><img src="${rc.contextPath}/media/mobile/images/duobao-banner.jpg" /></li>
+##            <li><img src="${rc.contextPath}/media/mobile/images/duobao-banner.jpg" /></li>
+        </ul>
+    </section>
+    <section class="mt10 bg-w duobao-home-list">
+        <ul>
+
+            #foreach($goods in $goodsList)
+                <li>
+                    <div class="photo"><img src="${rc.contextPath}${goods.goodsImg}" width="200px" height="100px" </div>
+                    <div class="p10 tit">${goods.goodsName}</div>
+                    <div class="p10 other">
+                        <div class="progress"><i class="num">${goods.processDesc}</i>
+                            <canvas class="step-canvas" rel="${goods.process}"></canvas>
+                        </div>
+                        <a href="${rc.contextPath}/mobile/heart/goods/detail?id=${goods.id}" class="view">查看详情</a>
+                    </div>
+                </li>
+            #end
+##            <li>
+##                <div class="photo"><img src="images/duobao-p1.jpg"></div>
+##                <div class="p10 tit">Apple iPhone6s Plus 16g颜色随机</div>
+##                <div class="p10 other">
+##                    <div class="progress"><i class="num">40%</i>
+##                        <canvas  id="step2"></canvas>
+##                    </div>
+##                    <a href="#" class="view">查看详情</a>
+##                </div>
+##            </li>
+##
+##
+##            <li>
+##                <div class="photo"><img src="images/duobao-p1.jpg"></div>
+##                <div class="p10 tit">Apple iPhone6s Plus 16g颜色随机</div>
+##                <div class="p10 other">
+##                    <div class="progress"><i class="num">90%</i>
+##                        <canvas  id="step3"></canvas>
+##                    </div>
+##                    <a href="#" class="view">查看详情</a>
+##                </div>
+##            </li>
+##
+##
+##            <li>
+##                <div class="photo"><img src="images/duobao-p1.jpg"></div>
+##                <div class="p10 tit">Apple iPhone6s Plus 16g颜色随机</div>
+##                <div class="p10 other">
+##                    <div class="progress"><i class="num">50%</i>
+##                        <canvas  id="step4"></canvas>
+##                    </div>
+##                    <a href="#" class="view">查看详情</a>
+##                </div>
+##            </li>
+
+        </ul>
+    </section>
+</section>
+##<nav>
+##    <ul>
+##        <li class="on"><a href="#"><i class="icon"></i>首页</a></li>
+##        <li><a href="#"><i class="icon"></i>推荐</a></li>
+##        <li><a href="#"><i class="icon"></i>我的</a></li>
+##        <li><a href="#"><i class="icon"></i>更多</a></li>
+##    </ul>
+##</nav>
+<link rel="stylesheet" href="${rc.contextPath}/media/mobile/css/flexslider.css" type="text/css" media="screen" />
+<script src="${rc.contextPath}/media/mobile/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('.flexslider').flexslider({
+            animation: "slide",
+            directionNav: false,
+            start: function(slider){
+                //$('body').removeClass('loading');
+            }
+        });
+
+    });
+
+</script>
+<script src="${rc.contextPath}/media/mobile/js/circle-progress.js"></script>
+
+<script>
+    $(function(){
+        $(".step-canvas").each(function(){
+            var val = $(this).attr("rel");
+            try{
+                val = parseFloat(val);
+                $(this).circleProgress({value:val,startAngle:-33,thickness:3,reverse:true,size:35,fill:{color:"#f4394e"}});
+            }catch (e){
+            }
+
+        });
+//        $('#step1').circleProgress({value:0.75,startAngle:-33,thickness:3,reverse:true,size:35,fill:{color:"#f4394e"}});
+//        $('#step2').circleProgress({value:0.40,startAngle:-33,thickness:3,reverse:true,size:35,fill:{color:"#f4394e"}});
+//        $('#step3').circleProgress({value:0.90,startAngle:-33,thickness:3,reverse:true,size:35,fill:{color:"#f4394e"}});
+//        $('#step4').circleProgress({value:0.50,startAngle:-33,thickness:3,reverse:true,size:35,fill:{color:"#f4394e"}});
+    });
+
+</script>
+</html>

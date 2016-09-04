@@ -10,7 +10,7 @@
     <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="rmb_return_ratio" property="rmbReturnRatio" jdbcType="VARCHAR" />
-    <result column="icard_return_ratio" property="icardReturnRatio" jdbcType="VARCHAR" />
+    <result column="arcms_return_ratio" property="arcmsReturnRatio" jdbcType="VARCHAR" />
     <result column="required_integral" property="requiredIntegral" jdbcType="BIGINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, name, rmb_return_ratio, 
-    icard_return_ratio, required_integral, description
+    arcms_return_ratio, required_integral, description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.arcms.biz.domain.generation.user.MemberLevelExample" >
     select
@@ -123,11 +123,11 @@
   <insert id="insert" parameterType="com.arcms.biz.domain.generation.user.MemberLevel" useGeneratedKeys="true" keyProperty="id" >
     insert into member_level (id, gmt_created, gmt_modified, 
       created_by, modified_by, is_deleted, 
-      name, rmb_return_ratio, icard_return_ratio, 
+      name, rmb_return_ratio, arcms_return_ratio,
       required_integral, description)
     values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{rmbReturnRatio,jdbcType=VARCHAR}, #{icardReturnRatio,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{rmbReturnRatio,jdbcType=VARCHAR}, #{arcmsReturnRatio,jdbcType=VARCHAR},
       #{requiredIntegral,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.arcms.biz.domain.generation.user.MemberLevel" useGeneratedKeys="true" keyProperty="id" >
@@ -157,8 +157,8 @@
       <if test="rmbReturnRatio != null" >
         rmb_return_ratio,
       </if>
-      <if test="icardReturnRatio != null" >
-        icard_return_ratio,
+      <if test="arcmsReturnRatio != null" >
+        arcms_return_ratio,
       </if>
       <if test="requiredIntegral != null" >
         required_integral,
@@ -192,8 +192,8 @@
       <if test="rmbReturnRatio != null" >
         #{rmbReturnRatio,jdbcType=VARCHAR},
       </if>
-      <if test="icardReturnRatio != null" >
-        #{icardReturnRatio,jdbcType=VARCHAR},
+      <if test="arcmsReturnRatio != null" >
+        #{arcmsReturnRatio,jdbcType=VARCHAR},
       </if>
       <if test="requiredIntegral != null" >
         #{requiredIntegral,jdbcType=BIGINT},
@@ -225,7 +225,7 @@
       is_deleted = #{record.isDeleted,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       rmb_return_ratio = #{record.rmbReturnRatio,jdbcType=VARCHAR},
-      icard_return_ratio = #{record.icardReturnRatio,jdbcType=VARCHAR},
+      arcms_return_ratio = #{record.arcmsReturnRatio,jdbcType=VARCHAR},
       required_integral = #{record.requiredIntegral,jdbcType=BIGINT},
       description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -245,7 +245,7 @@
       is_deleted = #{isDeleted,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       rmb_return_ratio = #{rmbReturnRatio,jdbcType=VARCHAR},
-      icard_return_ratio = #{icardReturnRatio,jdbcType=VARCHAR},
+      arcms_return_ratio = #{arcmsReturnRatio,jdbcType=VARCHAR},
       required_integral = #{requiredIntegral,jdbcType=BIGINT},
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

@@ -2,7 +2,7 @@ package com.suniusoft.security.interceptor;
 
 import com.suniusoft.common.aspect.SecurityContextHolder;
 import com.suniusoft.security.annotation.PreventDuplicateSubmission;
-import com.suniusoft.security.biz.service.repeatSubmit.RepeatSubmitTokenService;
+import com.suniusoft.security.biz.service.token.SysTokenService;
 import com.suniusoft.security.vo.SysTokenVO;
 import org.apache.log4j.Logger;
 import org.apache.struts.util.TokenProcessor;
@@ -31,7 +31,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
     private static long THREE_MINUTES_MILLIS = 30 * 60 * 1000;
 
     @Autowired
-    private RepeatSubmitTokenService repeatSubmitTokenService;
+    private SysTokenService sysTokenService;
 
     /**
      * 对于打@PreventDuplicateSubmission标注的请求处理
@@ -77,7 +77,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
                 if (needCreateToken) {
 
                     token = TokenProcessor.getInstance().generateToken(request);
-                    request.setAttribute("token", token);
+                    request.setAttribute("submit_token", token);
                     SysTokenVO sysToken = new SysTokenVO();
                     sysToken.setToken(token);
                     sysToken.setUserName(userName);
@@ -87,10 +87,10 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
                      */
                     sysToken.setGmtExpired(new Date(System.currentTimeMillis() + THREE_MINUTES_MILLIS));
 
-                    repeatSubmitTokenService.createToken(sysToken);
+                    sysTokenService.createToken(sysToken);
 
-                    logger.info("create token [userName:" + userName +
-                            ",token:" + token + ",url:" + request.getServletPath() + "]");
+                    logger.info("create submit_token [userName:" + userName +
+                            ",submit_token:" + token + ",url:" + request.getServletPath() + "]");
                 }
 
                 boolean needValidateToken = annotation.needValidateToken();
@@ -100,8 +100,8 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
                  */
                 if (needValidateToken) {
 
-                    token = request.getParameter("token");
-                    if (repeatSubmitTokenService.validateToken(token)) {
+                    token = request.getParameter("submit_token");
+                    if (sysTokenService.isRepeatSubmit(token)) {
                         return true;
                     }
 
@@ -115,7 +115,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
         } catch (Exception e) {
 
             logger.error("RepeatSubmitInterceptor.preHandle error , [userName:" + userName +
-                    ",token:" + token + ",url:" + request.getServletPath() + "]");
+                    ",submit_token:" + token + ",url:" + request.getServletPath() + "]");
 
             throw new RuntimeException("表单已经提交，请不要重复提交!");
 

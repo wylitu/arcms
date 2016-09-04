@@ -4,7 +4,7 @@ import com.suniusoft.common.runner.exception.BizRunnerException;
 import com.suniusoft.common.runner.executor.BizExecutor;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: <p>
  *                 业务异步执行器
  *                </p>

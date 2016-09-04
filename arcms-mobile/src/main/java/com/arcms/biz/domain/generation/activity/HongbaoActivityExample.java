@@ -139,8 +139,8 @@ public class HongbaoActivityExample {
         this.queryColumns.add("number");
     }
 
-    public void addIcardCoinQueryColumn() {
-        this.queryColumns.add("icard_coin");
+    public void addarcmsCoinQueryColumn() {
+        this.queryColumns.add("arcms_coin");
     }
 
     public void addNumberObtainQueryColumn() {
@@ -151,12 +151,12 @@ public class HongbaoActivityExample {
         this.queryColumns.add("STATES");
     }
 
-    public void addTotalIcardCoinQueryColumn() {
-        this.queryColumns.add("total_icard_coin");
+    public void addTotalarcmsCoinQueryColumn() {
+        this.queryColumns.add("total_arcms_coin");
     }
 
-    public void addObtainIcardCoinQueryColumn() {
-        this.queryColumns.add("obtain_icard_coin");
+    public void addObtainarcmsCoinQueryColumn() {
+        this.queryColumns.add("obtain_arcms_coin");
     }
 
     protected abstract static class GeneratedCriteria {
@@ -890,63 +890,63 @@ public class HongbaoActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinIsNull() {
-            addCriterion("icard_coin is null");
+        public Criteria andarcmsCoinIsNull() {
+            addCriterion("arcms_coin is null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinIsNotNull() {
-            addCriterion("icard_coin is not null");
+        public Criteria andarcmsCoinIsNotNull() {
+            addCriterion("arcms_coin is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinEqualTo(Long value) {
-            addCriterion("icard_coin =", value, "icardCoin");
+        public Criteria andarcmsCoinEqualTo(Long value) {
+            addCriterion("arcms_coin =", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinNotEqualTo(Long value) {
-            addCriterion("icard_coin <>", value, "icardCoin");
+        public Criteria andarcmsCoinNotEqualTo(Long value) {
+            addCriterion("arcms_coin <>", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinGreaterThan(Long value) {
-            addCriterion("icard_coin >", value, "icardCoin");
+        public Criteria andarcmsCoinGreaterThan(Long value) {
+            addCriterion("arcms_coin >", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinGreaterThanOrEqualTo(Long value) {
-            addCriterion("icard_coin >=", value, "icardCoin");
+        public Criteria andarcmsCoinGreaterThanOrEqualTo(Long value) {
+            addCriterion("arcms_coin >=", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinLessThan(Long value) {
-            addCriterion("icard_coin <", value, "icardCoin");
+        public Criteria andarcmsCoinLessThan(Long value) {
+            addCriterion("arcms_coin <", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinLessThanOrEqualTo(Long value) {
-            addCriterion("icard_coin <=", value, "icardCoin");
+        public Criteria andarcmsCoinLessThanOrEqualTo(Long value) {
+            addCriterion("arcms_coin <=", value, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinIn(List<Long> values) {
-            addCriterion("icard_coin in", values, "icardCoin");
+        public Criteria andarcmsCoinIn(List<Long> values) {
+            addCriterion("arcms_coin in", values, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinNotIn(List<Long> values) {
-            addCriterion("icard_coin not in", values, "icardCoin");
+        public Criteria andarcmsCoinNotIn(List<Long> values) {
+            addCriterion("arcms_coin not in", values, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinBetween(Long value1, Long value2) {
-            addCriterion("icard_coin between", value1, value2, "icardCoin");
+        public Criteria andarcmsCoinBetween(Long value1, Long value2) {
+            addCriterion("arcms_coin between", value1, value2, "arcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andIcardCoinNotBetween(Long value1, Long value2) {
-            addCriterion("icard_coin not between", value1, value2, "icardCoin");
+        public Criteria andarcmsCoinNotBetween(Long value1, Long value2) {
+            addCriterion("arcms_coin not between", value1, value2, "arcmsCoin");
             return (Criteria) this;
         }
 
@@ -1080,123 +1080,123 @@ public class HongbaoActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinIsNull() {
-            addCriterion("total_icard_coin is null");
+        public Criteria andTotalarcmsCoinIsNull() {
+            addCriterion("total_arcms_coin is null");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinIsNotNull() {
-            addCriterion("total_icard_coin is not null");
+        public Criteria andTotalarcmsCoinIsNotNull() {
+            addCriterion("total_arcms_coin is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinEqualTo(Long value) {
-            addCriterion("total_icard_coin =", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinEqualTo(Long value) {
+            addCriterion("total_arcms_coin =", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinNotEqualTo(Long value) {
-            addCriterion("total_icard_coin <>", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinNotEqualTo(Long value) {
+            addCriterion("total_arcms_coin <>", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinGreaterThan(Long value) {
-            addCriterion("total_icard_coin >", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinGreaterThan(Long value) {
+            addCriterion("total_arcms_coin >", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinGreaterThanOrEqualTo(Long value) {
-            addCriterion("total_icard_coin >=", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinGreaterThanOrEqualTo(Long value) {
+            addCriterion("total_arcms_coin >=", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinLessThan(Long value) {
-            addCriterion("total_icard_coin <", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinLessThan(Long value) {
+            addCriterion("total_arcms_coin <", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinLessThanOrEqualTo(Long value) {
-            addCriterion("total_icard_coin <=", value, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinLessThanOrEqualTo(Long value) {
+            addCriterion("total_arcms_coin <=", value, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinIn(List<Long> values) {
-            addCriterion("total_icard_coin in", values, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinIn(List<Long> values) {
+            addCriterion("total_arcms_coin in", values, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinNotIn(List<Long> values) {
-            addCriterion("total_icard_coin not in", values, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinNotIn(List<Long> values) {
+            addCriterion("total_arcms_coin not in", values, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinBetween(Long value1, Long value2) {
-            addCriterion("total_icard_coin between", value1, value2, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinBetween(Long value1, Long value2) {
+            addCriterion("total_arcms_coin between", value1, value2, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andTotalIcardCoinNotBetween(Long value1, Long value2) {
-            addCriterion("total_icard_coin not between", value1, value2, "totalIcardCoin");
+        public Criteria andTotalarcmsCoinNotBetween(Long value1, Long value2) {
+            addCriterion("total_arcms_coin not between", value1, value2, "totalarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinIsNull() {
-            addCriterion("obtain_icard_coin is null");
+        public Criteria andObtainarcmsCoinIsNull() {
+            addCriterion("obtain_arcms_coin is null");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinIsNotNull() {
-            addCriterion("obtain_icard_coin is not null");
+        public Criteria andObtainarcmsCoinIsNotNull() {
+            addCriterion("obtain_arcms_coin is not null");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinEqualTo(Long value) {
-            addCriterion("obtain_icard_coin =", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinEqualTo(Long value) {
+            addCriterion("obtain_arcms_coin =", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinNotEqualTo(Long value) {
-            addCriterion("obtain_icard_coin <>", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinNotEqualTo(Long value) {
+            addCriterion("obtain_arcms_coin <>", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinGreaterThan(Long value) {
-            addCriterion("obtain_icard_coin >", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinGreaterThan(Long value) {
+            addCriterion("obtain_arcms_coin >", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinGreaterThanOrEqualTo(Long value) {
-            addCriterion("obtain_icard_coin >=", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinGreaterThanOrEqualTo(Long value) {
+            addCriterion("obtain_arcms_coin >=", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinLessThan(Long value) {
-            addCriterion("obtain_icard_coin <", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinLessThan(Long value) {
+            addCriterion("obtain_arcms_coin <", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinLessThanOrEqualTo(Long value) {
-            addCriterion("obtain_icard_coin <=", value, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinLessThanOrEqualTo(Long value) {
+            addCriterion("obtain_arcms_coin <=", value, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinIn(List<Long> values) {
-            addCriterion("obtain_icard_coin in", values, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinIn(List<Long> values) {
+            addCriterion("obtain_arcms_coin in", values, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinNotIn(List<Long> values) {
-            addCriterion("obtain_icard_coin not in", values, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinNotIn(List<Long> values) {
+            addCriterion("obtain_arcms_coin not in", values, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinBetween(Long value1, Long value2) {
-            addCriterion("obtain_icard_coin between", value1, value2, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinBetween(Long value1, Long value2) {
+            addCriterion("obtain_arcms_coin between", value1, value2, "obtainarcmsCoin");
             return (Criteria) this;
         }
 
-        public Criteria andObtainIcardCoinNotBetween(Long value1, Long value2) {
-            addCriterion("obtain_icard_coin not between", value1, value2, "obtainIcardCoin");
+        public Criteria andObtainarcmsCoinNotBetween(Long value1, Long value2) {
+            addCriterion("obtain_arcms_coin not between", value1, value2, "obtainarcmsCoin");
             return (Criteria) this;
         }
     }

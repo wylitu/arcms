@@ -62,6 +62,12 @@
                 <if test="roleId != null">
                     and c.role_id = #{roleId}
                 </if>
+                <if test="memberLevelId != null">
+                    and a.member_level_id = #{memberLevelId}
+                </if>
+                <if test="recommendUserId != null">
+                    and a.recommend_user_id = #{recommendUserId}
+                </if>
             </trim>
         </where>
 

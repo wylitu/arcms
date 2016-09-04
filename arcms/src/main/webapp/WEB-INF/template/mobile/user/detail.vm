@@ -1,0 +1,255 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <link rel="stylesheet" href="${rc.contextPath}/media/mobile/select/css/select.css" type="text/css" />
+    <script src="${rc.contextPath}/media/mobile/select/js/geo.js"></script>
+
+    <title>
+        用户信息
+    </title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="business-detail">
+            <div class="p10 b-b business-detail-item">
+                <div class="table">
+                    <div class="table-cell item-photo"><img src="$!user.headImg"></div>
+                    <div class="table-cell v-t item-con">
+                        <div class="fs16 col_0 tit">个人信息<span id="error"><a style="color:red""></a></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="p10 b-b business-detail-sale"> <span class="tit">爱卡币余额:<i class="fs16 col_o">$numberTool.format("#0.00",$!{user.balanceVirtualCurrency})元</i></span> </div>
+            <form id="userForm" action="${rc.contextPath}/mobile/user/modify" method="post">
+                <div class="bg-w business-detail-guide head-search">
+                    <ul>
+                        <input name="token" type="hidden" value="$!{token}">
+                        <li><a href="#">
+                            <p class="fs16 col_o t1"><input class="input_user" name="userName" type="text" value="$!{user.userName}"></input></p>
+                            <p class="t2">昵称</p>
+                        </a></li>
+                        <li style="width: 50%;height: 100%" ><a href="#">
+                            <p class="fs16 col_o t1"><input class="input_user" name="age" type="text" value="$!{user.age}"></input></p>
+                            <p class="t2">年龄</p>
+                        </a></li>
+
+                        <li style="width: 50%;height: 70px" "><a href="#">
+                            <p class="fs16 col_o t1"><select name="sex" class="btn-select">
+                                <option value="1" #if($user.sex == 1) selected #end>男</option>
+                                <option value="0"#if($user.sex == 0) selected #end>女</option>
+                            </select></p>
+                            <p class="t2">性别</p>
+                        </a>
+                        </li>
+
+                        <li><a href="#">
+                            <p class="fs16 col_o t1"><input class="input_user" name="email" type="text" value="$!{user.email}"></input></p>
+                            <p class="t2">邮件</p>
+                        </a></li>
+
+                        <li style="width: 30%;border-right: none"><a href="#">
+                            <p class="fs16 col_o t1"><select id="province" name="province" exist="$!{user.province}" class="btn-select">
+                            </select></p>
+                            <p class="t2">省</p>
+                        </a></li>
+                        <li style="width: 27%;border-right: none"><a href="#">
+                            <p class="fs16 col_o t1"><select id="city" name="city"  exist="$!{user.city}" class="btn-select">
+                            </select></p>
+                            <p class="t2">市</p>
+                        </a></li>
+                        <li style="width: 43%;border-right: none"><a href="#">
+                            <p class="fs16 col_o t1"><select id="town" name="district"  exist="$!{user.district}" class="btn-select">
+                            </select></p>
+                            <p class="t2">区</p>
+                        </a></li>
+                        <li><a href="#">
+                            <p class="fs16 col_o t1"><input class="input_user" name="address" ype="text" value="$!{user.address}"></input></p>
+                            <p class="t2">地址</p>
+                        </a></li>
+                        <li><a href="#">
+                            <p class="fs16 col_o t1"><input class="input_user" name="identityCard" ype="text" value="$!{user.identityCard}"></input></p>
+                            <p class="t2">身份证</p>
+                        </a></li>
+                    </ul>
+                </div>
+            <div class="p10 arrow-icon arrow-icon-g b-bt business-detail-search"> <button id="btnSubmit" type="submit" class="br20 combtn">提 交</button> </div>
+            </form>
+        </div>
+
+    </section>
+</section>
+<style>
+    .input_user{
+        /*background-color: rgba(99, 160, 89, 0.68)!important;*/
+        width: 60%!important;
+        height: 30px;
+        font-size: 16px!important;
+        color:#ed611b!important;
+    }
+</style>
+
+<script>
+
+    var provinces = getAllProvince()
+    var existProvince = $('#userForm select[name="province"]').attr('exist')
+    var existCity = $('#userForm select[name="city"]').attr('exist')
+    var existDistrict = $('#userForm select[name="district"]').attr('exist')
+    var isValidateProvice = false;
+    for(var i = 0; i < provinces.length; i++){
+        if(existProvince == provinces[i]){
+            $('#userForm select[name="province"]').append('<option value="' + provinces[i] + '" selected>' + provinces[i] + '</option>')
+            isValidateProvice = true;
+        }else{
+            $('#userForm select[name="province"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+        }
+    }
+    if(existProvince && isValidateProvice){
+        changeProvince(existProvince, existCity)
+    }else{
+        changeProvince(provinces[0])
+    }
+    if(existCity && isValidateProvice){
+        changeCity(existCity, existDistrict)
+    }else{
+        changeCity(getCityByProvince(provinces[0])[0])
+    }
+
+    $('#userForm select[name="province"]').change(function(){
+        changeProvince($(this).val())
+        changeCity(getCityByProvince($(this).val())[0])
+    })
+    function changeProvince(province, city){
+        var cities = getCityByProvince(province)
+        $('#userForm select[name="city"]').children().remove()
+        for(var i = 0; i < cities.length; i++){
+            if(city == cities[i]){
+                $('#userForm select[name="city"]').append('<option selected value="' + cities[i] + '">' + cities[i] + '</option>')
+            }else{
+                $('#userForm select[name="city"]').append('<option value="' + cities[i] + '">' + cities[i] + '</option>')
+            }
+        }
+    }
+    $('#userForm select[name="city"]').change(function(){
+        var city = $(this).val()
+        changeCity(city)
+    })
+    function changeCity(city, district){
+        var areas = getAreaByCity(city)
+        $('#userForm select[name="district"]').children().remove()
+        if(areas){
+            for(var i = 0; i < areas.length; i++){
+                if(district == areas[i]){
+                    $('#userForm select[name="district"]').append('<option selected value="' + areas[i] + '">' + areas[i] + '</option>')
+                }else{
+                    $('#userForm select[name="district"]').append('<option value="' + areas[i] + '">' + areas[i] + '</option>')
+                }
+            }
+        }
+    }
+    $(document).ready(function () {
+
+        jQuery.validator.addMethod("identityCard", function (value, element) {
+            return this.optional(element) || IdentityCodeValid(value);
+        }, "请正确输入您的身份证号码");
+    });
+
+    $(function(){
+
+        var validate = $("#userForm").validate({
+            debug: false, //调试模式取消submit的默认提交功能
+            //errorClass: "label.error", //默认为错误的样式类为：error
+            focusInvalid: true, //当为false时，验证无效时，没有焦点响应
+            onkeyup: false,
+            submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+                alert("确认修改");
+                form.submit();   //提交表单
+            },
+
+            rules:{
+                userName:{
+                    required:true
+                },
+                email:{
+                    required:true,
+                    email:true
+                },
+                age:{
+                    required:true,
+                    number:true
+                },
+                sex:{
+                    required:true,
+                    number:true
+                }
+            },
+            messages:{
+                userName:{
+                    required:"昵称必填"
+                },
+                email:{
+                    email:"E-Mail格式不正确"
+                },
+                age:{
+                    number:"必须为数字"
+                },
+                sex:{
+                    required: "性别不能为空",
+                    number:"必须为数字"
+                },
+                identityCard:{
+                    required: "身份证号码不能为空",
+                    identityCard:"请输入正确的身份证号码"
+                }
+            },
+            errorPlacement: function(error, element) {
+//                $('#error a').html("(" + error[0].innerHTML + ")") ;
+                alert(error[0].innerHTML)
+            }
+
+        });
+
+    });
+
+    function IdentityCodeValid(code) {
+        var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
+        var tip = "";
+        var pass= true;
+
+        if(!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(code)){
+            tip = "身份证号格式错误";
+            pass = false;
+        }
+
+        else if(!city[code.substr(0,2)]){
+            tip = "地址编码错误";
+            pass = false;
+        }
+        else{
+            //18位身份证需要验证最后一位校验位
+            if(code.length == 18){
+                code = code.split('');
+                //∑(ai×Wi)(mod 11)
+                //加权因子
+                var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
+                //校验位
+                var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
+                var sum = 0;
+                var ai = 0;
+                var wi = 0;
+                for (var i = 0; i < 17; i++)
+                {
+                    ai = code[i];
+                    wi = factor[i];
+                    sum += ai * wi;
+                }
+                var last = parity[sum % 11];
+                if(parity[sum % 11] != code[17]){
+                    tip = "校验位错误";
+                    pass =false;
+                }
+            }
+        }
+        if(!pass) alert(tip);
+        return pass;
+    }
+
+</script>

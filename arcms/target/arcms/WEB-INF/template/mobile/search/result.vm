@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        搜索
+    </title>
+</head>
+<body>
+<section class="wrap">
+    <header class="search-header">
+        <div class="br20 search-form">
+            <form>
+                <input name="" type="text" class="inp" placeholder="肯德基">
+                <button type="button" class="btn"></button>
+            </form>
+        </div>
+    </header>
+    <section class="pages">
+        <div class="p10 b-b search-result-hd">
+            <div class="table">
+                <div class="table-cell item-con">
+                    <div class="select-txt"><span class="icon-dot">全部分类</span></div>
+                    <div class="select">
+                        <select id="cid">
+                            <option value="">全部分类</option>
+                            #foreach($category in $categories)
+                                #if($searchVO.cid == $category.cid)
+                                    <option value="$category.cid" selected>$category.name</option>
+                                #else
+                                    <option value="$category.cid">$category.name</option>
+                                #end
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="city" value="$!{searchVO.city}"/>
+                <input type="hidden" name="key" value="$!{searchVO.key}"/>
+                <input type="hidden" name="bigCity" value="$!{searchVO.bigCity}"/>
+
+                <div class="table-cell item-con">
+                    <div class="select-txt"><span class="icon-dot">全城</span></div>
+                    #*<div class="table b-b select-pop">
+                        <div class="table-cell select-pop-tab">
+                            <ul class="no_last" id="district">
+                            </ul>
+                        </div>
+                    </div>*#
+                    <div class="select">
+                        <select id="district">
+                            <option value="">全城</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-cell item-con">
+                    <div class="select-txt"><span class="icon-dot">智能排序</span></div>
+                    <div class="select">
+                        <select id="sort">
+                            <option value="nearby">附近</option>
+                            <option value="hot">热门排序</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-result-bd">
+            #foreach($seller in $sellers)
+            <div class="item">
+                <div class="table item-main" href="${rc.contextPath}/mobile/seller/detail?sellerId=$seller.sellerId">
+                    <div class="table-cell v-t item-photo"><img src="${rc.contextPath}$seller.sellerPicture"></div>
+                    <div class="table-cell item-con">
+                        <div class="tit"><a href="${rc.contextPath}/mobile/seller/detail">$seller.sellerName</a></div>
+                        <div class="info">$seller.sellerBrief
+                            </div>
+                        #set($innerDistance = $!{seller.distance}/1000)
+                        <div class="other">#if($seller.discount)<span class="fl sale">全场$!{seller.discount}折</span>#end<Span class="fr distance">$!numberTool.format("#0.00", $innerDistance)km</Span></div>
+                    </div>
+                </div>
+                <div class="item-list">
+                    <ul class="no_last">
+                        #foreach($goods in $seller.goodsVoList)
+                        <li href="${rc.contextPath}/mobile/goods/detail?goodsId=${goods.goodsId}"> <a href="${rc.contextPath}/mobile/goods/detail?goodsId=${goods.goodsId}">
+                            <div class="table">
+                                <div class="table-cell v-t item-price">
+                                    #if($goods.nowPrice)
+##                                        #set($price=$goods.price*$goods.discount)
+                                        <p class="fs16 p1">$numberTool.format("#0",$goods.nowPrice)元</p>
+                                        <p class="p2">$goods.price元</p>
+                                    #else
+                                        <p class="fs16 p1">$numberTool.format("#0",$goods.nowPrice)元</p>
+                                    #end
+                                </div>
+                                <div class="table-cell v-t item-info">$goods.goodsSummary</div>
+                                <div class="table-cell v-b item-price">已售$goods.purchaseQuantity</div>
+                            </div>
+                        </a> </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+            #end
+
+        </div>
+    </section>
+</section>
+<script>
+    $('.item-list li').click(function(){
+        var href = $(this).attr('href')
+        window.location=href + "&lat=" + lat + "&lng=" + lng
+    })
+    $('.item-main').click(function(){
+        var href = $(this).attr('href')
+        window.location=href
+    })
+    $('#district').change(function(event){
+        event.preventDefault();
+        var district = $(this).val();
+        var city = $('input[name="city"]').val()
+        var bigCity = $('input[name="bigCity"]').val()
+
+        var key = $('input[name="key"]').val()
+        var cid = $('#cid').val()
+        window.location = '${rc.contextPath}/mobile/search/result?city=' + city + '&bigCity=' + bigCity +'&key=' + key + '&cid=' + cid + '&district=' + district + "&lat=" + lat + "&lng=" + lng
+    })
+    $('#sort').change(function(){
+        var city = $('input[name="city"]').val()
+        var key = $('input[name="key"]').val()
+        var cid = $('#cid').val()
+        var sort = $('#sort').val()
+        window.location = '${rc.contextPath}/mobile/search/result?city=' + city + '&key=' + key + '&cid=' + cid + '&sort=' + sort+ "&lat=" + lat + "&lng=" + lng
+    })
+    $('#cid').change(function(){
+        var city = $('input[name="city"]').val()
+        var key = $('input[name="key"]').val()
+        var cid = $('#cid').val()
+        window.location = '${rc.contextPath}/mobile/search/result?city=' + city + '&key=' + key + '&cid=' + cid+ "&lat=" + lat + "&lng=" + lng
+    })
+    $('#cid option:selected').trigger('click')
+    /*var bigCity = $('input[name="bigCity"]').val()
+    if(bigCity){
+        $('#district').children().first().siblings().remove()
+        var areas = getAreaByCity(bigCity)
+        $.each(areas, function(index, area){
+            $('#district').append('<option value="' + area + '">' + area + '</option>')
+        })
+    }*/
+    function renderDistrict(){
+        if(cityLocation == '义乌'){
+            bigCity = '金华市'
+        }
+        if(bigCity){
+            $('#district').children().first().siblings().remove()
+            var areas = getAreaByCity(cityLocation)
+            if(!areas){
+                areas = getAreaByCity(bigCity)
+            }
+            $.each(areas, function(index, area){
+                $('#district').append('<option value="' + area + '">' + area + '</option>')
+            })
+        }
+    }
+    setTimeout("renderDistrict()",500)
+
+</script>
+</body>
+</html>

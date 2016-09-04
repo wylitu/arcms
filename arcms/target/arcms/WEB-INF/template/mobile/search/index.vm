@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<body>
+<section class="wrap">
+    <header class="search-header"><a href="javascript:void(0)" class="back"></a>
+        <div class="br20 search-form">
+            <form>
+                <input name="" type="text" class="inp" placeholder="请输入商家名、品名">
+                <button type="button" class="btn"></button>
+            </form>
+        </div>
+    </header>
+    <section class="pages">
+        <div class="p10 search-hot">
+            <div class="item-hd">热门搜索</div>
+            <div class="item-bd"> <a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a><a href="#">肯德基</a> </div>
+        </div>
+        <div class="p10 search-history">
+            <div class="b-d  br3 search-history-bd">
+                <div class="item-bd">
+                    <ul>
+                        <li class="arrow-icon"><a href="#">肯德基</a></li>
+                        <li class="arrow-icon"><a href="#">肯德基</a></li>
+                    </ul>
+                </div>
+                <div class="item-ft"><a href="#">清除历史记录</a></div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>

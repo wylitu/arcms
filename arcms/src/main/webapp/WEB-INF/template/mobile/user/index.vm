@@ -1,0 +1,62 @@
+#set($layout = "/layout/mobileDefault.vm")
+
+<head>
+    <title>我的</title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="user-center">
+            <div class="b-b  p10 arrow-icon arrow-icon-g user-center-item"> <a href="${rc.contextPath}/mobile/user/detail">
+                <div class="table item">
+                    <div class="table-cell item-face">
+                        <div class="circle face"><img src="${rc.contextPath}/$user.headImg"></div>
+                    </div>
+                    <div class="table-cell v-m item-con">
+                        <div class="col_0 tit">$!{user.userName}</div>
+                        <div class="col_b money">爱卡币余额：$!{user.balanceVirtualCurrency}</div>
+                    </div>
+                </div>
+            </a> </div>
+            <div class="b-b  user-center-info">
+                <div class="table">
+                    <div class="table-cell"><a href="${rc.contextPath}/mobile/user/card">
+                        <p class="t1">$!{cardCount}</p>
+                        <p class="t2">我的卡券</p>
+                    </a></div>
+                    <div class="table-cell"><a href="${rc.contextPath}/mobile/user/collection">
+                        <p class="t1">$!{collectionCount}</p>
+                        <p class="t2">我的收藏</p>
+                    </a></div>
+                </div>
+            </div>
+            <div class="b-bt  user-center-nav">
+                <ul class="no_last">
+                    <li class="arrow-icon arrow-icon-g n1"><a href="${rc.contextPath}/mobile/user/icardMoney">爱卡钱包</a></li>
+                    <li class="arrow-icon arrow-icon-g n2"><a href="${rc.contextPath}/mobile/user/dimension">我的付款码</a></li>
+                    <li class="arrow-icon arrow-icon-g n3"><a href="${rc.contextPath}/mobile/user/trade"><span class="fr num">${tradeCount}</span>我的订单</a></li>
+                </ul>
+            </div>
+            <div class="b-bt  user-center-nav">
+                <ul class="no_last">
+                    <li class="arrow-icon arrow-icon-g n4"><a href="${rc.contextPath}/mobile/user/memberCard">绑定会员卡</a></li>
+                    <li class="arrow-icon arrow-icon-g n5"><a href="${rc.contextPath}/mobile/user/memberPay">会员缴费</a></li>
+                    <li class="arrow-icon arrow-icon-g n6"><a href="${rc.contextPath}/mobile/user/memberActivity">会员活动</a></li>
+                    <li class="arrow-icon arrow-icon-g n7"><a href="${rc.contextPath}/mobile/user/memberRule">会员规则</a></li>
+                </ul>
+            </div>
+            <div class="b-bt  user-center-nav">
+                <ul class="no_last">
+                    <li class="arrow-icon arrow-icon-g n8"><a href="${rc.contextPath}/mobile/user/recommendCode">我的推荐码</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+<nav>
+    <ul>
+        <li class="on"><a href="${rc.contextPath}/mobile/"><i class="icon"></i>首页</a></li>
+        <li><a href="${rc.contextPath}/mobile/user/memberIntroduce"><i class="icon"></i>推荐</a></li>
+        <li><a href="${rc.contextPath}/mobile/user"><i class="icon"></i>我的</a></li>
+        <li><a href="${rc.contextPath}/mobile/message/showFeedback"><i class="icon"></i>更多</a></li>
+    </ul>
+</nav>

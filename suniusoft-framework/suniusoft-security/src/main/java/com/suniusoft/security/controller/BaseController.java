@@ -1,8 +1,10 @@
 
 package com.suniusoft.security.controller;
 
+import com.google.common.collect.Maps;
+import com.suniusoft.security.interceptor.login.constant.SecurityConstant;
+import com.suniusoft.security.interceptor.login.context.SecuritySessionContext;
 import com.suniusoft.security.vo.UserVO;
-import com.suniusoft.security.interceptor.constant.LoginConstant;
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -13,9 +15,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Map;
 
 /**
- *  @ProjectName: icard  
+ *  @ProjectName: arcms  
  *  @Description: BaseController
  *  @author litu  litu@shufensoft.com
  *  @date 2015/5/15  
@@ -84,26 +87,32 @@ public class BaseController {
     }
 
     /**
-     * 获取当前系统登录用户,从session中获取
-     * @param session
+     * 获取当前系统登录用户
      * @return
      */
     protected UserVO getUser(HttpSession session) {
 
-        UserVO user = (UserVO) session.getAttribute(LoginConstant.SESSION_KEY);
+        UserVO userVO = (UserVO)session.getAttribute(SecurityConstant.SESSION_KEY);
 
-        return user;
+        if(userVO == null){
+
+            throw  new RuntimeException("用户信息获取不到,此请求非法,与用户有关的请求url必须配黑名单!");
+
+        }
+
+        return userVO;
+
     }
 
 
+
     /**
-     * 获取当前系统登录用户姓名,从session中获取
-     * @param session
+     * 获取当前系统登录用户姓名
      * @return
      */
-    protected String getUserName(HttpSession session) {
+    protected String getUserName() {
 
-        UserVO user = (UserVO) session.getAttribute(LoginConstant.SESSION_KEY);
+        UserVO user = SecuritySessionContext.getUserInfo();
 
         if(user!=null){
             return user.getUserName();
@@ -156,5 +165,14 @@ public class BaseController {
             return ;
         }
         request.setAttribute(ERROR_MESSAGE_KEY, sw.toString());
+    }
+
+    public Map<String, String> successResult(){
+
+        Map<String, String> retMap = Maps.newHashMap();
+        retMap.put("success", "true");
+        retMap.put(ERROR_CODE_KEY, ErrorCode.SUCCESS);
+
+        return retMap;
     }
 }

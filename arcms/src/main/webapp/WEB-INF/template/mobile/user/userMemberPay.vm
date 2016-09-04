@@ -1,0 +1,73 @@
+#set($layout = "/layout/mobileDefault.vm")
+<link href="${rc.contextPath}/media/css/trade/reset.css" rel="stylesheet" type="text/css" />
+<link href="${rc.contextPath}/media/css/trade/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${rc.contextPath}/media/js/user/user.js"></script>
+<head>
+    <title>
+        会员缴费
+    </title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="user-center">
+            <div class="b-b  p10 arrow-icon arrow-icon-g user-center-item"> <a href="#">
+                <div class="table item">
+                    <div class="table-cell item-face">
+                        <div class="circle face"><img src="${rc.contextPath}/media/images/face2.jpg"></div>
+                    </div>
+                    <div class="table-cell v-m item-con">
+                        <div class="col_0 tit">xiyuxunchenji</div>
+                        <div class="col_b vip">有效期：无</div>
+                    </div>
+                </div>
+            </a> </div>
+
+            <div class="b-bt  user-center-length">
+                <div class="b-b item-hd"><span class="col_3">开通时长</span></div>
+                <div class="item-bd">
+                    <ul id="memberLast">
+                        <li class="on"><a href="javascript:void(0)"><p class="fs18 t1"><i>50</i>元</p><p class="t2">开通时长1年</p></a></li>
+                        <li><a href="javascript:void(0)"><p class="fs18 t1"><i>80</i>元</p><p class="t2">开通时长2年</p></a></li>
+                    </ul>
+                </div>
+                <div class="col_3 item-value">应付金额： <i>50</i> 元
+                </div>
+            </div>
+
+
+            <div class="b-bt payment-order-choose">
+                <div class="p10 b-b item-hd"><span class="col_3">支付方式</span></div>
+                <ul class="no_last">
+                    <li>
+                        <label class="radio-label">
+                            <input name="choose" type="radio">
+                            爱卡币支付</label>
+                    </li>
+                    <li>
+                        <label class="radio-label">
+                            <input name="choose" type="radio">
+                            支付宝支付</label>
+                    </li>
+                    <li>
+                        <label class="radio-label">
+                            <input name="choose" type="radio">
+                            微信支付</label>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="p10 submit">
+                <button type="button" class="br30 combtn" onclick="memberPay()">去付款</button>
+            </div>
+        </div>
+    </section>
+</section>
+<nav>
+    <ul>
+        <li><a href="${rc.contextPath}/mobile/"><i class="icon"></i>首页</a></li>
+        <li><a href="#"><i class="icon"></i>推荐</a></li>
+        <li class="on"><a href="${rc.contextPath}/mobile/user/detail"><i class="icon"></i>我的</a></li>
+        <li><a href="#"><i class="icon"></i>更多</a></li>
+    </ul>
+</nav>

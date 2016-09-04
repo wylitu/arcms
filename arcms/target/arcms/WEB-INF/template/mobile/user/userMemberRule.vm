@@ -1,0 +1,24 @@
+#set($layout = "/layout/mobileDefault.vm")
+<link href="${rc.contextPath}/media/css/trade/reset.css" rel="stylesheet" type="text/css" />
+<link href="${rc.contextPath}/media/css/trade/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${rc.contextPath}/media/js/user/user.js"></script>
+<head>
+    <title>
+        会员规则
+    </title>
+</head>
+<section class="wrap">
+    <section class="wrap">
+        <section class="pages">
+            <div class="b-bt photo-text-detail-intro">
+                <div class="p10 b-b item-hd"><span class="col_0">会员规则</span></div>
+                <div class="p10 item-bd">
+                   <p>
+                       1、推荐用户...</br>
+                       2、会员等级...</br>
+                       3、购物返利...
+                    </p>
+
+        </section>
+    </section>
+</section>

@@ -7,8 +7,10 @@
     <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
     <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR" />
-    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="gmt_expired" property="gmtExpired" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, user_name, token, 
-    gmt_expired
+    id, gmt_created, gmt_modified, created_by, modified_by, is_deleted, user_id, user_name, 
+    type, token, gmt_expired
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.suniusoft.security.biz.domain.generation.system.SysTokenExample" >
     select
@@ -112,8 +114,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.suniusoft.security.biz.domain.generation.system.SysTokenExample" >
-    update sys_token
-    set is_deleted = 1
+    delete from sys_token
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -121,12 +122,12 @@
   <insert id="insert" parameterType="com.suniusoft.security.biz.domain.generation.system.SysToken" useGeneratedKeys="true" keyProperty="id" >
     insert into sys_token (id, gmt_created, gmt_modified, 
       created_by, modified_by, is_deleted, 
-      user_name, token, gmt_expired
-      )
+      user_id, user_name, type, 
+      token, gmt_expired)
     values (#{id,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
-      #{userName,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{gmtExpired,jdbcType=TIMESTAMP}
-      )
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{gmtExpired,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.suniusoft.security.biz.domain.generation.system.SysToken" useGeneratedKeys="true" keyProperty="id" >
     insert into sys_token
@@ -149,8 +150,14 @@
       <if test="isDeleted != null" >
         is_deleted,
       </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
       <if test="userName != null" >
         user_name,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="token != null" >
         token,
@@ -176,10 +183,16 @@
         #{modifiedBy,jdbcType=VARCHAR},
       </if>
       <if test="isDeleted != null" >
-        #{isDeleted,jdbcType=INTEGER},
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="token != null" >
         #{token,jdbcType=VARCHAR},
@@ -197,6 +210,41 @@
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update sys_token
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreated != null" >
+        gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null" >
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifiedBy != null" >
+        modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtExpired != null" >
+        gmt_expired = #{record.gmtExpired,jdbcType=TIMESTAMP},
+      </if>
+    </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -208,8 +256,10 @@
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
       created_by = #{record.createdBy,jdbcType=VARCHAR},
       modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
-      is_deleted = #{record.isDeleted,jdbcType=INTEGER},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      user_id = #{record.userId,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       gmt_expired = #{record.gmtExpired,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -218,6 +268,38 @@
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.suniusoft.security.biz.domain.generation.system.SysToken" >
     update sys_token
+    <set >
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtExpired != null" >
+        gmt_expired = #{gmtExpired,jdbcType=TIMESTAMP},
+      </if>
+    </set>
     where id = #{record.id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.suniusoft.security.biz.domain.generation.system.SysToken" >
@@ -226,8 +308,10 @@
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
       created_by = #{createdBy,jdbcType=VARCHAR},
       modified_by = #{modifiedBy,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
       user_name = #{userName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       gmt_expired = #{gmtExpired,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

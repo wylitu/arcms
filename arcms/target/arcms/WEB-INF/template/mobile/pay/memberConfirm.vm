@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    #set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>
+        支付密码确认
+    </title>
+</head>
+<body>
+<section class="wrap">
+    <section class="pages">
+        <div class="login">
+            <ul>
+                <li>
+                    <input name="" type="text" class="inp" placeholder="请输入密码">
+                </li>
+            </ul>
+            <div class="submit">
+                <button type="button" class="br20 combtn">确认</button>
+            </div>
+
+        </div>
+    </section>
+</section>
+</body>
+</html>

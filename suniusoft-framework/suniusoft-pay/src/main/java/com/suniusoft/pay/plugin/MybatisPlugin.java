@@ -447,7 +447,10 @@ public class MybatisPlugin extends PluginAdapter {
         generateSetExpression(element, introspectedTable);
 
         return super.sqlMapUpdateByExampleSelectiveElementGenerated(element, introspectedTable);
+
     }
+
+
 
     /**
      * mapper.xml 增加Set表达式场景,支持如update set 字段=表达式(如:'字段+1')这种场景
@@ -456,12 +459,14 @@ public class MybatisPlugin extends PluginAdapter {
      * @param introspectedTable
      */
     private void generateSetExpression(XmlElement element, IntrospectedTable introspectedTable) {
-        element.getElements().remove(1);
+
         List<IntrospectedColumn> baseColumns = introspectedTable.getBaseColumns();
 
-        if (CollectionUtils.isEmpty(baseColumns) || isOpenExpression == false) {
+        if (CollectionUtils.isEmpty(baseColumns)) {
             return;
         }
+
+        element.getElements().remove(1);
 
         XmlElement xmlElement = new XmlElement("set");
 
@@ -469,25 +474,42 @@ public class MybatisPlugin extends PluginAdapter {
         Attribute trimAttribute = new Attribute("suffixOverrides", ",");
         setChildElement.addAttribute(trimAttribute);
         for (IntrospectedColumn baseColumn : baseColumns) {
-            XmlElement baseXmlElement = new XmlElement("if");
-            Attribute attribute = new Attribute("test", "record." + baseColumn.getJavaProperty()
-                    + "!=null and record." + baseColumn.getJavaProperty() + "Expression==null");
-            baseXmlElement.addAttribute(attribute);
-            baseXmlElement.addElement(new TextElement(baseColumn.getActualColumnName() + " = #{record."
-                    + baseColumn.getJavaProperty() + ",jdbcType=" + baseColumn.getJdbcTypeName() + "},"));
 
-            XmlElement expressionXmlElement = new XmlElement("if");
-            Attribute expressionAttribute = new Attribute("test", "record." + baseColumn.getJavaProperty()
-                    + "Expression!=null");
-            expressionXmlElement.addAttribute(expressionAttribute);
-            expressionXmlElement.addElement(new TextElement(baseColumn.getActualColumnName() + " = ${record."
-                    + baseColumn.getJavaProperty() + "Expression},"));
+            if(isOpenExpression) {
 
-            setChildElement.addElement(baseXmlElement);
-            setChildElement.addElement(expressionXmlElement);
+                XmlElement baseXmlElement = new XmlElement("if");
+                Attribute attribute = new Attribute("test", "record." + baseColumn.getJavaProperty()
+                        + "!=null and record." + baseColumn.getJavaProperty() + "Expression==null");
+                baseXmlElement.addAttribute(attribute);
+                baseXmlElement.addElement(new TextElement(baseColumn.getActualColumnName() + " = #{record."
+                        + baseColumn.getJavaProperty() + ",jdbcType=" + baseColumn.getJdbcTypeName() + "},"));
+                setChildElement.addElement(baseXmlElement);
+
+                XmlElement expressionXmlElement = new XmlElement("if");
+                Attribute expressionAttribute = new Attribute("test", "record." + baseColumn.getJavaProperty()
+                        + "Expression!=null");
+                expressionXmlElement.addAttribute(expressionAttribute);
+                expressionXmlElement.addElement(new TextElement(baseColumn.getActualColumnName() + " = ${record."
+                        + baseColumn.getJavaProperty() + "Expression},"));
+
+                setChildElement.addElement(expressionXmlElement);
+
+            }else{
+
+                XmlElement baseXmlElement = new XmlElement("if");
+                Attribute attribute = new Attribute("test", "record." + baseColumn.getJavaProperty()
+                        + "!=null ");
+                baseXmlElement.addAttribute(attribute);
+                baseXmlElement.addElement(new TextElement(baseColumn.getActualColumnName() + " = #{record."
+                        + baseColumn.getJavaProperty() + ",jdbcType=" + baseColumn.getJdbcTypeName() + "},"));
+                setChildElement.addElement(baseXmlElement);
+
+            }
         }
+
         xmlElement.addElement(setChildElement);
         element.addElement(1, xmlElement);
+
     }
 
 
@@ -612,10 +634,13 @@ public class MybatisPlugin extends PluginAdapter {
         topLevelClass.addAnnotation("@ToString");
         List<Field> fields = topLevelClass.getFields();
         Map<String, Field> map = new HashMap<String, Field>();
+
         for (Field field : fields) {
             map.put(field.getName(), field);
         }
+
         List<IntrospectedColumn> columns = introspectedTable.getAllColumns();
+
         for (IntrospectedColumn column : columns) {
             Field f = map.get(column.getJavaProperty());
             if (f != null) {

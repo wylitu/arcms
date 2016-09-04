@@ -1,31 +1,24 @@
 package com.suniusoft.security.biz.service.permission;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.suniusoft.common.exception.ServiceException;
 import com.suniusoft.common.exception.UserRemindException;
-import com.suniusoft.common.utils.AssertsUtil;
-import com.suniusoft.common.utils.BeanCopierUtils;
-import com.suniusoft.common.utils.Md5Encrypt;
+import com.suniusoft.common.utils.*;
 import com.suniusoft.security.biz.dao.defined.permission.UserDAO;
 import com.suniusoft.security.biz.dao.generation.permission.SecurityUserMapper;
 import com.suniusoft.security.biz.dao.generation.permission.UserRoleMapper;
 import com.suniusoft.security.biz.domain.defined.permission.UserDO;
-import com.suniusoft.security.biz.domain.generation.permission.User;
-import com.suniusoft.security.biz.domain.generation.permission.UserExample;
+import com.suniusoft.security.biz.domain.generation.permission.SecurityUser;
+import com.suniusoft.security.biz.domain.generation.permission.SecurityUserExample;
 import com.suniusoft.security.biz.domain.generation.permission.UserRoleExample;
+import com.suniusoft.security.biz.service.wx.WXService;
 import com.suniusoft.security.vo.UserRoleVO;
 import com.suniusoft.security.vo.UserVO;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *   
@@ -49,6 +42,8 @@ public class SecurityUserService {
     @Autowired
     private UserDAO userDAO;
 
+    public static WXService wXService = (WXService) SpringContextUtil.getBean("wXService");
+
     /**
      * 通过UserName查询用户
      *
@@ -57,9 +52,123 @@ public class SecurityUserService {
      */
     public UserVO findUserByUserName(String userName) {
 
-        UserExample userExample = new UserExample();
-        userExample.createCriteria().andUserNameEqualTo(userName);
-        List<User> userVOs = securityUserMapper.selectByExample(userExample);
+        SecurityUserExample securityUserExample = new SecurityUserExample();
+        securityUserExample.createCriteria().andUserNameEqualTo(userName).andEnabledEqualTo(true);
+        List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
+
+        UserVO userVO = null;
+
+        if (!CollectionUtils.isEmpty(userVOs)) {
+            userVO = (UserVO) BeanCopierUtils.copyProperties(userVOs.get(0), UserVO.class);
+        }
+
+        return userVO;
+    }
+
+
+
+    /**
+     * 通过UserName查询用户
+     *
+     * @param wxOpenId
+     * @return
+     */
+    public UserVO findUserByWxOpenId(String wxOpenId) {
+
+        SecurityUserExample securityUserExample = new SecurityUserExample();
+        securityUserExample.createCriteria().andWxOpenIdEqualTo(wxOpenId).andEnabledEqualTo(true);
+        List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
+
+        UserVO userVO = null;
+
+        if (!CollectionUtils.isEmpty(userVOs)) {
+            userVO = (UserVO) BeanCopierUtils.copyProperties(userVOs.get(0), UserVO.class);
+        }
+
+        return userVO;
+    }
+
+
+    /**
+     * 根据微信授权创建用户信息
+     *
+     * @param openId
+     * @param accessToken
+     */
+    public UserVO createAndReturnWXUserToUser(String openId, String accessToken) {
+
+
+        UserVO userVO;
+        try {
+
+            userVO = wXService.getOuathUserInfo(openId, accessToken);
+
+            if (userVO != null) {
+                saveUserInfo(userVO);
+            }
+
+        } catch (Exception e) {
+
+            logger.error("createAndReturnWXUserToUser error ", e);
+            throw new ServiceException("createAndReturnWXUserToUser error", e);
+
+        }
+
+        return userVO;
+    }
+
+    /**
+     * 保存用户信息
+     * @param userVO
+     * @return
+     */
+    public boolean saveUserInfo(UserVO userVO) {
+
+        AssertsUtil.notNull(userVO, "useVO is null");
+
+        SecurityUser user = (SecurityUser)BeanCopierUtils.copyProperties(userVO , SecurityUser.class);
+
+        SecurityUserExample securityUserExample = new SecurityUserExample();
+        SecurityUserExample.Criteria criteria = securityUserExample.createCriteria();
+
+        if(StringUtils.isNotBlank(userVO.getQqOpenId())){
+            criteria.andQqOpenIdEqualTo(userVO.getQqOpenId());
+        }
+
+        if(StringUtils.isNotBlank(userVO.getWxOpenId())){
+            criteria.andWxOpenIdEqualTo(userVO.getWxOpenId());
+        }
+
+        if(StringUtils.isNotBlank(userVO.getMobile())){
+            criteria.andMobileEqualTo(userVO.getMobile());
+        }
+
+        List<SecurityUser> users = securityUserMapper.selectByExample(securityUserExample);
+
+        if(CollectionUtils.isEmpty(users)){
+            securityUserMapper.insertSelective(user);
+            userVO.setUserId(user.getUserId());
+        }else{
+            userVO.setUserId(users.get(0).getUserId());
+            user.setId(users.get(0).getId());
+            securityUserMapper.updateByExampleSelective(user, securityUserExample);
+        }
+
+        return true;
+
+    }
+
+    /**
+     * 通过UserId查询用户
+     *
+     * @param userId
+     * @return
+     */
+    public UserVO findUserByUserId(Long userId) {
+
+        SecurityUserExample securityUserExample = new SecurityUserExample();
+        securityUserExample.createCriteria().andUserIdEqualTo(userId);
+        List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
 
         UserVO userVO = null;
 
@@ -84,18 +193,68 @@ public class SecurityUserService {
             throw new UserRemindException("用户名不存在");
         }
 
-        String oldPasswd = Md5Encrypt.md5(userVO.getPassword());
-        if (!oldPasswd.equals(userVO.getPassword())) {
+        String oldPasswd = userVO.getPassword();
+        if (!oldPasswd.equals(user.getPassword())) {
             throw new UserRemindException("原密码错误");
         }
 
-        user.setPassword(user.getNewpasswd1());
+        user.setPassword(userVO.getNewpasswd1());
         UserVO updateUser = (UserVO) BeanCopierUtils.copyProperties(user, UserVO.class);
 
         return securityUserMapper.updateByPrimaryKey(updateUser) == 1;
 
     }
 
+
+    /**
+     * 重置用户密码
+     *
+     * @param userVO
+     * @return
+     */
+    public boolean updateUserByMobile(UserVO userVO) {
+
+        if (userVO == null) {
+            throw new UserRemindException("用户不能为空");
+        }
+
+        if (!StringUtils.isMobile(userVO.getMobile())) {
+            throw new UserRemindException("手机号码不能正确!");
+        }
+
+        UserVO user = findUserByMobile(userVO.getMobile());
+
+        if(user==null){
+            throw new UserRemindException("该手机号码对应的用户不存在!");
+        }
+
+        userVO.setId(user.getId());
+
+        return securityUserMapper.updateByPrimaryKeySelective(userVO) == 1;
+
+    }
+
+
+    /**
+     * 通过mobile查询用户
+     *
+     * @param mobile
+     * @return
+     */
+    public UserVO findUserByMobile(String mobile) {
+
+        SecurityUserExample securityUserExample = new SecurityUserExample();
+        securityUserExample.createCriteria().andMobileEqualTo(mobile).andEnabledEqualTo(true);
+        List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
+
+        UserVO userVO = null;
+
+        if (!CollectionUtils.isEmpty(userVOs)) {
+            userVO = (UserVO) BeanCopierUtils.copyProperties(userVOs.get(0), UserVO.class);
+        }
+
+        return userVO;
+    }
     /**
      * 验证用户名是否存在
      *
@@ -123,9 +282,9 @@ public class SecurityUserService {
 
         AssertsUtil.notNull(userVO, "userVO");
 
-        User user;
+        SecurityUser user;
         try {
-            user = (User) BeanCopierUtils.copyProperties(userVO, User.class);
+            user = (SecurityUser) BeanCopierUtils.copyProperties(userVO, SecurityUser.class);
         } catch (Exception e) {
             throw new ServiceException("UserService insertOrUpdateUser copyProperties occur error", e);
         }
@@ -138,9 +297,9 @@ public class SecurityUserService {
             user.setPayPassword(Md5Encrypt.md5(userVO.getPayPassword()));
         }
 
-        List<User> userList = null;
-        UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
+        List<SecurityUser> userList = null;
+        SecurityUserExample example = new SecurityUserExample();
+        SecurityUserExample.Criteria criteria = example.createCriteria();
 
         if (userVO.getId() != null || userVO.getUserId() != null) {
             if (userVO.getId() != null) {
@@ -167,10 +326,12 @@ public class SecurityUserService {
                 }
 
                 securityUserMapper.insertSelective(user);
+                userVO.setUserId(user.getUserId());
                 return 0;
             }
         } else {
             securityUserMapper.updateByExampleSelective(user, example);
+            userVO.setUserId(user.getUserId());
             return 0;
         }
 
@@ -190,10 +351,10 @@ public class SecurityUserService {
         AssertsUtil.notNull(userVO, "userVO");
         AssertsUtil.notNull(userVO.getUserName(), "userName");
 
-        UserExample example = new UserExample();
+        SecurityUserExample example = new SecurityUserExample();
         example.createCriteria().andUserNameEqualTo(userVO.getUserName());
 
-        List<User> userList = securityUserMapper.selectByExample(example);
+        List<SecurityUser> userList = securityUserMapper.selectByExample(example);
 
         if (org.springframework.util.CollectionUtils.isEmpty(userList)) {
             return false;
@@ -222,6 +383,14 @@ public class SecurityUserService {
             userDO.setMobile(userVO.getMobile());
         }
 
+        if (StringUtils.isNotBlank(userVO.getRecommendName())){
+            UserVO findUser = findUserByUserName(userVO.getRecommendName());
+            if (findUser!=null){
+                userDO.setRecommendUserId(findUser.getUserId());
+            }
+
+        }
+
         if (userVO.getRecommendUserId() != null && userVO.getRecommendUserId() > 0) {
             userDO.setRecommendUserId(userVO.getRecommendUserId());
         }
@@ -244,6 +413,10 @@ public class SecurityUserService {
 
         if (userVO.getRoleId() != null) {
             userDO.setRoleId(userVO.getRoleId());
+        }
+
+        if (!StringUtils.isEmpty(userVO.getVipLevel())){
+            userDO.setMemberLevelId(Long.valueOf(userVO.getVipLevel()));
         }
 
         List<UserDO> userList = userDAO.selectUserList(userDO);
@@ -270,7 +443,7 @@ public class SecurityUserService {
         userRoleVO.setUserId(userId);
         deleteUserRole(userRoleVO);
 
-        UserExample example = new UserExample();
+        SecurityUserExample example = new SecurityUserExample();
         example.createCriteria().andUserIdEqualTo(userId);
 
         return securityUserMapper.deleteByExample(example) > 0;
@@ -282,13 +455,13 @@ public class SecurityUserService {
      * @param userVO
      * @return
      */
-    public User querySingleUser(UserVO userVO) {
+    public SecurityUser querySingleUser(UserVO userVO) {
 
         AssertsUtil.notNull(userVO, "userVO");
 
-        List<User> userList = null;
-        UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
+        List<SecurityUser> userList = null;
+        SecurityUserExample example = new SecurityUserExample();
+        SecurityUserExample.Criteria criteria = example.createCriteria();
 
         if (userVO.getId() != null || userVO.getUserId() != null || StringUtils.isNotBlank(userVO.getUserName())) {
             if (userVO.getId() != null) {
@@ -313,7 +486,7 @@ public class SecurityUserService {
         return userList.get(0);
     }
 
-    public User getUserById(Long id) {
+    public SecurityUser getUserById(Long id) {
 
         AssertsUtil.notNull(id, "id");
 
@@ -324,7 +497,7 @@ public class SecurityUserService {
 
         AssertsUtil.notNull(id, "id");
 
-        User user = new User();
+        SecurityUser user = new SecurityUser();
         user.setPassword(Md5Encrypt.md5("123456"));
         user.setId(id);
 

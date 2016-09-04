@@ -8,6 +8,7 @@ import com.suniusoft.security.biz.domain.generation.permission.Resource;
 import com.suniusoft.security.biz.domain.generation.permission.UserRole;
 import com.suniusoft.security.biz.domain.generation.permission.UserRoleExample;
 import com.suniusoft.security.vo.UserRoleVO;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,20 @@ public class UserRoleService {
             throw new ServiceException("SercurityManageService saveUserRole occur error", e);
         }
 
-        return userRoleMapper.insertSelective(userRole) > 0;
+        UserRoleExample userRoleExample=new UserRoleExample();
+        UserRoleExample.Criteria criteria= userRoleExample.createCriteria();
+        criteria.andUserIdEqualTo(userRoleVO.getUserId()).andRoleIdEqualTo(userRoleVO.getRoleId());
+
+        List<UserRole> userRoles= userRoleMapper.selectByExample(userRoleExample);
+
+        if(CollectionUtils.isEmpty(userRoles)){
+            userRoleMapper.insertSelective(userRole);
+        }else{
+            userRole.setId(userRoles.get(0).getId());
+            userRoleMapper.updateByExampleSelective(userRole, userRoleExample);
+        }
+
+        return true;
     }
 
     /**

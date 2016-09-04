@@ -1,0 +1,25 @@
+#set($layout = "/layout/mobileDefault.vm")
+<head>
+    <title>我的收藏</title>
+</head>
+<section class="wrap">
+    <section class="pages">
+        <div class="my-fav">
+            <ul class="b-bt no_last bg-w">
+
+                #foreach($trade in $trades)
+                    <li class="arrow-icon arrow-icon-g"> <a href="#">
+                        <div class="table">
+                            <div class="table-cell item-photo"> <img src="${rc.contextPath}/${trade.orders.get(0).goods.imgsUrl}"> </div>
+                            <div class="table-cell v-m item-con">
+                                <p class="fs16 col_3 t1">$!{trade.orders.get(0).goods.title}</p>
+                                <p class="p2">总价：$!{trade.fee}元    数量：$!{trade.orders.get(0).quantity}</p>
+                                <p class="fs18 col_o p3">$!{trade.fee}元</p>
+                            </div>
+                        </div>
+                    </a> </li>
+                #end
+            </ul>
+        </div>
+    </section>
+</section>
