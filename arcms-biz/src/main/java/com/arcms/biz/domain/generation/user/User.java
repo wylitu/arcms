@@ -2,7 +2,6 @@ package com.arcms.biz.domain.generation.user;
 
 import com.suniusoft.common.annotation.BizId;
 import com.suniusoft.common.annotation.Domain;
-import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.ToString;
@@ -29,15 +28,18 @@ public class User {
     /** 是否删除：1(删除) 0(未删除) */
     private Boolean isDeleted;
 
-    /** 后台用户id,作为@BizId */
+    /** 用户id,作为@BizId */
     @BizId
     private Long userId;
 
-    /** 用户名 */
-    private String userName;
+    /** 昵称 */
+    private String userNick;
 
     /** 姓名 */
     private String name;
+
+    /** 用户编号 */
+    private String userNo;
 
     /** 密码 */
     private String password;
@@ -57,21 +59,6 @@ public class User {
     /** 邮箱 */
     private String email;
 
-    /** 会员卡号 */
-    private String memberCard;
-
-    /** 支付密码 */
-    private String payPassword;
-
-    /** 会员级别id */
-    private Long memberLevelId;
-
-    /** 会员积分 */
-    private Long integral;
-
-    /** 账户余额 */
-    private BigDecimal balance;
-
     /** 身份证号码 */
     private String identityCard;
 
@@ -84,24 +71,27 @@ public class User {
     /** 区 */
     private String district;
 
+    /** 微信openid */
+    private String wxOpenid;
+
+    /** 公众号关注标识 */
+    private String wxSubscribe;
+
+    /** 微信头像 */
+    private String wxHeadimgurl;
+
+    /** 关注时间 */
+    private String wxSubscribeTime;
+
+    /** 寝室编号 */
+    private String bedroomNo;
+
     /** 详细地址 */
     private String address;
 
-    /** 生日 */
-    private Date birthday;
+    /** 空调开通时间 */
+    private Date acOpenDate;
 
-    /** 密保问题 */
-    private String secretQuestion;
-
-    /** 密保答案 */
-    private String secretAnswer;
-
-    /** 推荐人用户id */
-    private Long recommendUserId;
-
-    /** 商家扩展id */
-    private Long sellerId;
-
-    /** 用户可用：1(是) 0(否) */
+    /** 用户是可用：1(是) 0(否) */
     private Boolean enabled;
 }

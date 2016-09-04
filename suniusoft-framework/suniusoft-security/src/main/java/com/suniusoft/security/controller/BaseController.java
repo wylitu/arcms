@@ -110,12 +110,12 @@ public class BaseController {
      * 获取当前系统登录用户姓名
      * @return
      */
-    protected String getUserName() {
+    protected String getUserNo() {
 
         UserVO user = SecuritySessionContext.getUserInfo();
 
         if(user!=null){
-            return user.getUserName();
+            return user.getUserNo();
         }
 
         return "sys";

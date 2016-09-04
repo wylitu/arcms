@@ -14,7 +14,7 @@ import lombok.Data;
 public class UserInfo {
 
     /** 用户名或昵称 */
-    private String userName;
+    private String userNo;
 
     /**  */
     private String qqOpenId;

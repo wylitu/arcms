@@ -23,9 +23,9 @@ public class CoreService {
 
             System.out.println("=========" + System.currentTimeMillis() + "=========" + requestMap);
             // 发送方帐号（open_id）
-            String fromUserName = requestMap.get("FromUserName");
+            String fromUserNo = requestMap.get("FromUserNo");
             // 公众帐号
-            String toUserName = requestMap.get("ToUserName");
+            String toUserNo = requestMap.get("ToUserNo");
             // 消息类型
             String msgType = requestMap.get("MsgType");
 
@@ -37,8 +37,8 @@ public class CoreService {
 
             // 回复文本消息
             TextMessage textMessage = new TextMessage();
-            textMessage.setToUserName(fromUserName);
-            textMessage.setFromUserName(toUserName);
+            textMessage.setToUserNo(fromUserNo);
+            textMessage.setFromUserNo(toUserNo);
             textMessage.setCreateTime(new Date().getTime());
             textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
             textMessage.setFuncFlag(0);
@@ -80,12 +80,12 @@ public class CoreService {
 //							User user = new User();
 //							user.setLatitude(Double.valueOf(Latitude));
 //							user.setLongitude(Double.valueOf(Longitude));
-//							user.setOpenId(fromUserName);
+//							user.setOpenId(fromUserNo);
 //							userMapper.updateByOpenId(user);
 //							CarSteward carSteward = new CarSteward();
 //							carSteward.setLatitude(Double.valueOf(Latitude));
 //							carSteward.setLongitude(Double.valueOf(Longitude));
-//							carSteward.setOpenId(fromUserName);
+//							carSteward.setOpenId(fromUserNo);
 //							carStewardMapper.updateByOpenId(carSteward);
 //						}
                     } catch (Exception e) {

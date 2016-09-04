@@ -43,10 +43,10 @@ public class SecuritySessionContext {
 
         UserVO userVO = securityUserService.findUserByUserId(userId);
 
-        loginInfo.put("userName", userVO.getUserName());
+        loginInfo.put("userNo", userVO.getUserNo());
         loginInfo.put(SecurityConstant.SESSION_KEY, userVO);
 
-        logger.info("user:" + userVO.getUserName());
+        logger.info("user:" + userVO.getUserNo());
 
         SecurityContextHolder.setLoginInfo(loginInfo);
 

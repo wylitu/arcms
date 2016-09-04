@@ -34,7 +34,7 @@ public class User {
     private Long userId;
 
     /** 用户名 */
-    private String userName;
+    private String userNo;
 
     /** 姓名 */
     private String name;

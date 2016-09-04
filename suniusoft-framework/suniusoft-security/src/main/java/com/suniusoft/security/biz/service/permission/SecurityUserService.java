@@ -45,15 +45,15 @@ public class SecurityUserService {
     public static WXService wXService = (WXService) SpringContextUtil.getBean("wXService");
 
     /**
-     * 通过UserName查询用户
+     * 通过UserNo查询用户
      *
-     * @param userName
+     * @param userNo
      * @return
      */
-    public UserVO findUserByUserName(String userName) {
+    public UserVO findUserByUserNo(String userNo) {
 
         SecurityUserExample securityUserExample = new SecurityUserExample();
-        securityUserExample.createCriteria().andUserNameEqualTo(userName).andEnabledEqualTo(true);
+        securityUserExample.createCriteria().andUserNoEqualTo(userNo).andEnabledEqualTo(true);
         List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
 
         UserVO userVO = null;
@@ -68,7 +68,7 @@ public class SecurityUserService {
 
 
     /**
-     * 通过UserName查询用户
+     * 通过UserNo查询用户
      *
      * @param wxOpenId
      * @return
@@ -76,7 +76,7 @@ public class SecurityUserService {
     public UserVO findUserByWxOpenId(String wxOpenId) {
 
         SecurityUserExample securityUserExample = new SecurityUserExample();
-        securityUserExample.createCriteria().andWxOpenIdEqualTo(wxOpenId).andEnabledEqualTo(true);
+        securityUserExample.createCriteria().andWxOpenidEqualTo(wxOpenId).andEnabledEqualTo(true);
         List<SecurityUser> userVOs = securityUserMapper.selectByExample(securityUserExample);
 
         UserVO userVO = null;
@@ -131,12 +131,8 @@ public class SecurityUserService {
         SecurityUserExample securityUserExample = new SecurityUserExample();
         SecurityUserExample.Criteria criteria = securityUserExample.createCriteria();
 
-        if(StringUtils.isNotBlank(userVO.getQqOpenId())){
-            criteria.andQqOpenIdEqualTo(userVO.getQqOpenId());
-        }
-
-        if(StringUtils.isNotBlank(userVO.getWxOpenId())){
-            criteria.andWxOpenIdEqualTo(userVO.getWxOpenId());
+        if(StringUtils.isNotBlank(userVO.getWxOpenid())){
+            criteria.andWxOpenidEqualTo(userVO.getWxOpenid());
         }
 
         if(StringUtils.isNotBlank(userVO.getMobile())){
@@ -187,7 +183,7 @@ public class SecurityUserService {
      */
     public boolean updatePasswd(UserVO userVO) {
 
-        UserVO user = findUserByUserName(userVO.getUserName());
+        UserVO user = findUserByUserNo(userVO.getUserNo());
 
         if (user == null) {
             throw new UserRemindException("用户名不存在");
@@ -258,12 +254,12 @@ public class SecurityUserService {
     /**
      * 验证用户名是否存在
      *
-     * @param userName
+     * @param userNo
      * @return
      */
-    public boolean checkSameUserName(String userName) {
+    public boolean checkSameUserNo(String userNo) {
 
-        UserVO user = findUserByUserName(userName);
+        UserVO user = findUserByUserNo(userNo);
 
         if (user != null) {
             return true;
@@ -293,10 +289,6 @@ public class SecurityUserService {
             user.setPassword(Md5Encrypt.md5(userVO.getPassword()));
         }
 
-        if (StringUtils.isNotBlank(userVO.getPayPassword())) {
-            user.setPayPassword(Md5Encrypt.md5(userVO.getPayPassword()));
-        }
-
         List<SecurityUser> userList = null;
         SecurityUserExample example = new SecurityUserExample();
         SecurityUserExample.Criteria criteria = example.createCriteria();
@@ -314,8 +306,8 @@ public class SecurityUserService {
         }
 
         if (CollectionUtils.isEmpty(userList)) {
-            if (StringUtils.isNotBlank(userVO.getUserName())) {
-                criteria.andUserNameEqualTo(userVO.getUserName());
+            if (StringUtils.isNotBlank(userVO.getUserNo())) {
+                criteria.andUserNoEqualTo(userVO.getUserNo());
                 userList = securityUserMapper.selectByExample(example);
 
                 if (!CollectionUtils.isEmpty(userList)) {
@@ -346,13 +338,13 @@ public class SecurityUserService {
      * @param userVO
      * @return
      */
-    public Boolean isExistWithUserName(UserVO userVO) {
+    public Boolean isExistWithUserNo(UserVO userVO) {
 
         AssertsUtil.notNull(userVO, "userVO");
-        AssertsUtil.notNull(userVO.getUserName(), "userName");
+        AssertsUtil.notNull(userVO.getUserNo(), "userNo");
 
         SecurityUserExample example = new SecurityUserExample();
-        example.createCriteria().andUserNameEqualTo(userVO.getUserName());
+        example.createCriteria().andUserNoEqualTo(userVO.getUserNo());
 
         List<SecurityUser> userList = securityUserMapper.selectByExample(example);
 
@@ -375,24 +367,12 @@ public class SecurityUserService {
 
         UserDO userDO = new UserDO();
 
-        if (StringUtils.isNotBlank(userVO.getUserName())) {
-            userDO.setUserName(userVO.getUserName());
+        if (StringUtils.isNotBlank(userVO.getUserNo())) {
+            userDO.setUserNo(userVO.getUserNo());
         }
 
         if (StringUtils.isNotBlank(userVO.getMobile())) {
             userDO.setMobile(userVO.getMobile());
-        }
-
-        if (StringUtils.isNotBlank(userVO.getRecommendName())){
-            UserVO findUser = findUserByUserName(userVO.getRecommendName());
-            if (findUser!=null){
-                userDO.setRecommendUserId(findUser.getUserId());
-            }
-
-        }
-
-        if (userVO.getRecommendUserId() != null && userVO.getRecommendUserId() > 0) {
-            userDO.setRecommendUserId(userVO.getRecommendUserId());
         }
 
         if (StringUtils.isNotBlank(userVO.getEmail())) {
@@ -413,10 +393,6 @@ public class SecurityUserService {
 
         if (userVO.getRoleId() != null) {
             userDO.setRoleId(userVO.getRoleId());
-        }
-
-        if (!StringUtils.isEmpty(userVO.getVipLevel())){
-            userDO.setMemberLevelId(Long.valueOf(userVO.getVipLevel()));
         }
 
         List<UserDO> userList = userDAO.selectUserList(userDO);
@@ -450,7 +426,7 @@ public class SecurityUserService {
     }
 
     /**
-     * 根据id或userId或username查找用户
+     * 根据id或userId或userNo查找用户
      *
      * @param userVO
      * @return
@@ -463,7 +439,7 @@ public class SecurityUserService {
         SecurityUserExample example = new SecurityUserExample();
         SecurityUserExample.Criteria criteria = example.createCriteria();
 
-        if (userVO.getId() != null || userVO.getUserId() != null || StringUtils.isNotBlank(userVO.getUserName())) {
+        if (userVO.getId() != null || userVO.getUserId() != null || StringUtils.isNotBlank(userVO.getUserNo())) {
             if (userVO.getId() != null) {
                 criteria.andIdEqualTo(userVO.getId());
             }
@@ -472,8 +448,8 @@ public class SecurityUserService {
                 criteria.andUserIdEqualTo(userVO.getUserId());
             }
 
-            if (StringUtils.isNotBlank(userVO.getUserName())) {
-                criteria.andUserNameEqualTo(userVO.getUserName());
+            if (StringUtils.isNotBlank(userVO.getUserNo())) {
+                criteria.andUserNoEqualTo(userVO.getUserNo());
             }
 
             userList = securityUserMapper.selectByExample(example);

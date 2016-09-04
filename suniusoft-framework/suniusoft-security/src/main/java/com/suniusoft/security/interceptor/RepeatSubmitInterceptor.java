@@ -48,11 +48,11 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String token = "";
-        String userName = "";
+        String userNo = "";
 
         Map<String, Object> loginInfo = SecurityContextHolder.getLoginInfo();
         if (!CollectionUtils.isEmpty(loginInfo)) {
-            userName = String.valueOf(loginInfo.get("userName"));
+            userNo = String.valueOf(loginInfo.get("userNo"));
 
         }
 
@@ -80,7 +80,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
                     request.setAttribute("submit_token", token);
                     SysTokenVO sysToken = new SysTokenVO();
                     sysToken.setToken(token);
-                    sysToken.setUserName(userName);
+                    sysToken.setUserNo(userNo);
 
                     /**
                      * 失效时间30分钟
@@ -89,7 +89,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
 
                     sysTokenService.createToken(sysToken);
 
-                    logger.info("create submit_token [userName:" + userName +
+                    logger.info("create submit_token [userNo:" + userNo +
                             ",submit_token:" + token + ",url:" + request.getServletPath() + "]");
                 }
 
@@ -105,7 +105,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
                         return true;
                     }
 
-                    logger.error("please don't repeat submit, [userName:" + userName +
+                    logger.error("please don't repeat submit, [userNo:" + userNo +
                             ",token:" + token + ",url:" + request.getServletPath() + "]");
                     throw new RuntimeException("表单已经提交，请不要重复提交!");
                 }
@@ -114,7 +114,7 @@ public class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
 
         } catch (Exception e) {
 
-            logger.error("RepeatSubmitInterceptor.preHandle error , [userName:" + userName +
+            logger.error("RepeatSubmitInterceptor.preHandle error , [userNo:" + userNo +
                     ",submit_token:" + token + ",url:" + request.getServletPath() + "]");
 
             throw new RuntimeException("表单已经提交，请不要重复提交!");

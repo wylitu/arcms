@@ -31,7 +31,7 @@ public class SysToken {
     private Long userId;
 
     /** 用户名 */
-    private String userName;
+    private String userNo;
 
     /** 类型，login:作为登陆session、repeat_submit：防止表单重复提交 */
     private String type;

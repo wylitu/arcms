@@ -14,8 +14,8 @@
         </commentGenerator>
 
         <!--mysql数据库链接URL，用户名、密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.40.58.169:3306/arcms"
-                        userId="arcms" password="arcms123">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/arcms"
+                        userId="root" password="sd123">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>

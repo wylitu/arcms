@@ -12,7 +12,7 @@
             async: {
                 type: "get",
                 enable: true,
-                url: "admin/resourceTreeList",
+                url: "${rc.contextPath}/admin/resourceTreeList",
                 autoParam: ["id=id", "resourceId=resourceId", "name=n", "level=lv"],
                 otherParam: {"otherParam": "zTreeAsyncTest"}
             },

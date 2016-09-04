@@ -30,10 +30,10 @@ public class InsertAspect {
 
                 Map<String, Object> loginInfo = SecurityContextHolder.getLoginInfo();
 
-                String userName = "sys";
+                String userNo = "sys";
 
-                if (loginInfo != null && loginInfo.get("userName") != null) {
-                    userName = String.valueOf(loginInfo.get("userName"));
+                if (loginInfo != null && loginInfo.get("userNo") != null) {
+                    userNo = String.valueOf(loginInfo.get("userNo"));
                 }
 
                 if (cla.isAnnotationPresent(Domain.class)) {
@@ -43,9 +43,9 @@ public class InsertAspect {
                         MethodUtils.invokeMethod(arg, "setGmtModified", new Date());
                         MethodUtils.invokeMethod(arg, "setIsDeleted", false);
                         MethodUtils.invokeMethod(arg, "setCreatedBy",
-                                StringUtils.isBlank(userName) ? "sys" : userName);
+                                StringUtils.isBlank(userNo) ? "sys" : userNo);
                         MethodUtils.invokeMethod(arg, "setModifiedBy",
-                                StringUtils.isBlank(userName) ? "sys" : userName);
+                                StringUtils.isBlank(userNo) ? "sys" : userNo);
 
                     } catch (Exception e) {
                         throw new RuntimeException(joinPoint.toString()

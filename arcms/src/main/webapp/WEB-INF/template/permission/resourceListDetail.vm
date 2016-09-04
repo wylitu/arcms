@@ -24,7 +24,7 @@
                                             <span class="ml20">模块名：<input type="text" name="name"/></span>
 
 
-                            <span>
+                            <span>&nbsp
                                                   <button class="btn_searchA ml20" type="button" id="SearchBut">
                                                       搜索
                                                   </button>                            </span>
@@ -82,7 +82,7 @@
     <!----------新增用户------------>
     <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="userModal"
          aria-hidden="true">
-        <div class="modal-dialog" style="width: 800px;margin-top: 50px;">
+        <div class="modal-dialog" style="width: 400px;margin-top: 50px;">
             <div class="modal-content">
                 <div class="tiptop"><span>模板信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
                 <div class="row" style="padding-bottom: 20px;">
@@ -95,7 +95,7 @@
                             <div class="col-sm-7">
                                 <input type="hidden" id="id" name="parentResourceId">
 
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="name"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="name"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -104,9 +104,9 @@
                                 模块类型: </label>
 
                             <div class="col-sm-7">
-                                <select id="type" name="type" onchange="Change()">
-                                    <option value="url">url</option>
-                                    <option value="menu">menu</option>
+                                <select id="type" class="col-xs-10 col-sm-9" name="type" onchange="Change()">
+                                    <option value="menu">菜单</option>
+                                    <option value="url">链接</option>
                                 </select>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                 优先级: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="priority"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="priority"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                 url: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="url"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="url"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -135,14 +135,15 @@
                                 描述: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="description"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="description"/>
                             </div>
                         </div>
 
 
-                        <center class="saveBut">
-                            <input class="btn btn-primary" type="button" value="保存" id="save">
-                        </center>
+                        <div class="saveBtn">
+                            <center><input class="sure" type="button"   id="save" value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -152,7 +153,7 @@
     <!----------编辑用户------------>
     <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog" aria-labelledby="userModal"
          aria-hidden="true">
-        <div class="modal-dialog" style="width: 800px;margin-top: 50px;">
+        <div class="modal-dialog" style="width: 400px;margin-top: 50px;">
             <div class="modal-content">
                 <div class="tiptop"><span>模板信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
                 <div class="row" style="padding-bottom: 20px;">
@@ -166,7 +167,7 @@
                                 <input type="hidden" id="id" name="parentResourceId">
                                 <input type="hidden" id="resourceId" name="resourceId">
 
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="name"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="name"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -175,9 +176,9 @@
                                 模块类型: </label>
 
                             <div class="col-sm-7">
-                                <select id="type1" name="type" onchange="Change1()">
-                                    <option value="url">url</option>
-                                    <option value="menu">menu</option>
+                                <select id="type1" name="type" class="col-xs-10 col-sm-9" onchange="Change1()">
+                                    <option value="menu">菜单</option>
+                                    <option value="url">链接</option>
                                 </select>
                             </div>
                         </div>
@@ -186,7 +187,7 @@
                                 优先级: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="priority"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="priority"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -196,7 +197,7 @@
                                 url: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="url"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="url"/>
                                 <span style="color: red;float: left;margin-left: 10px;font-size: 20px;line-height: 40px;">*</span>
                             </div>
                         </div>
@@ -206,14 +207,14 @@
                                 描述: </label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-7" name="description"/>
+                                <input type="text" id="form-field-1" class="col-xs-10 col-sm-9" name="description"/>
                             </div>
                         </div>
 
-
-                        <center class="saveBut">
-                            <input class="btn btn-primary" type="button" value="保存" id="saveEdit">
-                        </center>
+                        <div class="saveBtn">
+                            <center><input class="sure" type="button"   id="saveEdit" value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
                     </form>
                 </div>
             </div>

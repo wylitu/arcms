@@ -19,12 +19,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  @ProjectName: sf-crm  
+ *  @ProjectName: arcms  
  *  @Description: 用户登陆相关Controller
  *  @author litu  litu@shufensoft.com
  *  @date 2015/6/29  
  */
 @Controller
+@RequestMapping("/admin")
 public class SecurityController extends BaseController {
 
 
@@ -43,20 +44,20 @@ public class SecurityController extends BaseController {
     @RequestMapping("/doLogin")
     public String loginAction(UserVO userVO, HttpSession session) {
 
-        if (userVO == null || StringUtils.isBlank(userVO.getUserName())
+        if (userVO == null || StringUtils.isBlank(userVO.getUserNo())
                 || StringUtils.isBlank(userVO.getPassword())) {
-            return "redirect:/login";
+            return "redirect:/admin/login";
         }
 
         UserVO user;
 
-        if(StringUtils.isMobile(userVO.getUserName())){
+        if(StringUtils.isMobile(userVO.getUserNo())){
 
-            user = securityUserService.findUserByMobile(userVO.getUserName());
+            user = securityUserService.findUserByMobile(userVO.getUserNo());
 
         }else{
 
-            user = securityUserService.findUserByUserName(userVO.getUserName());
+            user = securityUserService.findUserByUserNo(userVO.getUserNo());
 
         }
 
@@ -65,10 +66,10 @@ public class SecurityController extends BaseController {
 
         if (user != null && password.equals(user.getPassword())) {
             session.setAttribute(SecurityConstant.SESSION_KEY, user);
-            return "redirect:/";
+            return "redirect:/admin";
         }
 
-        return "redirect:/login";
+        return "redirect:/admin/login";
 
     }
 
@@ -77,7 +78,7 @@ public class SecurityController extends BaseController {
 
         session.setAttribute(SecurityConstant.SESSION_KEY, null);
 
-        return "redirect:/login";
+        return "redirect:/admin/login";
 
     }
 
@@ -89,7 +90,7 @@ public class SecurityController extends BaseController {
         Map<String, String> returnMap = new HashMap<String, String>();
         returnMap.put(ERROR_CODE_KEY, ErrorCode.ERROR);
 
-        if (StringUtils.isBlank(userVO.getUserName())) {
+        if (StringUtils.isBlank(userVO.getUserNo())) {
             returnMap.put(ERROR_MESSAGE_KEY, "缺少用户名!");
             return returnMap;
         }
@@ -116,7 +117,7 @@ public class SecurityController extends BaseController {
 
         try {
             userVO.setNewpasswd1(Md5Encrypt.md5(userVO.getNewpasswd1()));
-            userVO.setModifiedBy(getUserName());
+            userVO.setModifiedBy(getUserNo());
             userVO.setPassword(Md5Encrypt.md5(userVO.getPassword()));
             boolean flag = securityUserService.updatePasswd(userVO);
             if (!flag) {

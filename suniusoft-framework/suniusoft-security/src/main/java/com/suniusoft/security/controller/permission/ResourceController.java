@@ -33,6 +33,7 @@ import java.util.Map;
  *  @date 2015/10/31  
  */
 @Controller
+@RequestMapping("/admin")
 public class ResourceController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(BaseController.class);
@@ -55,7 +56,7 @@ public class ResourceController extends BaseController {
         return new ModelAndView("permission/resourceList", modelMap);
     }
 
-    @RequestMapping(value = "/admin/resourceTreeList")
+    @RequestMapping(value = "/resourceTreeList")
     public void showTree(HttpServletRequest reqeust,
                          HttpServletResponse response) throws IOException {
 
@@ -102,7 +103,7 @@ public class ResourceController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/admin/resourceList")
+    @RequestMapping(value = "/resourceList")
     public Map<String, Object> showResource(HttpServletRequest reqeust, ResourceVO resourceVO, Integer pageNum, Integer length) throws IOException {
         {
 
@@ -131,7 +132,7 @@ public class ResourceController extends BaseController {
 
     }
 
-    @RequestMapping(value = "/admin/editResource")
+    @RequestMapping(value = "/editResource")
     public Map<String, Object> editUser(ResourceVO resourceVO) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -163,7 +164,7 @@ public class ResourceController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/delResource")
+    @RequestMapping(value = "/delResource")
     public Map<String, Object> changePass(Long id) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -178,7 +179,7 @@ public class ResourceController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/admin/getResource")
+    @RequestMapping(value = "/getResource")
     public Map<String, Object> getResource(ResourceVO resourceVO) {
 
         Map<String, Object> dataMap = Maps.newHashMap();

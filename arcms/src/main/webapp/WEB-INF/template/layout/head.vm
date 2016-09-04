@@ -1,6 +1,6 @@
 <script>
     function freshUrl(url,openWindowflag) {
-        if (url == null || url == '' || url=="${rc.contextPath}/#") {
+        if (url == null || url == '' || url=="${rc.contextPath}/admin#" || url=="${rc.contextPath}/admin/#" || url=="${rc.contextPath}/admin") {
             return;
         }
         var openWindowflag = isOpenWindowflag(openWindowflag);
@@ -11,15 +11,12 @@
         if(openWindowflag){
             setCookie("openWindowflag", openWindowflag);
             window.open(url);
-            return;
-        }
-        if('$!{rc.contextPath}'!=url&&'${rc.contextPath}/loginOut'!=url&&!openWindowflag){
+        }else if('$!{rc.contextPath}'!=url&&'${rc.contextPath}/admin/loginOut'!=url&&!openWindowflag){
             htmlobj = $.ajax({url: url, async: false});
             $("#screenContent").html(htmlobj.responseText);
-            return;
+        }else{
+            window.location.href = url;
         }
-
-        window.location.href = url;
     }
 
     function isOpenWindowflag(openWindowflag){
@@ -57,16 +54,14 @@
     <div class="navbar-container" id="navbar-container" >
         <div class="navbar-header pull-left" style="margin-top: 10px!important;">
 
-            <img  src="$!{rc.contextPath}/media/css/images/icon_left.png" style="margin-top: -12px;margin-left:20px;margin-right:20px;width: 60px;height: 60px;float: left"/>
-
-            <a href="javascript:freshUrl('$!{rc.contextPath}')" class="navbar-brand">
+            <a href="javascript:freshUrl('$!{rc.contextPath}/admin')" class="navbar-brand">
                 <div class="grid grid-pad">
                     <section class="col-1-1">
                         <div class="playground grid" >
                             <div class="col-1-1 viewport" >
                                 <div class="tlt" style="font-size: 21px;">
                                     <ul class="texts" style="display: none;font-size: 24px;">
-                                        <li>爱卡后台管理系统</li>
+                                        <li>讯略后台管理系统</li>
                                     </ul>
                                 </div>
                             </div>
@@ -136,10 +131,10 @@
                     <li class="light-blue" style="margin-top: 6px;margin-left: 230px">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle-welcome">
                             <img class="nav-user-photo" src="${rc.contextPath}/media/images/user/user.png"
-                                 alt="$!{user.userName}"/>
+                                 alt="$!{user.name}"/>
 								<span class="user-info">
 									<small>欢迎光临,</small>
-                                    $!{user.userName}
+                                    $!{user.name}
 								</span>
 
                             <i class="icon-caret-down"></i>
@@ -164,7 +159,7 @@
 
                             <li>
 
-                                <a href="javascript:freshUrl('${rc.contextPath}/loginOut')">
+                                <a href="javascript:freshUrl('${rc.contextPath}/admin/loginOut')">
                                     <i class="icon-off"></i>
                                     退出
                                 </a>

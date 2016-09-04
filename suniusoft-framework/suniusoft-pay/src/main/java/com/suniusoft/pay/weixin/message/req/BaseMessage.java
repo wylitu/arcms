@@ -2,7 +2,7 @@ package com.suniusoft.pay.weixin.message.req;
 
 public class BaseMessage {
 	// 开发者微信号
-	private String ToUserName;
+	private String ToUserNo;
 	// 发送方帐号（一个OpenID）
 	private String FromUserName;
 	// 消息创建时间 （整型）
@@ -12,20 +12,20 @@ public class BaseMessage {
 	// 消息id，64位整型
 	private long MsgId;
 
-	public String getToUserName() {
-		return ToUserName;
+	public String getToUserNo() {
+		return ToUserNo;
 	}
 
-	public void setToUserName(String toUserName) {
-		ToUserName = toUserName;
+	public void setToUserNo(String toUserNo) {
+		ToUserNo = toUserNo;
 	}
 
-	public String getFromUserName() {
+	public String getFromUserNo() {
 		return FromUserName;
 	}
 
-	public void setFromUserName(String fromUserName) {
-		FromUserName = fromUserName;
+	public void setFromUserNo(String fromUserNo) {
+		FromUserName = fromUserNo;
 	}
 
 	public long getCreateTime() {

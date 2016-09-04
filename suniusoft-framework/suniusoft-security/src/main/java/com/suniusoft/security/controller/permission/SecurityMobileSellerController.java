@@ -87,7 +87,7 @@ public class SecurityMobileSellerController extends BaseController {
             return map;
 
         }
-        if (userVO == null || StringUtils.isBlank(userVO.getUserName())
+        if (userVO == null || StringUtils.isBlank(userVO.getUserNo())
                 || StringUtils.isBlank(userVO.getPassword())) {
 
             map.put(ERROR_MESSAGE_KEY, "手机或密码不能为空!");
@@ -97,13 +97,13 @@ public class SecurityMobileSellerController extends BaseController {
 
         UserVO user;
 
-        if (StringUtils.isMobile(userVO.getUserName())) {
+        if (StringUtils.isMobile(userVO.getUserNo())) {
 
-            user = securityUserService.findUserByMobile(userVO.getUserName());
+            user = securityUserService.findUserByMobile(userVO.getUserNo());
 
         } else {
 
-            user = securityUserService.findUserByUserName(userVO.getUserName());
+            user = securityUserService.findUserByUserNo(userVO.getUserNo());
 
         }
 
@@ -117,14 +117,7 @@ public class SecurityMobileSellerController extends BaseController {
             return map;
         }
 
-        if (!user.getIsSeller()) {
-
-            map.put(ERROR_MESSAGE_KEY, "此账号非商家账号!");
-
-            return map;
-        }
-
-        Cookie sellerCookie = new Cookie("_sun", user.getUserName());
+        Cookie sellerCookie = new Cookie("_sun", user.getUserNo());
         sellerCookie.setPath("/");
         sellerCookie.setMaxAge(365*24*60*60);
         CookieUtils.saveCookie(response, sellerCookie);

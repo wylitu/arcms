@@ -25,7 +25,7 @@
                                         <div class="input-group">
                                             <span class="ml20">角色名称：<input type="text" name="name"/></span>
 
-                            <span>
+                            <span>&nbsp
 
                                 <button class="btn_searchA ml20" type="button" id="SearchBut">
                                     搜索
@@ -78,7 +78,7 @@
     <!----------新增用户------------>
     <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="userModal"
          aria-hidden="true">
-        <div class="modal-dialog" style="width: 800px;margin-top: 50px;">
+        <div class="modal-dialog" style="width: 400px;margin-top: 50px;">
             <div class="modal-content">
                 <div class="tiptop"><span>角色信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
                 <div class="row" style="padding-bottom: 20px;">
@@ -113,9 +113,10 @@
                             </div>
                         </div>
 
-                        <center class="saveBut">
-                            <input class="btn btn-primary" type="button" value="保存" id="save">
-                        </center>
+                        <div class="saveBtn">
+                            <center><input class="sure" type="button"   id="save" value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -125,7 +126,7 @@
     <!----------编辑用户------------>
     <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog" aria-labelledby="userModal"
          aria-hidden="true">
-        <div class="modal-dialog" style="width: 800px;margin-top: 50px;">
+        <div class="modal-dialog" style="width: 400px;margin-top: 50px;">
             <div class="modal-content">
                 <div class="tiptop"><span>角色信息</span><a data-dismiss="modal" aria-hidden="true"></a></div>
                 <div class="row" style="padding-bottom: 20px;">
@@ -173,9 +174,10 @@
                             </div>
                         </div>
 
-                        <center class="saveBut">
-                            <input class="btn btn-primary" type="button" value="保存" id="saveEdit">
-                        </center>
+                        <div class="saveBtn">
+                            <center><input class="sure" type="button"  id="saveEdit" value="保存" >&nbsp;
+                                <input class="cancel" type="button" data-dismiss="modal" aria-hidden="true" value="取消"></center>
+                        </div>
                     </form>
                 </div>
             </div>

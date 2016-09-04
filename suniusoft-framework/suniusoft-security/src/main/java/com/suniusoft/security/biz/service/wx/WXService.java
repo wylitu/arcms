@@ -125,9 +125,9 @@ public class WXService {
          * 不同字段名copy
          */
 
-        user.setHeadImg(userInfoVO.getHeadimgurl());
-        user.setWxOpenId(userInfoVO.getOpenid());
-        user.setUserName(userInfoVO.getNickname());
+        user.setWxHeadimgurl(userInfoVO.getHeadimgurl());
+        user.setWxOpenid(userInfoVO.getOpenid());
+        user.setUserNick(userInfoVO.getNickname());
 
         return user;
     }

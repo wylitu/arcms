@@ -67,9 +67,9 @@ public class SecurityInterceptor implements HandlerInterceptor {
 
             userVO = (UserVO) session.getAttribute(SecurityConstant.SELLER_SESSION_KEY);
             if(userVO == null){
-                String userName = CookieUtils.getCookie(request,"_sun");
-                if(!StringUtils.isBlank(userName)){
-                    userVO = securityUserService.findUserByUserName(userName);
+                String userNo = CookieUtils.getCookie(request,"_sun");
+                if(!StringUtils.isBlank(userNo)){
+                    userVO = securityUserService.findUserByUserNo(userNo);
                 }
             }
             session.setAttribute(SecurityConstant.SELLER_SESSION_KEY,userVO);
@@ -78,9 +78,9 @@ public class SecurityInterceptor implements HandlerInterceptor {
             if (!StringUtils.isBlank(token) && TokenUtils.validateToken(token)){
                 SecuritySessionContext.init(token);
                 userVO = SecuritySessionContext.getUserInfo();
-                String userName = CookieUtils.getCookie(request,"_u");
-                if(userVO!=null && StringUtils.isBlank(userName)) {
-                    Cookie userCookie = new Cookie("_u", userVO.getUserName());
+                String userNo = CookieUtils.getCookie(request,"_u");
+                if(userVO!=null && StringUtils.isBlank(userNo)) {
+                    Cookie userCookie = new Cookie("_u", userVO.getUserNo());
                     userCookie.setPath("/");
                     userCookie.setMaxAge(365 * 24 * 60 * 60);
                     CookieUtils.saveCookie(response, userCookie);
@@ -92,14 +92,14 @@ public class SecurityInterceptor implements HandlerInterceptor {
             if(userVO == null) {
                 userVO = (UserVO) session.getAttribute(SecurityConstant.SESSION_KEY);
                 if (userVO == null) {
-                    String userName = CookieUtils.getCookie(request, "_u");
-                    if (!StringUtils.isBlank(userName)) {
-                        userVO = securityUserService.findUserByUserName(userName);
+                    String userNo = CookieUtils.getCookie(request, "_u");
+                    if (!StringUtils.isBlank(userNo)) {
+                        userVO = securityUserService.findUserByUserNo(userNo);
                     }
                     session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
 
                     if (userVO != null) {
-                        log.info("loginInfo from cookie [userName=" + (userVO.getUserName() == null ? "" : userVO.getUserName()) + "]");
+                        log.info("loginInfo from cookie [userNo=" + (userVO.getUserNo() == null ? "" : userVO.getUserNo()) + "]");
                     }
 
                 }
@@ -141,27 +141,16 @@ public class SecurityInterceptor implements HandlerInterceptor {
             /**
              * 后台登录
              */
-            response.sendRedirect(contextPath + "/login");
+            response.sendRedirect(contextPath + "/admin/login");
 
             return false;
-        }
-
-        /**
-         * 商家登录拦截
-         */
-        if (request.getServletPath().indexOf("/mobile/seller/")!=-1 && (userVO.getIsSeller()==null || !userVO.getIsSeller())) {
-
-            response.sendRedirect(contextPath + "/mobile/sellerLogin");
-
-            return false;
-
         }
 
         Map<String,Object> loginInfo = Maps.newHashMap();
-        loginInfo.put("userName", userVO.getUserName());
+        loginInfo.put("userNo", userVO.getUserNo());
         loginInfo.put(SecurityConstant.SESSION_KEY, userVO);
         SecurityContextHolder.setLoginInfo(loginInfo);
-        log.info("loginInfo[userName="+(userVO.getUserName()==null?"":userVO.getUserName())+"]");
+        log.info("loginInfo[userNo="+(userVO.getUserNo()==null?"":userVO.getUserNo())+"]");
         return true;
 
     }
@@ -182,7 +171,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
 
             if(userVO!=null){
 
-                log.info("clear loginInfo[userName="+userVO.getUserName()==null?"":userVO.getUserName()+"]");
+                log.info("clear loginInfo[userNo="+userVO.getUserNo()==null?"":userVO.getUserNo()+"]");
             }
 
         }

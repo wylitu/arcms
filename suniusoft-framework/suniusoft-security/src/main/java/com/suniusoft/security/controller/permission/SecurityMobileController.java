@@ -162,7 +162,7 @@ public class SecurityMobileController extends BaseController {
 
         if (Constant.LoginType.AUTH.equals(userInfo.getLoginType())) {
 
-            if (StringUtils.isBlank(userInfo.getUserName())) {
+            if (StringUtils.isBlank(userInfo.getUserNo())) {
 
                 map.put(ERROR_MESSAGE_KEY, "用户名不能为空!");
 
@@ -183,14 +183,14 @@ public class SecurityMobileController extends BaseController {
                 securityUserService.saveUserInfo(userVO);
 
                 sysTokenVO.setUserId(userVO.getUserId());
-                sysTokenVO.setUserName(userVO.getUserName());
+                sysTokenVO.setUserNo(userVO.getUserNo());
 
                 sysTokenService.createToken(sysTokenVO);
             } catch (Exception e) {
                 map.put(ERROR_MESSAGE_KEY, e.getMessage());
             }
 
-            Cookie sellerCookie = new Cookie("_u", userVO.getUserName());
+            Cookie sellerCookie = new Cookie("_u", userVO.getUserNo());
             sellerCookie.setPath("/");
             sellerCookie.setMaxAge(365 * 24 * 60 * 60);
             CookieUtils.saveCookie(response, sellerCookie);
@@ -225,10 +225,10 @@ public class SecurityMobileController extends BaseController {
             if (password.equals(userInfo.getPassword())) {
 
                 sysTokenVO.setUserId(user.getUserId());
-                sysTokenVO.setUserName(user.getUserName());
+                sysTokenVO.setUserNo(user.getUserNo());
                 sysTokenService.createToken(sysTokenVO);
 
-                Cookie sellerCookie = new Cookie("_u", userVO.getUserName());
+                Cookie sellerCookie = new Cookie("_u", userVO.getUserNo());
                 sellerCookie.setPath("/");
                 sellerCookie.setMaxAge(365 * 24 * 60 * 60);
                 CookieUtils.saveCookie(response, sellerCookie);
@@ -394,12 +394,11 @@ public class SecurityMobileController extends BaseController {
             userVO.setMobile(mobile);
             userVO.setPassword(password);
             Long code = IdGenUtils.idGen();
-            userVO.setUserName("arcms" + code);
-            userVO.setRecommendUserId(StringUtils.isBlank(recommendUserId) ? null : Long.parseLong(recommendUserId));
+            userVO.setUserNo("arcms" + code);
             securityUserService.saveUserInfo(userVO);
 
             sysTokenVO.setUserId(userVO.getUserId());
-            sysTokenVO.setUserName(userVO.getUserName());
+            sysTokenVO.setUserNo(userVO.getUserNo());
             sysTokenService.createToken(sysTokenVO);
 
             session.setAttribute(SecurityConstant.SESSION_KEY, userVO);

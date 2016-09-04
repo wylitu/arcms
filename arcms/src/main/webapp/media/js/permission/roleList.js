@@ -126,7 +126,7 @@ $("#SearchBut").click(function () {
 $("#add").click(function () {
 
 
-    createTree("treeDemo","admin/roleResourceList");
+    createTree("treeDemo",baseUrl +"/admin/roleResourceList");
     $("#init").bind("change", createTree);
     $("#last").bind("change", createTree);
     $('#userAddModal').modal('show');
@@ -189,7 +189,7 @@ $("#edit").click(function () {
 
     $.ajax({
         type: "post",
-        url: baseUrl + "admin/getRole",
+        url: baseUrl + "/admin/getRole",
         data: {id: id},
         dataType: "json",
         success: function (data) {
@@ -201,7 +201,7 @@ $("#edit").click(function () {
                 $("#editForm input[name='name']").val(data.role.name);
 
             }
-            createTree1("treeDemo1","admin/roleResourceList?roleId="+id);
+            createTree1("treeDemo1",baseUrl + "admin/roleResourceList?roleId="+id);
             $("#init").bind("change", createTree1);
             $("#last").bind("change", createTree1);
             $('#userEditModal').modal('show');
@@ -217,7 +217,7 @@ $("#edit").click(function () {
 function sendAjax(data) {
     $.ajax({
         type: "post",
-        url: baseUrl + "admin/editRole",
+        url: baseUrl + "/admin/editRole",
         dataType: "json",
         data: data,
         success: function (data) {

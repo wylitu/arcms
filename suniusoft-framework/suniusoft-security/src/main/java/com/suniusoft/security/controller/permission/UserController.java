@@ -34,6 +34,7 @@ import java.util.Map;
  *  @date 2015/10/31  
  */
 @Controller
+@RequestMapping("/admin")
 public class UserController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(BaseController.class);
@@ -49,7 +50,7 @@ public class UserController extends BaseController {
 
 
 
-    @RequestMapping(value = "/admin/userManage")
+    @RequestMapping(value = "/userManage")
     public ModelAndView index(ModelMap modelMap) {
 
         /**
@@ -62,7 +63,7 @@ public class UserController extends BaseController {
         return new ModelAndView("permission/userList", modelMap);
     }
 
-    @RequestMapping(value = "/admin/userList")
+    @RequestMapping(value = "/userList")
     public Map<String, Object> showUser(UserVO userVO, Integer pageNum, Integer length) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -72,26 +73,6 @@ public class UserController extends BaseController {
 
         Map<Long, UserDO> map = new HashMap<Long, UserDO>();
         for (UserDO userDo : userList) {
-            if (userDo.getMemberLevelId()==1){
-                userDo.setVipLevel("普通会员");
-            }else if(userDo.getMemberLevelId()==2){
-                userDo.setVipLevel("VIP会员");
-            }else if(userDo.getMemberLevelId()==3){
-                userDo.setVipLevel("银卡会员");
-            }else if(userDo.getMemberLevelId()==4){
-                userDo.setVipLevel("金卡会员");
-            }
-
-            if (userDo.getRecommendUserId()!=null){
-                UserDO findUser  = securityUserService.findUserByUserId(userDo.getRecommendUserId());
-                if (findUser!=null){
-                    userDo.setRecommendName(findUser.getUserName());
-                }
-
-            }
-
-
-
 
             if (map.get(userDo.getUserId()) == null) {
                 map.put(userDo.getUserId(), userDo);
@@ -118,7 +99,7 @@ public class UserController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/editUser")
+    @RequestMapping(value = "/editUser")
     public Map<String, Object> editUser(UserVO userVO) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -142,7 +123,7 @@ public class UserController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/getUser")
+    @RequestMapping(value = "/getUser")
     public Map<String, Object> getUser(Long id) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -154,7 +135,7 @@ public class UserController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/resetPassword")
+    @RequestMapping(value = "/resetPassword")
     public Map<String, Object> changePass(Long id) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -169,7 +150,7 @@ public class UserController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/admin/userRoles")
+    @RequestMapping(value = "/userRoles")
     public Map<String, Object> showRoles(UserVO userVO) {
 
         SecurityUser user = securityUserService.getUserById(userVO.getId());
@@ -204,7 +185,7 @@ public class UserController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/authorize")
+    @RequestMapping(value = "/authorize")
     public Map<String, Object> authorize(String roleIds, String userId) {
         Map<String, Object> dataMap = Maps.newHashMap();
 

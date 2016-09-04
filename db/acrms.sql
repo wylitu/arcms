@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : icard数据库
+Source Server         : arcms数据库
 Source Server Version : 50537
 Source Host           : 121.40.58.169:3306
 Source Database       : icard
@@ -130,7 +130,7 @@ CREATE TABLE `user` (
   `user_id` bigint(11) NOT NULL COMMENT '用户id,作为@BizId',
   `user_nick` varchar(64) DEFAULT NULL COMMENT '昵称',
   `name` varchar(64) NOT NULL COMMENT '姓名',
-  `user_no` varchar(64) NOT NULL COMMENT '用户编号',
+  `user_no` varchar(64) DEFAULT NULL COMMENT '用户编号',
   `password` varchar(100) NOT NULL COMMENT '密码',
   `sex` varchar(1) DEFAULT NULL COMMENT '性别1:男；2:女',
   `age` int(3) DEFAULT NULL COMMENT '年龄',

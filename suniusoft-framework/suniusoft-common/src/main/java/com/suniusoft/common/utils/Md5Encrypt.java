@@ -96,7 +96,7 @@ public class Md5Encrypt {
 
     public static void main(String[] args){
 
-        System.out.print(md5("123456"));
+        System.out.print(md5("1234"));
     }
 
 }

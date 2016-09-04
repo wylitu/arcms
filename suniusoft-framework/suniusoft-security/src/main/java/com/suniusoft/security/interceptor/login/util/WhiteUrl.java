@@ -39,8 +39,8 @@ public class WhiteUrl {
         /**
          *  默认白名单路径，其他白名单配置在config.properties中
          */
-        whiteUrl.add("/login");
-        whiteUrl.add("/doLogin");
+        whiteUrl.add("/admin/login");
+        whiteUrl.add("/admin/doLogin");
 
     }
 

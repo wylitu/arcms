@@ -34,5 +34,5 @@ public class UserMessage {
     private String content;
 
     /** 用户名称 */
-    private String userName;
+    private String userNo;
 }

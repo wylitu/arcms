@@ -25,7 +25,7 @@ public class IndexController extends BaseController {
      */
     private static final String RETURN_PAGE = "index";
 
-    @RequestMapping("/")
+    @RequestMapping("/admin")
     public ModelAndView index(ModelMap modelMap, HttpSession session) {
 
         modelMap.put("indexFlag", "1");

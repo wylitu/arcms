@@ -1,6 +1,3 @@
-
-
-
 #set($layout = "/layout/blank.vm")
 <script type="text/javascript" src="${rc.contextPath}/media/js/admin/geo.js"></script>
 <div id="web">
@@ -24,7 +21,9 @@
                                 <div class="row">
                                     <div class="col-xs-16 col-sm-12">
                                         <div class="input-group">
-                                            <span class="ml10" style="width: 120px">用户名：<input type="text" style="width: 100px" name="userName"/></span>
+                                            <span class="ml10" style="width: 120px">用户编号/学号：<input type="text"
+                                                                                               style="width: 100px"
+                                                                                               name="userNo"/></span>
                                             <span class="ml10">手机：<input type="text" name="mobile"/></span>
 
                                             <span class="ml20">
@@ -32,28 +31,14 @@
                                                 <select name="role">
                                                     <option value="">------所有角色------</option>
                                                     #if($roleList)
-                                                    #foreach($role in $roleList)
-                                                    <option value="$role.roleId">$role.name</option>
-                                                    #end
+                                                        #foreach($role in $roleList)
+                                                            <option value="$role.roleId">$role.name</option>
+                                                        #end
                                                     #end
                                                 </select>
                                             </span>
-                                            <span class="ml20">
-                                                            会员等级：
-                                                <select name="level">
-                                                    <option value="">所有会员</option>
 
-                                                        <option value="1">普通会员</option>
-                                                        <option value="2">VIP会员</option>
-                                                        <option value="3">银卡会员</option>
-                                                        <option value="4">金卡会员</option>
-
-                                                </select>
-                                            </span>
-                                            <span class="ml10" style="width: 120px">
-                                                       推荐人名称：<input type="text" style="width: 120px" name="recommendName"/>
-                                            </span>
-                            <span>
+                            <span>&nbsp
   <button class="btn_searchA ml20" type="button" id="SearchBut">
       搜索
   </button>                            </span>
@@ -195,7 +180,7 @@
 
                             <div class="col-sm-7">
 
-                                <select  id="province" class="col-xs-10 col-sm-7" name="province"/>
+                                <select id="province" class="col-xs-10 col-sm-7" name="province"/>
                                 <option></option>
                             </div>
                         </div>
@@ -204,7 +189,7 @@
                                 城市: </label>
 
                             <div class="col-sm-7">
-                                <select  id="city" class="col-xs-10 col-sm-7" name="city"/>
+                                <select id="city" class="col-xs-10 col-sm-7" name="city"/>
                                 <option></option>
 
                             </div>
@@ -304,7 +289,7 @@
 
                             <div class="col-sm-7">
 
-                                <select  id="province1" class="col-xs-10 col-sm-7" name="province"/>
+                                <select id="province1" class="col-xs-10 col-sm-7" name="province"/>
                                 <option></option>
                             </div>
                         </div>
@@ -313,7 +298,7 @@
                                 城市: </label>
 
                             <div class="col-sm-7">
-                                <select  id="city1" class="col-xs-10 col-sm-7" name="city"/>
+                                <select id="city1" class="col-xs-10 col-sm-7" name="city"/>
                                 <option></option>
 
                             </div>
@@ -402,18 +387,18 @@
         // 省市区三级联动
         new Dsy({
             // 绑定三个select的id
-            s:['province','city','district'],
+            s: ['province', 'city', 'district'],
             // 是否是大陆
-            isMainLand:true,
+            isMainLand: true,
             // 默认浙江省
-            p_key:'浙江省'
+            p_key: '浙江省'
         });
         new Dsy({
             // 绑定三个select的id
-            s:['province1','city1','district1'],
+            s: ['province1', 'city1', 'district1'],
             // 是否是大陆
-            isMainLand:true,
+            isMainLand: true,
             // 默认浙江省
-            p_key:'浙江省'
+            p_key: '浙江省'
         });
     </script>

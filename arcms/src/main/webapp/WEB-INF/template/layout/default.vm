@@ -4,7 +4,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="UTF-8" name="renderer" content="webkit">
-    <title>爱卡后台管理系统</title>
+    <title>讯略后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Theme style -->
 
@@ -346,15 +346,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="tiptop"><span>修改密码</span><a data-dismiss="modal" aria-hidden="true"></a></div>
-            <form id="passwdForm" class="form-horizontal" action="${rc.contextPath}/passwd" method="post">
+            <form id="passwdForm" class="form-horizontal" action="${rc.contextPath}/admin/passwd" method="post">
                 <div class="form-group" style="padding-top:15px;">
-                    <label for="circleName" class="col-sm-2 control-label">用户名</label>
+                    <label for="circleName" class="col-sm-2 control-label">用户编号</label>
 
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="userName" name="userName"
-                               value="$!user.userName">
+                    <input type="text" class="form-control" id="userNo" name="userNo"
+                           value="$!user.userNo">
 
-                    </div>
+                </div>
 
                 </div>
                 <div class="form-group">
@@ -438,7 +438,7 @@
 <script>
     var newUrl = getCookie("url");
     var openWindowflag = getCookie("openWindowflag");
-    if ((!isNullOrEmpty(newUrl) && '$!{rc.contextPath}' != newUrl && '${rc.contextPath}/loginOut' != newUrl) && !isOpenWindowflag(openWindowflag)) {
+    if ((!isNullOrEmpty(newUrl) && '$!{rc.contextPath}' != newUrl && '${rc.contextPath}/admin/loginOut' != newUrl) && !isOpenWindowflag(openWindowflag)) {
         freshUrl(newUrl);
     }
     setCookie("openWindowflag", false);

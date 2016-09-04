@@ -3,6 +3,7 @@ package com.suniusoft.security.controller.permission;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.suniusoft.common.utils.JSONUtils;
+import com.suniusoft.common.utils.StringUtils;
 import com.suniusoft.security.biz.domain.generation.permission.Resource;
 import com.suniusoft.security.biz.domain.generation.permission.Role;
 import com.suniusoft.security.biz.service.permission.ResourceService;
@@ -36,6 +37,7 @@ import java.util.Map;
  *  @date 2015/10/31  
  */
 @Controller
+@RequestMapping("/admin")
 public class RoleController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(BaseController.class);
@@ -51,7 +53,7 @@ public class RoleController extends BaseController {
     @Autowired
     private ResourceService resourceService;
 
-    @RequestMapping(value = "/admin/roleManage")
+    @RequestMapping(value = "/roleManage")
     public ModelAndView index(ModelMap modelMap) {
 
         /**
@@ -62,7 +64,7 @@ public class RoleController extends BaseController {
         return new ModelAndView("permission/roleList", modelMap);
     }
 
-    @RequestMapping(value = "/admin/roleList")
+    @RequestMapping(value = "/roleList")
     public Map<String, Object> showRole(RoleVO roleVO, Integer pageNum, Integer length) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -78,8 +80,8 @@ public class RoleController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/editRole")
-    public Map<String, Object> ediRole(RoleVO roleVO) {
+    @RequestMapping(value = "/editRole")
+    public Map<String, Object> editRole(RoleVO roleVO) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
         dataMap.put(ERROR_CODE_KEY, ErrorCode.ERROR);
@@ -88,17 +90,20 @@ public class RoleController extends BaseController {
 
 
             long roleId = securityManageService.insertOrUpdateRole(roleVO);
-            ResourceRoleVO vo = new ResourceRoleVO();
+            if(!StringUtils.isBlank(roleVO.getResourceIds())){
+                ResourceRoleVO vo = new ResourceRoleVO();
 
-            vo.setRoleId(roleId);
+                vo.setRoleId(roleId);
 
-            securityManageService.deleteResourceRole(vo);
-            for (String s : roleVO.getResourceIds().split(",")) {
-                ResourceRoleVO v = new ResourceRoleVO();
-                v.setResourceId(Long.valueOf(s));
-                v.setRoleId(roleId);
-                securityManageService.saveResourceRole(v);
+                securityManageService.deleteResourceRole(vo);
+                for (String s : roleVO.getResourceIds().split(",")) {
+                    ResourceRoleVO v = new ResourceRoleVO();
+                    v.setResourceId(Long.valueOf(s));
+                    v.setRoleId(roleId);
+                    securityManageService.saveResourceRole(v);
+                }
             }
+
             dataMap.put(ERROR_CODE_KEY, ErrorCode.SUCCESS);
             dataMap.put(ERROR_MESSAGE_KEY, "操作成功");
 
@@ -111,7 +116,7 @@ public class RoleController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/getRole")
+    @RequestMapping(value = "/getRole")
     public Map<String, Object> getUser(Long id) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -123,7 +128,7 @@ public class RoleController extends BaseController {
         return dataMap;
     }
 
-    @RequestMapping(value = "/admin/delRole")
+    @RequestMapping(value = "/delRole")
     public Map<String, Object> changePass(Long id) {
 
         Map<String, Object> dataMap = Maps.newHashMap();
@@ -138,7 +143,7 @@ public class RoleController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/admin/roleResourceList")
+    @RequestMapping(value = "/roleResourceList")
     public void showTree(HttpServletRequest reqeust,
                          HttpServletResponse response) throws IOException {
 

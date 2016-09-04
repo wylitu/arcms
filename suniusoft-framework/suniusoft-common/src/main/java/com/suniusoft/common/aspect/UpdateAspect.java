@@ -31,8 +31,8 @@ public class UpdateAspect {
 
                 String userId = "sys";
 
-                if (loginInfo != null && loginInfo.get("userName") != null) {
-                    userId = String.valueOf(loginInfo.get("userName"));
+                if (loginInfo != null && loginInfo.get("userNo") != null) {
+                    userId = String.valueOf(loginInfo.get("userNo"));
                 }
 
 
