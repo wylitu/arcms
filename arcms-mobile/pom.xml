@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.arcms</groupId>
     <artifactId>arcms-mobile</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <name>arcms Maven Webapp</name>
 
