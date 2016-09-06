@@ -100,18 +100,13 @@ public class SecurityUserService {
 
         UserVO userVO;
         try {
-
             userVO = wXService.getOuathUserInfo(openId, accessToken);
-
             if (userVO != null) {
                 saveUserInfo(userVO);
             }
-
         } catch (Exception e) {
-
             logger.error("createAndReturnWXUserToUser error ", e);
             throw new ServiceException("createAndReturnWXUserToUser error", e);
-
         }
 
         return userVO;

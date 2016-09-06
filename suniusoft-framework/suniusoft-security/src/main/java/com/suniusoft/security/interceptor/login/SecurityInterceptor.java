@@ -63,48 +63,35 @@ public class SecurityInterceptor implements HandlerInterceptor {
         }
 
         UserVO userVO=null;
-        if(request.getServletPath().indexOf("/mobile/seller/")!=-1){
 
-            userVO = (UserVO) session.getAttribute(SecurityConstant.SELLER_SESSION_KEY);
-            if(userVO == null){
-                String userNo = CookieUtils.getCookie(request,"_sun");
-                if(!StringUtils.isBlank(userNo)){
+        if (!StringUtils.isBlank(token) && TokenUtils.validateToken(token)){
+            SecuritySessionContext.init(token);
+            userVO = SecuritySessionContext.getUserInfo();
+            String userNo = CookieUtils.getCookie(request,"_u");
+            if(userVO!=null && StringUtils.isBlank(userNo)) {
+                Cookie userCookie = new Cookie("_u", userVO.getUserNo());
+                userCookie.setPath("/");
+                userCookie.setMaxAge(365 * 24 * 60 * 60);
+                CookieUtils.saveCookie(response, userCookie);
+                session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
+            }
+
+        }
+
+        if(userVO == null) {
+            userVO = (UserVO) session.getAttribute(SecurityConstant.SESSION_KEY);
+            if (userVO == null) {
+                String userNo = CookieUtils.getCookie(request, "_u");
+                if (!StringUtils.isBlank(userNo)) {
                     userVO = securityUserService.findUserByUserNo(userNo);
                 }
-            }
-            session.setAttribute(SecurityConstant.SELLER_SESSION_KEY,userVO);
-        }else{
+                session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
 
-            if (!StringUtils.isBlank(token) && TokenUtils.validateToken(token)){
-                SecuritySessionContext.init(token);
-                userVO = SecuritySessionContext.getUserInfo();
-                String userNo = CookieUtils.getCookie(request,"_u");
-                if(userVO!=null && StringUtils.isBlank(userNo)) {
-                    Cookie userCookie = new Cookie("_u", userVO.getUserNo());
-                    userCookie.setPath("/");
-                    userCookie.setMaxAge(365 * 24 * 60 * 60);
-                    CookieUtils.saveCookie(response, userCookie);
-                    session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
+                if (userVO != null) {
+                    log.info("loginInfo from cookie [userNo=" + (userVO.getUserNo() == null ? "" : userVO.getUserNo()) + "]");
                 }
 
             }
-
-            if(userVO == null) {
-                userVO = (UserVO) session.getAttribute(SecurityConstant.SESSION_KEY);
-                if (userVO == null) {
-                    String userNo = CookieUtils.getCookie(request, "_u");
-                    if (!StringUtils.isBlank(userNo)) {
-                        userVO = securityUserService.findUserByUserNo(userNo);
-                    }
-                    session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
-
-                    if (userVO != null) {
-                        log.info("loginInfo from cookie [userNo=" + (userVO.getUserNo() == null ? "" : userVO.getUserNo()) + "]");
-                    }
-
-                }
-            }
-
         }
 
         /**
@@ -113,29 +100,14 @@ public class SecurityInterceptor implements HandlerInterceptor {
         if (userVO == null) {
 
             /**
-             * 商家登录
-             */
-            if (BlackUrl.isBlackUrl(request) && request.getServletPath().indexOf("/mobile/seller/")!=-1) {
-
-                response.sendRedirect(contextPath + "/mobile/sellerLogin");
-
-                return false;
-
-            }
-
-            /**
              * 手机端用户登录
              */
             if (BlackUrl.isBlackUrl(request) && request.getServletPath().indexOf("/mobile/")!=-1) {
-
                 userVO = WxOauthHelper.wxOauth(request,response);
-
                 if(userVO!=null){
                     session.setAttribute(SecurityConstant.SESSION_KEY, userVO);
                 }
-
                 return true;
-
             }
 
             /**

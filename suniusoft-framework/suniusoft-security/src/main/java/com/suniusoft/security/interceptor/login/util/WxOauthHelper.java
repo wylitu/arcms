@@ -41,7 +41,7 @@ public class WxOauthHelper {
 
     public static String wxOpenApiUri = PropertyReader.getValue(WX_OPEN_API_URI_KEY);
 
-    public static String arcms_WEB_URI_KEY = "arcms.web.url";
+    public static String arcms_WEB_URI_KEY = "web.url";
 
     public static String arcmsWebUri = PropertyReader.getValue(arcms_WEB_URI_KEY);
 
@@ -126,7 +126,6 @@ public class WxOauthHelper {
          * 隐性授权处理
          */
         if (SecurityConstant.scope.SNSAPI_BASE.equals(state)) {
-
             String openId = wxUserOuathVO.getOpenid();
             UserVO userVO = securityUserService.findUserByWxOpenId(openId);
 

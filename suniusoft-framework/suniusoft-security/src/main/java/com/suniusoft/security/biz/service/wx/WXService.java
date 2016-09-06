@@ -124,7 +124,8 @@ public class WXService {
         /**
          * 不同字段名copy
          */
-
+        user.setWxSubscribeTime(userInfoVO.getSubscribe_time());
+        user.setWxSubscribe(userInfoVO.getSubscribe());
         user.setWxHeadimgurl(userInfoVO.getHeadimgurl());
         user.setWxOpenid(userInfoVO.getOpenid());
         user.setUserNick(userInfoVO.getNickname());
